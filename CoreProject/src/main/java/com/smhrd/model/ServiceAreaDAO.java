@@ -26,4 +26,18 @@ public class ServiceAreaDAO {
 		return result;
 				
 	}
+	
+	public int insertDetails(tb_details d) {
+		SqlSession session = factory.openSession(true);
+		int result = session.insert("ServiceMapper.insertDetails", d);
+		session.close();
+		return result;
+	}
+	
+	public List<tb_details> existDetails(String sa_name){
+		SqlSession session = factory.openSession(true);
+		List<tb_details> result = session.selectList("ServiceMapper.existDetails", sa_name);
+		session.close();
+		return result;
+	}
 }

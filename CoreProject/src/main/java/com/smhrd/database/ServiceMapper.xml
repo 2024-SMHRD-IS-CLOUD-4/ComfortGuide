@@ -10,4 +10,28 @@
 	select*from tb_service_area where sa_name = #{sa_name}	
 	
 </select>
+
+<insert id="insertDetails" parameterType="com.smhrd.model.tb_details">
+	insert into tb_details values(
+	#{sa_name},
+	#{parking_space},
+	#{is_car_maintenance},
+	#{is_gas_station},
+	#{is_lpg_station},
+	#{is_ev_charge},
+	#{is_break_room},
+	#{is_rest_room},
+	#{is_drug_store},
+	#{is_nursinng_room},
+	#{is_snack_bar},
+	#{is_restaurant},
+	#{is_hydrogen_charge},
+	#{created_at}
+	)	
+</insert>
+
+<select id="existDetails" resultType="com.smhrd.model.tb_details">
+	select*from tb_details where sa_name = #{sa_name}
+</select>
+
 </mapper>
