@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ServiceMapper">
+
+<insert id="insertServiceArea" parameterType="com.smhrd.model.tb_service_area">
+	insert into tb_service_area values(#{sa_name},#{sa_type},#{sa_addr},#{lat},#{lon},#{sa_img1},#{sa_img2},#{sa_img3},#{created_at},#{updated_at})
+</insert>
+
+<select id="existServiceArea" resultType="com.smhrd.model.tb_service_area">
+	select*from tb_service_area where sa_name = #{sa_name}	
+	
+</select>
+</mapper>
