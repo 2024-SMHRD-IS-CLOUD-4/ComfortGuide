@@ -108,32 +108,26 @@
         <div class="title">Comfort Guide</div>
         <div class="tabs">
             <button class="tab active">로그인</button>
-            <a href="Join.jsp" class="tab">회원가입</a> <!-- 회원가입 탭을 링크로 변경 -->
+            <a href="Join.html" class="tab">회원가입</a> <!-- 회원가입 탭을 링크로 변경 -->
         </div>
+        <form action="loginController" method="post">
         <div class="input-group">
-            <input type="text" placeholder="아이디를 입력하세요.">
-            <input type="password" placeholder="비밀번호를 입력하세요.">
+            <input type="text" placeholder="아이디를 입력하세요." name="id" id="id">
+            <input type="password" placeholder="비밀번호를 입력하세요." name="pw" id="pw">
         </div>
         <div class="checkbox-container">
             <input type="checkbox" id="keep-login">
             <label for="keep-login">로그인 상태 유지</label>
         </div>
-
         <!-- 로그인 버튼 클릭 시 mainpage.html로 이동 -->
-        <button class="login-button" onclick="redirectToMainPage()">로그인</button>
-        
+        <input type="submit" class="login-button" placeholder="로그인">
+		</form>
         <div class="footer-links">
             <a href="id_find.html">아이디 찾기</a>
             <a href="pw_find.html">비밀번호 찾기</a>
         </div>
     </div>
 
-    <script>
-        // 로그인 버튼 클릭 시 mainpage.html로 이동하는 함수
-        function redirectToMainPage() {
-            window.location.href = "mainpage.html";
-        }
-    </script>
 
 
 </body>

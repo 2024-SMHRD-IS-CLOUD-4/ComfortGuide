@@ -55,6 +55,13 @@ public class ServiceAreaDAO {
 		return result;	
 	}
 	
+	public tb_admin login(tb_admin a) {
+		SqlSession session = factory.openSession(true);
+		tb_admin result = session.selectOne("ServiceMapper.login",a);
+		session.close();
+		return result;
+	}
+	
 	public boolean existAdminId(String id) {
 		SqlSession session = factory.openSession(true);
 		tb_admin result = session.selectOne("ServiceMapper.existAdminId",id);

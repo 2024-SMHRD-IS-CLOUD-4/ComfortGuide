@@ -35,7 +35,7 @@
     <!-- 메뉴 -->
     <div class="menu">
         <div>
-            <a href="mainpage.html" class="active">메인 페이지</a>
+            <a href="mainPage.jsp" class="active">메인 페이지</a>
             <a href="subpage.html">검색 페이지</a>
             <a href="manager.html">관리자 페이지</a>
             <a href="suggestion.html">고객의 소리</a>
