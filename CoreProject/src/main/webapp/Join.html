@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -60,24 +61,25 @@
                 
                 <input type="text" placeholder="전화번호" name="tel" id="tel" required>
                 
-                <!-- 지역 선택 -->
-                <select id="region" required>
-                    <option value="">지역 선택</option>
-                    <option value="전남">전남</option>
-                    <option value="전북">전북</option>
-                    <option value="충남">충남</option>
-                    <option value="충북">충북</option>
-                </select>
-                
-                <!-- 휴게소 선택 -->
-                <select id="sa_name" name="sa_name" required>
-                    <option value="">휴게소 선택</option>
-                </select>
+                <!-- 지역 선택과 휴게소 선택을 같은 줄에 배치 -->
+                <div class="select-group">
+                    <select id="region" name="region" required>
+                        <option value="">지역 선택</option>
+                        <option value="전남">전남</option>
+                        <option value="전북">전북</option>
+                        <option value="충남">충남</option>
+                        <option value="충북">충북</option>
+                        
+                    </select>
+                    <select id="restStop" name="restStop" required>
+                        <option value="">휴게소 선택</option>
+                    </select>
+                </div>
 
                 <!-- 직급 선택 -->
                 <select id="position" name="position" required>
                     <option value="">직급 선택</option>
-                    <option value="사원">사원</option>
+                    <option value="사원">사원</option> 
                     <option value="대리">대리</option>
                     <option value="팀장">팀장</option>
                     <option value="부장">부장</option>

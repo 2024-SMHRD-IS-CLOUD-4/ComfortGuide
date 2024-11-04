@@ -85,22 +85,33 @@
         }
 
         /* 스타일 - 큰 카드 */
-        #map {
-            background-color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-            height: 400px;
-        }
+       /* 반응형 스타일 - #map 크기 */
+		#map {
+   			 background-color: #ffffff;
+   			 padding: 20px;
+			    text-align: center;
+			    font-size: 24px;
+			    font-weight: bold;
+			    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			    border: 1px solid #ddd;
+			    
+			    /* 기본 크기 설정 */
+			    width: 90vw; /* viewport의 너비 90% */
+			    height: 50vh; /* viewport의 높이 50% */
+			    
+			    /* 최소 및 최대 크기 제한 */
+			    max-width: 1000px;
+			    min-width: 300px;
+			    max-height: 600px;
+			    min-height: 300px;
+			}
 
         /* 텍스트 카드 스타일 */
         .text-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
+            
         }
         .text-card {
             background-color: #ffffff;
@@ -139,6 +150,10 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
             text-align: center;
-            font-size: 18px;
+            font-size: 15px;
             height: 500px; /* 차트 높이 고정 */
+            
+        
+	        
+     
         }

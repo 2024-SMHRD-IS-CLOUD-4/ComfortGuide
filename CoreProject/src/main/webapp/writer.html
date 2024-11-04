@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고객의 소리 작성</title>
+    <style>
+         * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* 헤더 스타일 */
+        .header {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           background-color: #cae3f8;
+           padding: 10px 20px;
+           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+           height: 60px;
+       }
+
+        .header .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* 메뉴 스타일 */
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaf4f9;
+            padding: 10px 20px;
+        }
+
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .menu a:active,
+        .menu a:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+
+        /* user-info 스타일 */
+        .menu .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .menu .user-info span {
+            margin-right: 15px;
+        }
+
+        .menu .user-info a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #d3d3d3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .menu .user-info a:hover {
+            background-color: #b3b3b3;
+        }
+        
+        /* 고객의 소리 박스 스타일 */
+        .container {
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+            margin: 100px auto; /* 헤더 및 메뉴 아래 공간 확보 */
+            width: 900px;
+            min-height: 500px; /* 최소 높이 설정 */
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            background-color: #d3d3d3;
+            padding: 10px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            width: 100%; /* 폼 그룹의 너비 설정 */
+        }
+        .form-group label {
+            width: 100px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .form-group input[type="file"] {
+            border: none;
+        }
+        .file-input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .file-input-container label {
+            font-weight: normal;
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #d3d3d3;
+        }
+        .buttons button:hover {
+            background-color: #b3b3b3;
+        }
+    </style>
+</head>
+<body>
+     <!-- 헤더 -->
+     <div class="header">
+        <div class="logo">Comfort Guide</div>
+    </div>
+
+    <!-- 메뉴 -->
+    <div class="menu">
+        <div>
+            <a href="mainpage.html" class="active">메인 페이지</a>
+            <a href="subpage.html">검색 페이지</a>
+            <a href="manager.html">관리자 페이지</a>
+            <a href="suggestion.html">고객의 소리</a>
+        </div>
+        
+        <!-- 사용자 정보와 링크 -->
+        <div class="user-info">
+            <span>정현지 님</span>
+            <a href="profile.html">회원정보 수정</a>
+            <a href="login.html">로그아웃</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-title">고객의 소리</div>
+
+        <form>
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" placeholder="Enter title">
+            </div>
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">이미지</label>
+                <div class="file-input-container">
+                    <input type="text" placeholder="선택된 파일 없음" readonly>
+                    <label for="file-upload">파일선택</label>
+                    <input type="file" id="file-upload" name="image" style="display: none;">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author">작성자</label>
+                <input type="text" id="author" name="author" placeholder="작성자 이름 입력">
+            </div>
+            <div class="buttons">
+                <button type="submit">작성</button>
+                <button type="reset">리셋</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // 파일 선택 시 선택된 파일명을 표시
+        document.getElementById('file-upload').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : "선택된 파일 없음";
+            this.previousElementSibling.previousElementSibling.value = fileName;
+        });
+    </script>
+
+</body>
+</html>
