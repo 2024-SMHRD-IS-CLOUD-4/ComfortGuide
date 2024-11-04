@@ -1,3 +1,9 @@
+<%@page import="org.json.JSONObject"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.io.InputStreamReader"%>
+<%@page import="java.io.BufferedReader"%>
+<%@page import="java.net.HttpURLConnection"%>
+<%@page import="java.net.URL"%>
 <%@page import="com.smhrd.model.tb_service_area"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.ServiceAreaDAO"%>
@@ -47,7 +53,7 @@
             <div id="map">지도</div>
 
             
-            <div class="table-card">
+            <div class="table-card" id="table-card">
                 <h2>이벤트 중인 휴게소</h2>
                 <table>
                     <thead>
@@ -65,17 +71,51 @@
                 </table>
             </div>
         </div>
+        <% 
+	String url = "http://localhost:5000/searchOil" ;
+	System.out.println("Request URL: " + url);
+
+    URL obj = new URL(url);
+    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+    con.setRequestMethod("GET");
+    
+    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+    String inputLine;
+    StringBuffer responseData = new StringBuffer();
+    
+    while ((inputLine = in.readLine()) != null) {
+        responseData.append(inputLine);
+    }
+    in.close();
+    
+    // JSON 파싱
+    JSONObject jsonResponse = new JSONObject(responseData.toString());
+    double one = jsonResponse.getDouble("고급휘발유");
+    double two= jsonResponse.getDouble("휘발유");
+    double three = jsonResponse.getDouble("경유");
+    double four = jsonResponse.getDouble("등유");
+    double five = jsonResponse.getDouble("LPG");
+    double six = jsonResponse.getDouble("전기충전소");
+    System.out.println(one);
+    System.out.println(two);
+    System.out.println(three);
+    System.out.println(four);
+    System.out.println(five);
+    System.out.println(six);
+%>
+
+
 
         <!-- 오른쪽 섹션 -->
         <div class="right-section">
             <div class="large-card">주유가격</div>
             <div class="text-cards">
-                <div class="text-card">텍스트</div>
-                <div class="text-card">텍스트</div>
-                <div class="text-card">텍스트</div>
-                <div class="text-card">텍스트</div>
-                <div class="text-card">텍스트</div>
-                <div class="text-card">텍스트</div>
+                <div class="text-card">고급 휘발유 <br><br><%=one %></div>
+                <div class="text-card">휘발유 <%=two %></div>
+                <div class="text-card">경유 <%=three %></div>
+                <div class="text-card">등유 <%=four %></div>
+                <div class="text-card">LPG <%=five %></div>
+                <div class="text-card">전기충전소 <%=six %></div>
             </div>
             <div class="chart-card">국내여행</div>
             <div class="chart-card">그래프</div>
@@ -101,7 +141,7 @@ var positions = [
 ];
 </script>
 
-
+	<script src="js/main_event.js"></script>
     <script src="js/map_js.js"></script>
 
 </body>
