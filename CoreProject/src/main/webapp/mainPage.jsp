@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.domestic_trips"%>
+<%@page import="com.smhrd.model.TripDAO"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.io.InputStreamReader"%>
@@ -12,7 +14,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de8ae99dd87927fe3467ec1335a0120d&libraries=services"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de8ae99dd87927fe3467ec1335a0120d&libraries=services"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,13 +121,49 @@
                 <div class="text-card">전기충전소 <%=six %></div>
             </div>
             <div class="chart-card">국내여행</div>
-            <div class="chart-card">그래프</div>
+            <div class="chart-card">
+            그래프
+            	<canvas id="myChart"></canvas>
+            </div>
         </div>
     </div>
+    
+    <%
+    	TripDAO dao2 = new TripDAO(); 
+    	List<domestic_trips> result = dao2.getTrips();
+    	
+    %>
+    
+    <script>
+        // 데이터 추출
+        const labels = [
+	    <%
+	        for(int i =0;i< result.size();i++){
+	            String tripName = result.get(i).getRegion();
+	            out.print("'" + tripName + "'");
+	            if (i < result.size() - 1) out.print(","); // 콤마 추가
+	        }
+	    %>
+		];
+
+		const data = [
+		    <%
+		        for(int i =0;i< result.size();i++){
+		            domestic_trips trip = result.get(i);
+		            int count = trip.getCount();
+		            out.print(count);
+		            if (i < result.size() - 1) out.print(","); // 콤마 추가
+		        }
+		    %>
+		];        
+    </script>
+    <script type="text/javascript" src="js/main_bar.js"></script>
+    
+    
    <%
     ServiceAreaDAO dao = new ServiceAreaDAO();
     List<tb_service_area> getArea = dao.getServiceArea();
-%>
+	%>
 <script>
 var positions = [
     <% for (int i = 0; i < getArea.size(); i++) { 

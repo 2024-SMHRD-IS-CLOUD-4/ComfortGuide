@@ -47,4 +47,7 @@
 	select* from tb_admin where admin_id = #{admin_id}
 </select>
 
+<select id="getTrips" resultType="com.smhrd.model.domestic_trips">
+	select*from domestic_trips
+</select>
 </mapper>
