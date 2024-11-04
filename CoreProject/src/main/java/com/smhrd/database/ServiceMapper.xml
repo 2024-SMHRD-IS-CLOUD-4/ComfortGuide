@@ -14,6 +14,7 @@
 	select*from tb_service_area
 </select>
 
+
 <insert id="insertDetails" parameterType="com.smhrd.model.tb_details">
 	insert into tb_details values(
 	#{sa_name},
@@ -35,6 +36,15 @@
 
 <select id="existDetails" resultType="com.smhrd.model.tb_details">
 	select*from tb_details where sa_name = #{sa_name}
+</select>
+
+
+<insert id="insertAdmin" parameterType="com.smhrd.model.tb_admin">
+	insert into tb_admin values(#{admin_id},#{admin_pw},#{admin_tel},#{sa_name},#{sa_addr},#{admin_position})
+</insert>
+
+<select id="existAdminId" resultType="com.smhrd.model.tb_admin">
+	select* from tb_admin where admin_id = #{admin_id}
 </select>
 
 </mapper>

@@ -45,7 +45,25 @@ public class ServiceAreaDAO {
 		SqlSession session = factory.openSession(true);
 		List<tb_service_area> result = session.selectList("ServiceMapper.getServiceArea");
 		session.close();
-		return result;
-				
+		return result;	
 	}
+	
+	public int insertAdmin(tb_admin a) {
+		SqlSession session = factory.openSession(true);
+		int result = session.insert("ServiceMapper.insertAdmin",a);
+		session.close();
+		return result;	
+	}
+	
+	public boolean existAdminId(String id) {
+		SqlSession session = factory.openSession(true);
+		tb_admin result = session.selectOne("ServiceMapper.existAdminId",id);
+		session.close();
+		if(result!=null) {
+			return true; // 
+		}else {
+			return false;
+		}
+	}
+
 }

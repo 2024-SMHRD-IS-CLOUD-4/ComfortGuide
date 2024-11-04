@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="css/joinCss.css">
+    <script src="js/jquery.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var regionSelect = document.getElementById("region");
+            var restStopSelect = document.getElementById("sa_name");
+
+            // 휴게소 목록 데이터
+            var restStops = {
+                "전남": ["곡성(순천)","곡성(천안)","백양사(순천)","백양사(천안)","섬진강(순천)","섬진강(부산)","함평나비(광주)","함평나비(무안)",
+                    "함평천지(목포)","함평천지(서울)","황전(순천)","황전(완주)","보성녹차(순천)","보성녹차(영암)"],
+                "전북": ["춘향(순천)", "춘향(완주)","강천산(광주)","강천산(대구)","고창고인돌(목포)","고창고인돌(서울)","군산(목포)","군산(서울)",
+                    "덕유산(대전)","덕유산(통영)","부안고려청자(목포)","부안고려청자(서울)","여산(순천)","여산(천안)","이서(순천)","이서(천안)",
+                    "오수(순천)","오수(완주)","지리산(대구)","지리산(광주)","진안마이산(익산)","진안마이산(장수)"],
+                "충남": ["천안삼거리(서울)","천안호두(부산)","행담도","홍성(목포)","홍성(서울)","공주(당진)","공주(대전)","금산인삼랜드(대전)","금산인삼랜드(통영)",
+                    "대천(목포)","대천(서울)","망향(부산)","벌곡(논산)","벌곡(대전)","부여백제(공주)","부여백제(서천)","서산(목포)","서산(서울)","서천(목포)","서천(서울)",
+                    "예산(당진)","에산(대전)"],
+                "충북": ["천등산(제천)","천등산(평택)","청주(서울)","충주(양평)","충주(창원)","황간(부산)","괴산(양평)","괴산(창원)","금강(부산)",
+                    "금왕(제천)","금왕(평택)","단양팔경(부산)","단양팔경(춘천)","황간(서울)","문의청남대(영덕)","문의청남대(청주)",
+                    "속리산(청주)","오창(남이)","오창(하남)","옥천(부산)","옥천(서울)","음성(남이)","음성(하남)","죽암(부산)","죽암(서울)"]
+            };
+
+            // 이벤트 리스너 추가
+            regionSelect.addEventListener("change", function() {
+                var selectedRegion = regionSelect.value;
+                restStopSelect.innerHTML = "";
+
+                if (selectedRegion in restStops) {
+                    restStops[selectedRegion].forEach(function(restStop) {
+                        var option = document.createElement("option");
+                        option.value = restStop;
+                        option.textContent = restStop;
+                        restStopSelect.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Comfort Guide</div>
+        <div class="tabs">
+            <a href="login.html" class="tab">로그인</a>
+            <div class="tab active">회원가입</div>
+        </div>
+        <form id="joinForm" action="joinController" method="post">
+            <div class="input-group">
+                <input type="text" placeholder="아이디" name="id" id="id" required>
+                <span id="confirmId" style="color: gray;">아이디를 입력하세요.</span>                
+                <input type="password" placeholder="비밀번호" name="pw" id="pw" required>
+                <input type="password" placeholder="비밀번호 확인" id="pw_true" required>
+                <span id="confirmPw" style="color: gray;">비밀번호를 입력하세요.</span>
+                
+                <input type="text" placeholder="전화번호" name="tel" id="tel" required>
+                
+                <!-- 지역 선택 -->
+                <select id="region" required>
+                    <option value="">지역 선택</option>
+                    <option value="전남">전남</option>
+                    <option value="전북">전북</option>
+                    <option value="충남">충남</option>
+                    <option value="충북">충북</option>
+                </select>
+                
+                <!-- 휴게소 선택 -->
+                <select id="sa_name" name="sa_name" required>
+                    <option value="">휴게소 선택</option>
+                </select>
+
+                <!-- 직급 선택 -->
+                <select id="position" name="position" required>
+                    <option value="">직급 선택</option>
+                    <option value="사원">사원</option>
+                    <option value="대리">대리</option>
+                    <option value="팀장">팀장</option>
+                    <option value="부장">부장</option>
+                    <option value="이사">이사</option>
+                </select>
+
+                <input type="text" placeholder="주소" name="address" id="address" required>
+            </div>
+            <input type="submit" class="submit-button" value="완료" id="joinButton">
+        </form>
+    </div>
+
+    <script src="js/join.js">
+        
+    </script>
+</body>
+</html>
