@@ -40,4 +40,12 @@ public class ServiceAreaDAO {
 		session.close();
 		return result;
 	}
+
+	public List<tb_service_area> getServiceArea() {
+		SqlSession session = factory.openSession(true);
+		List<tb_service_area> result = session.selectList("ServiceMapper.getServiceArea");
+		session.close();
+		return result;
+				
+	}
 }

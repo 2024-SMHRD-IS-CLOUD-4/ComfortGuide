@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manager</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        
+        /* 헤더 스타일 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #cae3f8;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: 60px;
+        }
+
+        .header .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* 메뉴 스타일 */
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaf4f9;
+            padding: 10px 20px;
+        }
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+        .menu a:active,
+        .menu a:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+        
+        /* user-info 스타일 */
+        .menu .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .menu .user-info span {
+            margin-right: 15px;
+        }
+        .menu .user-info a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #d3d3d3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .menu .user-info a:hover {
+            background-color: #b3b3b3;
+        }
+         /* 대시보드 컨테이너 */
+         .dashboard-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* 차트 영역 스타일 */
+        .chart-container {
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: #888;
+            height: 400px;
+        }
+
+        /* 박스 컨테이너 */
+        .box-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 박스 항목 스타일 */
+        .box-item {
+            padding: 48px;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+            width: 100%; /* 레전드 아이템의 너비를 컨테이너 전체로 */
+        }
+
+        .box-item:nth-child(1) {
+            background-color: #fff;
+            
+        }
+
+        .box-item:nth-child(2) {
+            background-color: #fff;
+        }
+
+        .box-item:nth-child(3) {
+            background-color: #fff;
+        }
+          /* 전체 대시보드 컨테이너 */
+          .dashboard-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr; /* 각 열의 비율을 조정할 수 있음 */
+            grid-template-rows: auto auto;   /* 각 행의 높이를 조정할 수 있음 */
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* 상단 중앙 차트 영역 */
+        .main-chart {
+            grid-column: 1 / span 1;
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            height: 200px; /* 원하는 높이로 조절 */
+        }
+
+        /* 오른쪽 세로 박스: 고객의 소리 */
+        .right-box {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 2;
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 550px; /* 원하는 높이로 조절 */
+        }
+
+        /* 하단 박스 컨테이너 */
+        .bottom-container {
+            grid-column: 1 / span 1;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr; /* 각 열의 비율을 조절할 수 있음 */
+            grid-template-rows: 1fr 1fr;       /* 각 행의 높이를 조절할 수 있음 */
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* 하단 큰 박스 */
+        .large-box {
+            grid-column: 1 / span 1;
+            grid-row: 1 / span 2;
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%; /* 자동으로 하단 박스 크기에 맞춤 */
+        }
+
+        /* 하단 작은 박스 */
+        .small-box {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 150px; /* 각 작은 박스의 높이를 조절 */
+        }
+        
+    </style>
+</head>
+<body>
+     <!-- 헤더 -->
+     <div class="header">
+        <div class="logo">Comfort Guide</div>
+    </div>
+
+    <!-- 메뉴 -->
+    <div class="menu">
+        <div>
+            <a href="mainpage.html" class="active">메인 페이지</a>
+            <a href="subpage.html">검색 페이지</a>
+            <a href="manager.html">관리자 페이지</a>
+            <a href="suggestion.html">고객의 소리</a>
+        </div>
+        
+        <!-- 사용자 정보와 링크 -->
+        <div class="user-info">
+            <span>정현지 님</span>
+            <a href="profile.html">회원정보 수정</a>
+            <a href="login.html">로그아웃</a>
+        </div>
+    </div>
+
+    
+    <!-- 대시보드 컨테이너 -->
+    <div class="dashboard-container">
+        <!-- 차트 섹션 -->
+        <div class="chart-container">
+            차트 영역 (빈 공간)
+        </div>
+        <!-- box 섹션 -->
+        <div class="box-container">
+            <div class="box-item">매출액</div>
+            <div class="box-item">이용객</div>
+            <div class="box-item">통행량</div>
+        </div>
+    </div>
+     <!-- 대시보드 전체 컨테이너 -->
+     <div class="dashboard-container">
+        
+        <!-- 상단 중앙 차트 영역 -->
+        <div class="main-chart">
+            휴게소 하나의 음식코너 매출액
+        </div>
+
+        <!-- 오른쪽 세로 박스: 고객의 소리 -->
+        <div class="right-box">
+            고객의 소리
+        </div>
+
+        <!-- 하단 박스 컨테이너 -->
+        <div class="bottom-container">
+            <div class="large-box">만족도, 감정분석</div>
+            <div class="small-box">식중독</div>
+            <div class="small-box">감기</div>
+            <div class="small-box">습도</div>
+            <div class="small-box">황사</div>
+        </div>
+
+    </div>
+</body>
+</html>

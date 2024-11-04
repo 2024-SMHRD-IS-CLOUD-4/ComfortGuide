@@ -8,7 +8,10 @@
 
 <select id="existServiceArea" resultType="com.smhrd.model.tb_service_area">
 	select*from tb_service_area where sa_name = #{sa_name}	
-	
+</select>
+
+<select id="getServiceArea" resultType="com.smhrd.model.tb_service_area">
+	select*from tb_service_area
 </select>
 
 <insert id="insertDetails" parameterType="com.smhrd.model.tb_details">
