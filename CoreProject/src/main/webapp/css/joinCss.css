@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
-    <style>
-        body {
+@charset "UTF-8";
+body {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,26 +70,3 @@
             color: #000;
             cursor: pointer;
         }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="title">Comfort Guide</div>
-        <div class="tabs">
-            <a href="login.html" class="tab">로그인</a> <!-- 로그인 탭 링크 -->
-            <div class="tab active">회원가입</div> <!-- 현재 활성화된 회원가입 탭 -->
-        </div>
-        <div class="input-group">
-            <input type="text" placeholder="아이디">
-            <input type="password" placeholder="비밀번호">
-            <input type="password" placeholder="비밀번호 확인">
-            <input type="tel" placeholder="전화번호">
-            <input type="text" placeholder="주소">
-            <input type="text" placeholder="직급">
-        </div>
-        <button class="submit-button">완료</button>
-    </div>
-
-</body>
-</html>
