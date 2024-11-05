@@ -1,155 +1,90 @@
-@charset "UTF-8";
-		* {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f5f5f5;
-        }
-        
-        /* 헤더 스타일 */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #cae3f8;
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            height: 60px;
-        }
-
-        .header .logo {
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        /* 메뉴 스타일 */
-        .menu {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #eaf4f9;
-            padding: 10px 20px;
-        }
-        .menu a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            padding: 10px 15px;
-            transition: background-color 0.3s;
-        }
-        .menu a:active,
-        .menu a:focus {
-            background-color: #ffffff;
-            color: black;
-        }
-        
-        /* user-info 스타일 */
-        .menu .user-info {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-        }
-        .menu .user-info span {
-            margin-right: 15px;
-        }
-        .menu .user-info a {
-            margin-left: 10px;
-            text-decoration: none;
-            color: #333;
-            background-color: #d3d3d3;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .menu .user-info a:hover {
-            background-color: #b3b3b3;
-        }
-        
-        /* 대시보드 컨테이너 */
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 좌우 섹션을 동일한 너비로 설정 */
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .left-section, .right-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* 지도 컨테이너 스타일 */
-        .map-container {
-            background-color: #ffffff;
-            padding: 20px;
-            font-size: 24px;
-            font-weight : bold;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-
-        .map-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        /* 지도 스타일 */
-        #map {
-            width: 100%; /* 지도의 너비 */
-            height: 1000px; /* 지도의 높이 */
-            max-width: 1000px; /* 최대 너비 */
-            max-height: 600px; /* 최대 높이 */
-            min-width: 1000px; /* 최소 너비 */
-            min-height: 1000px; /* 최소 높이 */
-            border: 1px solid #ddd;
-        }
-	
-	
-        /* 내부 텍스트 카드 스타일 */
-    .text-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-top: 10px;
+* {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
     }
-
-    .text-card {
-        background-color: #f9f9f9;
-        padding: 25px;
-        text-align: center;
-        font-size: 18px;
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f5f5f5;
+    }
+    /* 헤더 스타일 */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #cae3f8;
+        padding: 10px 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        border: 1px solid #ddd;
-        
-        
+        height: 60px;
     }
-
-
-    /* 표 스타일 */
+    .header .logo {
+        font-weight: bold;
+        font-size: 20px;
+    }
+    /* 메뉴 스타일 */
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #eaf4f9;
+        padding: 10px 20px;
+    }
+    .menu a {
+        margin-right: 20px;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        padding: 10px 15px;
+        transition: background-color 0.3s;
+    }
+    .menu a:active,
+    .menu a:focus {
+        background-color: #ffffff;
+        color: black;
+    }
+    /* 대시보드 컨테이너 스타일 */
+    .container {
+	    display: grid;
+	    grid-template-columns: 3fr 2fr; /* 좌측이 더 넓게 설정 */
+	    gap: 20px;
+	    grid-template-rows: auto 1fr; /* 첫 번째 행은 내용에 맞추고, 두 번째 행은 자동으로 크기 조절 */
+	    padding: 20px;
+	}
+	
+	.left-section, .right-section {
+	    display: flex;
+	    flex-direction: column;
+	    gap: 20px;
+	}
+	
+	/* 지도 및 이벤트 테이블 스타일 */
+	.map-container {
+	    background-color: #ffffff;
+	    padding: 20px;
+	    font-size: 24px;
+	    font-weight: bold;
+	    border: 1px solid #ddd;
+	    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	    text-align: left;
+	    grid-row: 1 / span 2; /* 지도 컨테이너가 두 행을 차지하도록 설정 */
+	}
+	
+	#map {
+	    width: 100%;
+	    height: 100%; /* 높이를 부모 요소에 맞춤 */
+	}
+    /* 이벤트 테이블 스타일 */
     .table-card {
         background-color: #ffffff;
         padding: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         border: 1px solid #ddd;
+        text-align: center;
     }
-    .table-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-top: 10px;
+    .table-card h3 {
         margin-bottom: 10px;
-        color: #333;
-        text-align: left;
     }
-    
     .table-card table {
         width: 100%;
         border-collapse: collapse;
@@ -157,14 +92,33 @@
     .table-card th, .table-card td {
         border: 1px solid #ddd;
         padding: 10px;
-        text-align: center;
     }
     .table-card th {
         background-color: #f9eac3;
-        font-weight: bold;
     }
-    
-    /* 차트 카드 스타일 */
+    /* 주유 가격 카드 */
+    .large-card {
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 20px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+    .text-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .text-card {
+        background-color: #f9f9f9;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+    }
+    /* 그래프 카드 스타일 */
     .chart-card {
         background-color: #ffffff;
         padding: 20px;
@@ -172,8 +126,5 @@
         border: 1px solid #ddd;
         text-align: center;
         font-size: 15px;
-        height: 500px; /* 차트 높이 고정 */
+        height: 500px;
     }
-	        
-  
-        
