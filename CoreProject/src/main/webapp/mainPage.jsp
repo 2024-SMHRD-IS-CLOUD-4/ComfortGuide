@@ -1,109 +1,346 @@
-<%@page import="com.smhrd.model.tb_admin"%>
+<!DOCTYPE html>
+<%@page import="com.smhrd.model.tb_service_area"%>
+<%@page import="com.smhrd.model.ServiceAreaDAO"%>
 <%@page import="com.smhrd.model.RegionalTourismGrowth"%>
 <%@page import="com.smhrd.model.TourismStats"%>
-<%@page import="java.net.URI"%>
-<%@page import="java.net.URL"%>
-<%@page import="java.io.IOException"%>
 <%@page import="com.smhrd.model.domestic_trips"%>
+<%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.TripDAO"%>
+<%@page import="java.io.IOException"%>
 <%@page import="org.json.JSONObject"%>
-<%@page import="java.net.URLEncoder"%>
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.net.HttpURLConnection"%>
-<%@page import="com.smhrd.model.tb_service_area"%>
-<%@page import="java.util.List"%>
-<%@page import="com.smhrd.model.ServiceAreaDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@page import="java.net.URL"%>
+<%@page import="java.net.URI"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html lang="ko">
 <head>
 <script
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de8ae99dd87927fe3467ec1335a0120d&libraries=services"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de8ae99dd87927fe3467ec1335a0120d&libraries=services"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mainpage</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>메인 페이지</title>
+    
+    <style>
+        /* 기본 스타일 */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
 
-<link rel="stylesheet" type="text/css" href="css/mainCss.css">
+        /* 헤더 스타일 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #cae3f8;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: 60px;
+        }
 
+        .header .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* 메뉴 스타일 */
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaf4f9;
+            padding: 10px 20px;
+        }
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+        .menu a:active,
+        .menu a:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+
+        /* user-info 스타일 */
+        .menu .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .menu .user-info span {
+            margin-right: 15px;
+        }
+        .menu .user-info a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #d3d3d3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .menu .user-info a:hover {
+            background-color: #b3b3b3;
+        }
+
+        /* 대시보드 컨테이너 */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .left-section, .right-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* 큰 카드 스타일 */
+        .large-card {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: start; /* 변경 */
+        }
+
+        /* 주유 가격 제목 간격 조절 */
+        .large-card h2 {
+            margin: 0; /* 제목과 박스 사이 간격 제거 */
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            padding-bottom: 10px; /* 약간의 간격 추가 */
+        }
+
+        /* 주유 가격 카드 스타일 */
+        .fuel-price-card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px; /* 간격을 줄임 */
+            margin-top: 0; /* 주유 가격 카드의 상단 여백 제거 */
+        }
+
+        /* price-item을 두 개의 네모로 나눔 */
+        .price-item {
+            height: 40%;
+            display: flex;
+            width: 48%;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .price-item .label, .price-item .price {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .price-item .label {
+            background-color: #f0e68c;
+            font-weight: bold;
+        }
+
+        .price-item .price {
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* 텍스트 카드 스타일 */
+        .text-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .text-card {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            flex: 1;
+        }
+
+        /* 표 스타일 */
+        .table-card {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+        }
+        .table-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-card th, .table-card td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .table-card th {
+            background-color: #f9eac3;
+            font-weight: bold;
+        }
+
+        /* 차트 카드 스타일 */
+        .chart-text {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            width: 50%; /* 1행 2열을 위해 */
+            height: 150px;
+        }
+
+        /* 차트 카드 스타일 */
+        .chart-card {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 18px;
+            height: 500px;
+        }
+
+        /* 설명 카드 래퍼 */
+        .chart-text-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+.wrap * {
+    padding: 0;
+    margin: 0;
+}
+
+.wrap .info {
+    width: 350px;
+    height: 120px;
+    border-radius: 5px;
+    border-bottom: 2px solid #ccc;
+    border-right: 1px solid #ccc;
+    overflow: hidden;
+    background: #fff;
+    font-size: 15px;
+    text-align: left;
+}
+
+.wrap .info:nth-child(1) {
+    border: 0;
+    box-shadow: 0px 1px 2px #888;
+}
+
+.info .title {
+    padding: 5px 0 0 10px;
+    height: 30px;
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.info .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #888;
+    width: 17px;
+    height: 17px;
+    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+.info .close:hover {
+    cursor: pointer;
+}
+
+.info .body {
+    position: relative;
+    margin: 13px 0 0 0; /* 왼쪽 여백 제거 */
+    overflow: hidden;
+    padding: 0 10px; /* padding 추가 */
+}
+
+.info .desc {
+    position: relative;
+    height: auto; /* 높이를 자동으로 조정 */
+}
+
+.desc .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* 줄바꿈 허용 */
+}
+
+.desc .jibun {
+    font-size: 11px;
+    color: #888;
+    margin-top: -2px;
+}
+
+.info .img {
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    width: 73px;
+    height: 71px;
+    border: 1px solid #ddd;
+    color: #888;
+    overflow: hidden;
+}
+
+.info:after {
+    content: '';
+    position: absolute;
+    margin-left: -12px;
+    left: 50%;
+    bottom: 0;
+    width: 22px;
+    height: 12px;
+    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.info .link {
+    color: #5085BB;
+}
+   
+    </style>
+    
 </head>
 <body>
-
-   <!-- 헤더 -->
-   <div class="header">
-      <div class="logo">Comfort Guide</div>
-   </div>
-
-   <!-- 메뉴 -->
-   <div class="menu">
-      <div>
-         <a href="mainPage.jsp" class="active">메인 페이지</a> <a
-            href="subpage.jsp">검색 페이지</a> <a href="manager.html">관리자 페이지</a> <a
-            href="suggestion.html">고객의 소리</a>
-      </div>
-      
-
-        <!-- 사용자 정보와 링크 -->
-      <div class="user-info">
-      <%tb_admin login = (tb_admin)session.getAttribute("login"); 
-      if(login!=null){
-      %>
-      
-         <span><%=login.getAdmin_id() %> 님</span> 
-         <a href="profile.html">회원정보 수정</a> 
-         <a href="login.html">로그아웃</a>
-      <%}else{ %>
-         <a href="login.html">로그인</a>
-         <a href="Join.html">회원가입</a>
-      <%} %>
-      </div>
-      
-   </div>
-
-   <!-- 대시보드 컨테이너 -->
-   <div class="container">
-      <!-- 왼쪽 섹션 -->
-      <div class="left-section">
-        <div class="map-container">
-            <div class="map-title">전국 휴게소 지도</div>
-            <div id="map">지도</div>
-        </div>
-    </div>
-
-         <div class="table-card" id="table-card">
-            <h3>이벤트 중인 휴게소</h3>
-            <table>
-               <thead>
-                  <tr>
-                     <th>휴게소 이름</th>
-                     <th>이벤트 기간</th>
-                     <th>이벤트 내용</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>용인 휴게소</td>
-                     <td></td>
-                     <td></td>
-                  </tr>
-                  <tr>
-                     <td>이천 휴게소</td>
-                     <td></td>
-                     <td></td>
-                  </tr>
-                  <tr>
-                     <td>기흥 휴게소</td>
-                     <td></td>
-                     <td></td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </div>
-      <%
+    <%
       String url2 = "http://localhost:5000/searchOil".trim();
       HttpURLConnection con = null;
       BufferedReader in = null;
@@ -166,30 +403,7 @@
          result2 += result.get(i).getCount();
       }
       %>
-
-
-     <!-- 오른쪽 섹션 -->
-      <div class="right-section">
-         <div class="large-card">주유가격</div>
-         <div class="text-cards">
-            <div class="text-card">
-               고급 휘발유 <br><%=one%></div>
-            <div class="text-card">
-               휘발유<br>
-               <%=two%></div>
-            <div class="text-card">
-               경유<br>
-               <%=three%></div>
-            <div class="text-card">
-               등유<br>
-               <%=four%></div>
-            <div class="text-card">
-               LPG<br>
-               <%=five%></div>
-            <div class="text-card">
-               전기충전소<br>
-               <%=six%></div>
-      <%
+<%
          List<TourismStats> tourRate = dao2.getAllTourism();
       
          int year = 0;
@@ -215,57 +429,129 @@
       %>
 
 
-            <br> 임시<span></span> <br>
-            <div class="text-card">
-               국내 총 여행객 수<br><%=result2%></div>
-            
-            <div class="text-card">
+      
+
+
+     <!-- 헤더 -->
+     <div class="header">
+        <div class="logo">Comfort Guide</div>
+    </div>
+
+    <!-- 메뉴 -->
+    <div class="menu">
+        <div>
+            <a href="mainpage.html" class="active">메인 페이지</a>
+            <a href="subpage.html">검색 페이지</a>
+            <a href="javascript:void(0);" onclick="confirmAdminAccess()">관리자 페이지</a>
+            <a href="suggestion.html">고객의 소리</a>
+        </div>
+        
+        <!-- 사용자 정보와 링크 -->
+        <div class="user-info">
+            <span>정현지 님</span>
+            <a href="profile.html">회원정보 수정</a>
+            <a href="login.html">로그아웃</a>
+        </div>
+    </div>
+
+    <!-- 대시보드 컨테이너 -->
+    <div class="container">
+        <!-- 왼쪽 섹션 -->
+        <div class="left-section">
+            <div class="large-card" id="map">지도</div>
+            <div class="table-card" id="table-card">
+                <h2>이벤트 중인 휴게소</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>휴게소 이름</th>
+                            <th>이벤트 기간</th>
+                            <th>이벤트 내용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>용인 휴게소</td><td></td><td></td></tr>
+                        <tr><td>이천 휴게소</td><td></td><td></td></tr>
+                        <tr><td>기흥 휴게소</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 오른쪽 섹션 -->
+        <div class="right-section">
+            <div class="large-card">
+                <h2>주유 가격</h2>
+                <div class="fuel-price-card">
+                    <div class="price-item">
+                        <div class="label">고급 휘발유</div>
+                        <div class="price">1880.89원</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="label">휘발유</div>
+                        <div class="price">1612.34원</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="label">경유</div>
+                        <div class="price">1440.59원</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="label">LPG</div>
+                        <div class="price">1029.71원</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="label">등유</div>
+                        <div class="price">1307.99원</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="label">전기충전소</div>
+                        <div class="price">1016.68원</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-text-wrapper">
+                <div class="chart-text">
+                관광 지출액 수 증감률<br><%=rateByTour %>%
+                </div>
+                <div class="chart-text">
                 방문자 증가율 Top 3 
                 <br>1. <%= growth.get(0).getRegion() + " " %> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>% 
                 <br>2. <%= growth.get(1).getRegion() + " " %> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>% 
                 <br>3. <%= growth.get(2).getRegion() + " " %> <%= String.format("%.1f", growth.get(2).getTourismGrowthRate()) %>% 
+                
+                </div>
             </div>
+            <div class="chart-card">그래프
+
+                <canvas id="myChart"></canvas>
 
 
-
-         </div>
-
-         <div class="chart-card">
-            그래프
-            <canvas id="myChart"></canvas>
-         </div>
-      </div>
-   </div>
-
-
-
-   <script>
-        // 데이터 추출
-        const labels = [
-          <%for (int i = 0; i < result.size(); i++) {
-            String tripName = result.get(i).getRegion();
-            out.print("'" + tripName + "'");
-            if (i < result.size() - 1)
-               out.print(","); // 콤마 추가
-         }%>
-         ];
-
-      const data = [
-          <%for (int i = 0; i < result.size(); i++) {
-            domestic_trips trip = result.get(i);
-            int count = trip.getCount();
-            out.print(count);
-            if (i < result.size() - 1)
-               out.print(","); // 콤마 추가
-         }%>
-      ];        
-    </script>
-   <script type="text/javascript" src="js/main_bar.js"></script>
-   <%
+            </div>
+        </div>
+    </div>
+    <%
       ServiceAreaDAO dao = new ServiceAreaDAO();
       List<tb_service_area> getArea = dao.getServiceArea();
    %>
+   <script type="text/javascript">
+   const labels = [
+        <%for (int i = 0; i < result.size(); i++) {
+          String tripName = result.get(i).getRegion();
+          out.print("'" + tripName + "'");
+          if (i < result.size() - 1)
+             out.print(","); // 콤마 추가
+       }%>
+       ];
 
+    const data = [
+        <%for (int i = 0; i < result.size(); i++) {
+          domestic_trips trip = result.get(i);
+          int count = trip.getCount();
+          out.print(count);
+          if (i < result.size() - 1)
+             out.print(","); // 콤마 추가
+       }%>
+    ];     </script>
 
    <script>
       var positions = [
@@ -280,10 +566,10 @@
           }<%if (i < getArea.size() - 1) {%>,<%}%>
           <%}%>
       ];
-</script>
-
-   <script src="js/main_event.js"></script>
-   <script src="js/map_js.js"></script>
-
+   </script>
+   <script type="text/javascript" src="js/main_bar.js"></script>
+   <script type="text/javascript" src="js/map_js.js"></script>
+   <script type="text/javascript" src="js/main_event.js"></script>
+   
 </body>
 </html>
