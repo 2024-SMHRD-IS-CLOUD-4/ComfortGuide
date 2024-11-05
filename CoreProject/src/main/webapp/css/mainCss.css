@@ -84,33 +84,32 @@
             gap: 20px;
         }
 
-        /* 공통 제목 스타일 */
-   		 .title {
-        font-size: 24px; /* 제목 글자 크기 */
-        font-weight: bold; /* 굵은 글씨 */
-        color: #333; /* 제목 색상 */
-        margin-top: 10px;
-        margin-bottom: 10px; /* 제목 하단 여백 */
-        text-align: center;
-    }
+        /* 지도 컨테이너 스타일 */
+        .map-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
 
-    /* 반응형 스타일 - #map 크기 */
-    #map {
-        background-color: #ffffff;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        border: 1px solid #ddd;
-        
-        /* 기본 크기 설정 */
-        width: 90vw; /* viewport의 너비 90% */
-        height: 50vh; /* viewport의 높이 50% */
-        
-        /* 최소 및 최대 크기 제한 */
-        max-width: 1000px;
-        min-width: 300px;
-        max-height: 600px;
-        min-height: 300px;
-    }
+        .map-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* 지도 스타일 */
+        #map {
+            width: 100%; /* 지도의 너비 */
+            height: 500px; /* 지도의 높이 */
+            max-width: 1000px; /* 최대 너비 */
+            max-height: 600px; /* 최대 높이 */
+            min-width: 300px; /* 최소 너비 */
+            min-height: 300px; /* 최소 높이 */
+            border: 1px solid #ddd;
+        }
 	
 	
         /* 내부 텍스트 카드 스타일 */

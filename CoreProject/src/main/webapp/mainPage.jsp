@@ -68,8 +68,11 @@
    <div class="container">
       <!-- 왼쪽 섹션 -->
       <div class="left-section">
-         <div id="map">지도</div>
-
+        <div class="map-container">
+            <div class="map-title">전국 휴게소 지도</div>
+            <div id="map">지도</div>
+        </div>
+    </div>
 
          <div class="table-card" id="table-card">
             <h3>이벤트 중인 휴게소</h3>
@@ -166,25 +169,25 @@
       %>
 
 
-      <!-- 오른쪽 섹션 -->
+     <!-- 오른쪽 섹션 -->
       <div class="right-section">
-         <div class="title-box">주유가격</div>
-         <div class="price-container">
-            <div class="box high-quality">
+         <div class="large-card">주유가격</div>
+         <div class="text-cards">
+            <div class="text-card">
                고급 휘발유 <br><%=one%></div>
-            <div class="box regular">
+            <div class="text-card">
                휘발유<br>
                <%=two%></div>
-            <div class="box diesel">
+            <div class="text-card">
                경유<br>
                <%=three%></div>
-            <div class="box kerosene">
+            <div class="text-card">
                등유<br>
                <%=four%></div>
-            <div class="box lpg">
+            <div class="text-card">
                LPG<br>
                <%=five%></div>
-            <div class="box electric">
+            <div class="text-card">
                전기충전소<br>
                <%=six%></div>
       <%
@@ -213,12 +216,11 @@
       %>
 
 
-            <div class="title-box">임시</div>
-            <div class="stats-container">
-            <div class="box total-travelers">
+            <br> 임시<span></span> <br>
+            <div class="text-card">
                국내 총 여행객 수<br><%=result2%></div>
             
-            <div class=box top-locations">
+            <div class="text-card">
                 방문자 증가율 Top 3 
                 <br>1. <%= growth.get(0).getRegion() + " " %> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>% 
                 <br>2. <%= growth.get(1).getRegion() + " " %> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>% 
