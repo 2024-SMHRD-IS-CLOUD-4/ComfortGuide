@@ -18,4 +18,18 @@ public class TripDAO {
 		session.close();
 		return result; 
 	}
+	
+	public List<TourismStats> getAllTourism(){
+		SqlSession session = factory.openSession(true);
+		List<TourismStats> result = session.selectList("ServiceMapper.getAllTourism");
+		session.close();
+		return result;
+	}
+	
+	public List<RegionalTourismGrowth> getAllTourismGrowth(){
+		SqlSession session = factory.openSession(true);
+		List<RegionalTourismGrowth> result = session.selectList("ServiceMapper.getAllTourismGrowth");
+		session.close();
+		return result;
+	}
 }

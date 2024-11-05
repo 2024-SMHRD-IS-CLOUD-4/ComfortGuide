@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.RegionalTourismGrowth"%>
+<%@page import="com.smhrd.model.TourismStats"%>
 <%@page import="java.net.URI"%>
 <%@page import="java.net.URL"%>
 <%@page import="java.io.IOException"%>
@@ -187,17 +189,45 @@
 				<div class="text-card">
 					전기충전소<br>
 					<%=six%></div>
+		<%
+			List<TourismStats> tourRate = dao2.getAllTourism();
+		
+			int year = 0;
+			int last = 0;
+			for (int i = 0; i < tourRate.size(); i++) {
+			    year += tourRate.get(i).getVisitorCount();
+			    last += tourRate.get(i).getVisitorCountLastYear();
+			}
+	
+			// year와 last 출력 (확인용)
+			System.out.println("Total Visitor Count (year): " + year);
+			System.out.println("Total Last Year Visitor Count (last): " + last);
+	
+			double rateByTour = 0.0;
+			if (last != 0) {
+			    rateByTour = ((double)(year - last) / last) * 100;
+			    System.out.printf("토탈 증감률: %.2f%%\n", rateByTour);
+			}
+		    rateByTour = Math.round(((double)(year - last) / last) * 100 * 100) / 100.0;
+		    
+		    List<RegionalTourismGrowth> growth = dao2.getAllTourismGrowth();
+		    
+		%>
+
 
 				<br> 임시<span></span> <br>
 				<div class="text-card">
 					국내 총 여행객 수<br><%=result2%></div>
 				<div class="text-card">
-					전년도 대비 관강객 증감 비율 <br>2.25%
+					전년도 대비 관강객 증감 비율 <br><%=rateByTour %>%
 				</div>
 				<div class="text-card">
-					방문자 증가율 Top 5 <br>01. 인천광역시7 % <br>02. 대전광역시5.6 % <br>03.
-					대구광역시4.8 %
+				    방문자 증가율 Top 3 
+				    <br>1. <%= growth.get(0).getRegion() + " " %> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>% 
+				    <br>2. <%= growth.get(1).getRegion() + " " %> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>% 
+				    <br>3. <%= growth.get(2).getRegion() + " " %> <%= String.format("%.1f", growth.get(2).getTourismGrowthRate()) %>% 
 				</div>
+
 
 
 			</div>
@@ -214,44 +244,44 @@
 	<script>
         // 데이터 추출
         const labels = [
-       <%for (int i = 0; i < result.size(); i++) {
-	String tripName = result.get(i).getRegion();
-	out.print("'" + tripName + "'");
-	if (i < result.size() - 1)
-		out.print(","); // 콤마 추가
-}%>
-      ];
+	       <%for (int i = 0; i < result.size(); i++) {
+				String tripName = result.get(i).getRegion();
+				out.print("'" + tripName + "'");
+				if (i < result.size() - 1)
+					out.print(","); // 콤마 추가
+			}%>
+      	];
 
       const data = [
           <%for (int i = 0; i < result.size(); i++) {
-	domestic_trips trip = result.get(i);
-	int count = trip.getCount();
-	out.print(count);
-	if (i < result.size() - 1)
-		out.print(","); // 콤마 추가
-}%>
+				domestic_trips trip = result.get(i);
+				int count = trip.getCount();
+				out.print(count);
+				if (i < result.size() - 1)
+					out.print(","); // 콤마 추가
+			}%>
       ];        
     </script>
 	<script type="text/javascript" src="js/main_bar.js"></script>
 	<%
-	ServiceAreaDAO dao = new ServiceAreaDAO();
-	List<tb_service_area> getArea = dao.getServiceArea();
+		ServiceAreaDAO dao = new ServiceAreaDAO();
+		List<tb_service_area> getArea = dao.getServiceArea();
 	%>
 
 
 	<script>
-var positions = [
-    <%for (int i = 0; i < getArea.size(); i++) {
-	String name = getArea.get(i).getSa_name().replace("(", " 휴게소(").replace(")", " 방향)");
-	double lat = Double.parseDouble(String.format("%.6f", getArea.get(i).getLat()));
-	double lon = Double.parseDouble(String.format("%.6f", getArea.get(i).getLon()));%>
-    {
-        title: '<%=name%>',
-        latlng: new kakao.maps.LatLng(<%=lat%>, <%=lon%>),
-        content: '<div class="wrap"><div class="info"><div class="title"><%=name%><div class="close" onclick="closeOverlay()" title="닫기"></div></div><div class="body"><div>휴게소 종류 : <%=getArea.get(i).getSa_type()%></div><div class="desc"><div class="ellipsis">주소 : <%=getArea.get(i).getSa_addr()%></div></div></div></div></div>'
-    }<%if (i < getArea.size() - 1) {%>,<%}%>
-    <%}%>
-];
+		var positions = [
+		    <%for (int i = 0; i < getArea.size(); i++) {
+			String name = getArea.get(i).getSa_name().replace("(", " 휴게소(").replace(")", " 방향)");
+			double lat = Double.parseDouble(String.format("%.6f", getArea.get(i).getLat()));
+			double lon = Double.parseDouble(String.format("%.6f", getArea.get(i).getLon()));%>
+		    {
+		        title: '<%=name%>',
+		        latlng: new kakao.maps.LatLng(<%=lat%>, <%=lon%>),
+		        content: '<div class="wrap"><div class="info"><div class="title"><%=name%><div class="close" onclick="closeOverlay()" title="닫기"></div></div><div class="body"><div>휴게소 종류 : <%=getArea.get(i).getSa_type()%></div><div class="desc"><div class="ellipsis">주소 : <%=getArea.get(i).getSa_addr()%></div></div></div></div></div>'
+		    }<%if (i < getArea.size() - 1) {%>,<%}%>
+		    <%}%>
+		];
 </script>
 
 	<script src="js/main_event.js"></script>

@@ -55,4 +55,13 @@
 	select*from domestic_trips
 </select>
 
+<select id="getAllTourism" resultType="com.smhrd.model.TourismStats">
+	select * from TourismStats
+</select>
+
+<select id="getAllTourismGrowth" resultType="com.smhrd.model.RegionalTourismGrowth">
+	select * from RegionalTourismGrowth 
+</select>
+
+
 </mapper>
