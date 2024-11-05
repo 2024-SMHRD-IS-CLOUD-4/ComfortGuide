@@ -14,7 +14,7 @@ import com.smhrd.model.ServiceAreaDAO;
 import com.smhrd.model.tb_admin;
 
 
-@WebServlet("/logoutController")
+@WebServlet("/logout")
 public class logoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

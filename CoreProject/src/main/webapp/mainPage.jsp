@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.smhrd.model.tb_admin"%>
 <%@page import="com.smhrd.model.tb_service_area"%>
 <%@page import="com.smhrd.model.ServiceAreaDAO"%>
 <%@page import="com.smhrd.model.RegionalTourismGrowth"%>
@@ -52,6 +53,7 @@
             font-weight: bold;
             font-size: 20px;
         }
+        
 
         /* 메뉴 스타일 */
         .menu {
@@ -110,6 +112,7 @@
             flex-direction: column;
             gap: 20px;
         }
+       
 
         /* 큰 카드 스타일 */
         .large-card {
@@ -124,6 +127,9 @@
             display: flex;
             flex-direction: column;
             justify-content: start; /* 변경 */
+        }
+        #map{
+        	height:570px;
         }
 
         /* 주유 가격 제목 간격 조절 */
@@ -196,6 +202,7 @@
         .table-card {
             background-color: #ffffff;
             padding: 20px;
+            height: 600px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
         }
@@ -233,7 +240,7 @@
             border: 1px solid #ddd;
             text-align: center;
             font-size: 18px;
-            height: 500px;
+            height: 600px;
         }
 
         /* 설명 카드 래퍼 */
@@ -429,53 +436,55 @@
       %>
 
 
-      
+    
 
 
-     <!-- 헤더 -->
-     <div class="header">
-        <div class="logo">Comfort Guide</div>
-    </div>
+	<% tb_admin login = (tb_admin)session.getAttribute("login"); %>
 
-    <!-- 메뉴 -->
-    <div class="menu">
-        <div>
-            <a href="mainpage.html" class="active">메인 페이지</a>
-            <a href="subpage.html">검색 페이지</a>
-            <a href="javascript:void(0);" onclick="confirmAdminAccess()">관리자 페이지</a>
-            <a href="suggestion.html">고객의 소리</a>
-        </div>
-        
-        <!-- 사용자 정보와 링크 -->
-        <div class="user-info">
-            <span>정현지 님</span>
-            <a href="profile.html">회원정보 수정</a>
-            <a href="login.html">로그아웃</a>
-        </div>
-    </div>
+	<script type="text/javascript">
+	    function confirmLogin(page) {
+	        <% if (login == null) { %>
+	            alert("로그인이 필요한 서비스입니다!");
+	            window.location.href = "login.html";
+	        <% } else { %>
+	            window.location.href = page;
+	        <% } %>
+	    }
+	</script>
+	
+	<div class="header">
+	    <div class="logo">Comfort Guide</div>
+	</div>
+	
+	<!-- 메뉴 -->
+	<div class="menu">
+	    <div>
+	        <a href="mainPage.jsp" class="active">메인 페이지</a>
+	        <a href="subpage.jsp">검색 페이지</a>
+	        <!-- 로그인 체크가 필요한 링크 -->
+	        <a href="javascript:void(0);" onclick="confirmLogin('adminpage.html')">관리자 페이지</a>
+	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.html')">고객의 소리</a>
+	    </div>
+	    
+	    <!-- 사용자 정보와 링크 -->
+	    <div class="user-info">
+	        <% if (login != null) { %>
+	            <span><%= login.getAdmin_id() %> 님</span> 
+	            <a href="profile.html">회원정보 수정</a> 
+	            <a href="logout">로그아웃</a>
+	        <% } else { %>
+	            <a href="login.html">로그인</a>
+	            <a href="Join.html">회원가입</a>
+	        <% } %>
+	    </div>
+	</div>
 
     <!-- 대시보드 컨테이너 -->
     <div class="container">
         <!-- 왼쪽 섹션 -->
         <div class="left-section">
             <div class="large-card" id="map">지도</div>
-            <div class="table-card" id="table-card">
-                <h2>이벤트 중인 휴게소</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>휴게소 이름</th>
-                            <th>이벤트 기간</th>
-                            <th>이벤트 내용</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>용인 휴게소</td><td></td><td></td></tr>
-                        <tr><td>이천 휴게소</td><td></td><td></td></tr>
-                        <tr><td>기흥 휴게소</td><td></td><td></td></tr>
-                    </tbody>
-                </table>
-            </div>
+            
         </div>
 
         <!-- 오른쪽 섹션 -->
@@ -511,23 +520,49 @@
             </div>
             <div class="chart-text-wrapper">
                 <div class="chart-text">
-                관광 지출액 수 증감률<br><%=rateByTour %>%
+                <strong>관광 지출액 수 증감률</strong>
+                <br>
+                <br><%=rateByTour %>%
                 </div>
                 <div class="chart-text">
-                방문자 증가율 Top 3 
+                <strong>방문자 증가율 Top 3</strong> 
+
                 <br>1. <%= growth.get(0).getRegion() + " " %> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>% 
                 <br>2. <%= growth.get(1).getRegion() + " " %> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>% 
                 <br>3. <%= growth.get(2).getRegion() + " " %> <%= String.format("%.1f", growth.get(2).getTourismGrowthRate()) %>% 
                 
                 </div>
             </div>
-            <div class="chart-card">그래프
-
-                <canvas id="myChart"></canvas>
-
-
-            </div>
+            
+            
         </div>
+        <div style="display: flex;">
+        <div class="table-card" id="table-card">
+                <h2>이벤트 중인 휴게소</h2>
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>휴게소 이름</th>
+                            <th>이벤트 기간</th>
+                            <th>이벤트 내용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>용인 휴게소</td><td></td><td></td></tr>
+                        <tr><td>이천 휴게소</td><td></td><td></td></tr>
+                        <tr><td>기흥 휴게소</td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div> 
+        <div>
+        <div class="chart-card">그래프
+        		<br><br><br>
+                <canvas id="myChart"></canvas>
+            </div>
+           </div>
     </div>
     <%
       ServiceAreaDAO dao = new ServiceAreaDAO();
