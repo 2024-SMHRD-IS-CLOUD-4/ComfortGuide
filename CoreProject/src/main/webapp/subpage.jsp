@@ -284,7 +284,6 @@
 		<%tb_admin login = (tb_admin)session.getAttribute("login"); 
 		if(login!=null){
 		%>
-		
 			<span><%=login.getAdmin_id() %> 님</span> 
 			<a href="profile.html">회원정보 수정</a> 
 			<a href="login.html">로그아웃</a>
@@ -325,19 +324,19 @@
         <div class="card weather-card" id="weatherInfo">
         <div class="weather-item" id="temperature">
 		    <span>현재 온도:</span>
-		    <span>111°C</span>
+		    <span>0°C</span>
 		</div>
 	    <div class="weather-item" id="humidity">
 	        <span>습도:</span>
-	        <span>65%</span>
+	        <span>0%</span>
 	    </div>
 	    <div class="weather-item" id="weather_conditions">
 	        <span>날씨 상태:</span>
-	        <span>흐림</span>
+	        <span>-</span>
 	    </div>
 	    <div class="weather-item" id="Precipitation_probability">
 	        <span>강수 확률:</span>
-	        <span>30%</span>
+	        <span>0%</span>
 	    </div>
         </div>
         <!-- 시설 현황 -->

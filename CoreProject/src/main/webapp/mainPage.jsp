@@ -136,7 +136,7 @@
             one = jsonResponse.getDouble("고급휘발유");
             two = jsonResponse.getDouble("휘발유");
             three = jsonResponse.getDouble("경유");
-            four = jsonResponse.getDouble("등유");
+            //four = jsonResponse.getDouble("등유");
             five = jsonResponse.getDouble("LPG");
             six = jsonResponse.getDouble("전기충전소");
 
