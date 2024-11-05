@@ -112,7 +112,63 @@
             flex-direction: column;
             gap: 20px;
         }
-       
+        .search-bar {
+		    width: 100%;
+		    display: flex;
+		    gap: 10px;
+		    margin-bottom: 10px;
+		}
+		
+		.search-bar input {
+		    flex: 1;
+		    padding: 8px;
+		    font-size: 16px;
+		}
+		
+		.search-bar button {
+		    padding: 8px 16px;
+		    font-size: 16px;
+		}
+		
+		.content {
+		    display: flex;
+		    height: 570px; /* 전체 높이 설정 */
+		}
+		
+		.map-container {
+		    width: 70%; /* 지도 70% */
+		    height: 100%;
+		    background-color: #f9f9f9;
+		    border: 1px solid #ddd;
+		}
+		
+		.marker-list-container {
+		    width: 30%; /* 리스트 30% */
+		    height: 100%;
+		    overflow-y: auto;
+		    background-color: #ffffff;
+		    border: 1px solid #ddd;
+		    padding: 10px;
+		}
+		
+		.marker-list-container ul {
+		    list-style-type: none;
+		    padding: 0;
+		    margin: 0;
+		}
+		
+		.marker-list-container ul li {
+		    padding: 10px;
+		    border-bottom: 1px solid #ddd;
+		    cursor: pointer;
+		}
+		
+		.marker-list-container ul li:hover {
+		    background-color: #efefef;
+		}
+       #gas{
+       		height: 480px;
+       }
 
         /* 큰 카드 스타일 */
         .large-card {
@@ -161,7 +217,7 @@
             border-radius: 5px;
             overflow: hidden;
             font-size: 18px;
-            margin-top: 10px;
+            margin-top: 22px;
         }
 
         .price-item .label, .price-item .price {
@@ -248,100 +304,100 @@
             display: flex;
             gap: 10px;
         }
-.wrap * {
-    padding: 0;
-    margin: 0;
-}
-
-.wrap .info {
-    width: 350px;
-    height: 120px;
-    border-radius: 5px;
-    border-bottom: 2px solid #ccc;
-    border-right: 1px solid #ccc;
-    overflow: hidden;
-    background: #fff;
-    font-size: 15px;
-    text-align: left;
-}
-
-.wrap .info:nth-child(1) {
-    border: 0;
-    box-shadow: 0px 1px 2px #888;
-}
-
-.info .title {
-    padding: 5px 0 0 10px;
-    height: 30px;
-    background: #eee;
-    border-bottom: 1px solid #ddd;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.info .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #888;
-    width: 17px;
-    height: 17px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
-}
-
-.info .close:hover {
-    cursor: pointer;
-}
-
-.info .body {
-    position: relative;
-    margin: 13px 0 0 0; /* 왼쪽 여백 제거 */
-    overflow: hidden;
-    padding: 0 10px; /* padding 추가 */
-}
-
-.info .desc {
-    position: relative;
-    height: auto; /* 높이를 자동으로 조정 */
-}
-
-.desc .ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; /* 줄바꿈 허용 */
-}
-
-.desc .jibun {
-    font-size: 11px;
-    color: #888;
-    margin-top: -2px;
-}
-
-.info .img {
-    position: absolute;
-    top: 6px;
-    left: 5px;
-    width: 73px;
-    height: 71px;
-    border: 1px solid #ddd;
-    color: #888;
-    overflow: hidden;
-}
-
-.info:after {
-    content: '';
-    position: absolute;
-    margin-left: -12px;
-    left: 50%;
-    bottom: 0;
-    width: 22px;
-    height: 12px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-}
-
-.info .link {
-    color: #5085BB;
-}
+		.wrap * {
+		    padding: 0;
+		    margin: 0;
+		}
+		
+		.wrap .info {
+		    width: 350px;
+		    height: 120px;
+		    border-radius: 5px;
+		    border-bottom: 2px solid #ccc;
+		    border-right: 1px solid #ccc;
+		    overflow: hidden;
+		    background: #fff;
+		    font-size: 15px;
+		    text-align: left;
+		}
+		
+		.wrap .info:nth-child(1) {
+		    border: 0;
+		    box-shadow: 0px 1px 2px #888;
+		}
+		
+		.info .title {
+		    padding: 5px 0 0 10px;
+		    height: 30px;
+		    background: #eee;
+		    border-bottom: 1px solid #ddd;
+		    font-size: 18px;
+		    font-weight: bold;
+		}
+		
+		.info .close {
+		    position: absolute;
+		    top: 10px;
+		    right: 10px;
+		    color: #888;
+		    width: 17px;
+		    height: 17px;
+		    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+		}
+		
+		.info .close:hover {
+		    cursor: pointer;
+		}
+		
+		.info .body {
+		    position: relative;
+		    margin: 13px 0 0 0; /* 왼쪽 여백 제거 */
+		    overflow: hidden;
+		    padding: 0 10px; /* padding 추가 */
+		}
+		
+		.info .desc {
+		    position: relative;
+		    height: auto; /* 높이를 자동으로 조정 */
+		}
+		
+		.desc .ellipsis {
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: normal; /* 줄바꿈 허용 */
+		}
+		
+		.desc .jibun {
+		    font-size: 11px;
+		    color: #888;
+		    margin-top: -2px;
+		}
+		
+		.info .img {
+		    position: absolute;
+		    top: 6px;
+		    left: 5px;
+		    width: 73px;
+		    height: 71px;
+		    border: 1px solid #ddd;
+		    color: #888;
+		    overflow: hidden;
+		}
+		
+		.info:after {
+		    content: '';
+		    position: absolute;
+		    margin-left: -12px;
+		    left: 50%;
+		    bottom: 0;
+		    width: 22px;
+		    height: 12px;
+		    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+		}
+		
+		.info .link {
+		    color: #5085BB;
+		}
    
     </style>
     
@@ -483,14 +539,21 @@
     <div class="container">
         <!-- 왼쪽 섹션 -->
         <div class="left-section">
-            <div class="large-card" id="map">지도</div>
-            
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+            <button onclick="searchMarker()">검색</button>
         </div>
+        <div class="content">
+            <div class="map-container" id="map">지도</div>
+            <div class="marker-list-container" id="markerList"></div>
+        </div>
+    </div>
 
         <!-- 오른쪽 섹션 -->
         <div class="right-section">
-            <div class="large-card">
+            <div class="large-card" id="gas">
                 <h2>주유 가격</h2>
+                <br>
                 <div class="fuel-price-card">
                     <div class="price-item">
                         <div class="label">고급 휘발유</div>
@@ -601,7 +664,7 @@
           }<%if (i < getArea.size() - 1) {%>,<%}%>
           <%}%>
       ];
-   </script>
+</script>
    <script type="text/javascript" src="js/main_bar.js"></script>
    <script type="text/javascript" src="js/map_js.js"></script>
    <script type="text/javascript" src="js/main_event.js"></script>
