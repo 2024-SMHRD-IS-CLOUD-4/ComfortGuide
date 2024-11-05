@@ -2,14 +2,14 @@
 var mapContainer = document.getElementById('map'),
 	mapOption = {
 		center: new kakao.maps.LatLng(36.349296, 127.398433),
-		level: 13
+		level: 11
 	};
 
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
 
 var imageSrc = "images/pngwing.com.png";
-var imageSize = new kakao.maps.Size(15, 15);
+var imageSize = new kakao.maps.Size(30, 30);
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
 positions.forEach(function(pos) {

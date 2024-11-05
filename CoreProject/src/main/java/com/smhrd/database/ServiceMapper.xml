@@ -54,4 +54,5 @@
 <select id="getTrips" resultType="com.smhrd.model.domestic_trips">
 	select*from domestic_trips
 </select>
+
 </mapper>

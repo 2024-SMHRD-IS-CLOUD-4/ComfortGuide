@@ -1,3 +1,6 @@
+<%@page import="java.net.URI"%>
+<%@page import="java.net.URL"%>
+<%@page import="java.io.IOException"%>
 <%@page import="com.smhrd.model.domestic_trips"%>
 <%@page import="com.smhrd.model.TripDAO"%>
 <%@page import="org.json.JSONObject"%>
@@ -5,7 +8,6 @@
 <%@page import="java.io.InputStreamReader"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.net.HttpURLConnection"%>
-<%@page import="java.net.URL"%>
 <%@page import="com.smhrd.model.tb_service_area"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.ServiceAreaDAO"%>
@@ -33,7 +35,6 @@
 		<div class="logo">Comfort Guide</div>
 	</div>
 
-<<<<<<< HEAD
 	<!-- 메뉴 -->
 	<div class="menu">
 		<div>
@@ -41,24 +42,20 @@
 				href="subpage.html">검색 페이지</a> <a href="manager.html">관리자 페이지</a> <a
 				href="suggestion.html">고객의 소리</a>
 		</div>
-=======
-    <!-- 메뉴 -->
-    <div class="menu">
-        <div>
-            <a href="mainPage.jsp" class="active">메인 페이지</a>
-            <a href="subpage.html">검색 페이지</a>
-            <a href="manager.html">관리자 페이지</a>
-            <a href="suggestion.html">고객의 소리</a>
-        </div>
-        
-        <!-- 사용자 정보와 링크 -->
-        <div class="user-info">
-            <span>정현지 님</span>
-            <a href="profile.html">회원정보 수정</a>
-            <a href="login.html">로그아웃</a>
-        </div>
-    </div>
->>>>>>> branch 'master' of https://github.com/2024-SMHRD-IS-CLOUD-4/ComfortGuide.git
+		<!-- 메뉴 -->
+		<div class="menu">
+			<div>
+				<a href="mainPage.jsp" class="active">메인 페이지</a> <a
+					href="subpage.html">검색 페이지</a> <a href="manager.html">관리자 페이지</a> <a
+					href="suggestion.html">고객의 소리</a>
+			</div>
+
+			<!-- 사용자 정보와 링크 -->
+			<div class="user-info">
+				<span>정현지 님</span> <a href="profile.html">회원정보 수정</a> <a
+					href="login.html">로그아웃</a>
+			</div>
+		</div>
 
 		<!-- 사용자 정보와 링크 -->
 		<div class="user-info">
@@ -105,38 +102,68 @@
 			</div>
 		</div>
 		<%
-		String url = "http://localhost:5000/searchOil";
-		System.out.println("Request URL: " + url);
-
-		URL obj = new URL(url);
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("GET");
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String inputLine;
+		String url2 = "http://localhost:5000/searchOil".trim();
+		HttpURLConnection con = null;
+		BufferedReader in = null;
 		StringBuffer responseData = new StringBuffer();
+		double one = 0.0;
+		double two = 0.0;
+		double three = 0.0;
+		double four = 1103.6;
+		double five = 0.0;
+		double six = 0.0;
+		try {
+			URI uri = new URI(url2); // URI 객체를 먼저 생성
+			URL obj = uri.toURL();
+			con = (HttpURLConnection) obj.openConnection();
+			con.setRequestMethod("GET");
 
-		while ((inputLine = in.readLine()) != null) {
+			// HTTP 응답 코드 확인
+			int responseCode = con.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) { // 200 OK
+				in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				String inputLine;
+
+				while ((inputLine = in.readLine()) != null) {
 			responseData.append(inputLine);
-		}
-		in.close();
+				}
 
-		// JSON 파싱
-		JSONObject jsonResponse = new JSONObject(responseData.toString());
-		double one = jsonResponse.getDouble("고급휘발유");
-		double two = jsonResponse.getDouble("휘발유");
-		double three = jsonResponse.getDouble("경유");
-		double four = jsonResponse.getDouble("등유");
-		double five = jsonResponse.getDouble("LPG");
-		double six = jsonResponse.getDouble("전기충전소");
-		System.out.println(one);
-		System.out.println(two);
-		System.out.println(three);
-		System.out.println(four);
-		System.out.println(five);
-		System.out.println(six);
+				// JSON 파싱
+				JSONObject jsonResponse = new JSONObject(responseData.toString());
+				one = jsonResponse.getDouble("고급휘발유");
+				two = jsonResponse.getDouble("휘발유");
+				three = jsonResponse.getDouble("경유");
+				//four = jsonResponse.getDouble("등유");
+				five = jsonResponse.getDouble("LPG");
+				six = jsonResponse.getDouble("전기충전소");
+
+			} else {
+				System.out.println("HTTP 요청 실패, 응답 코드: " + responseCode);
+			}
+		} catch (Exception e) {
+			System.out.println("HTTP 요청 중 예외 발생: " + e.getMessage());
+			e.printStackTrace(); // 오류 로그 출력
+		} finally {
+			try {
+				if (in != null)
+			in.close();
+				if (con != null)
+			con.disconnect();
+			} catch (IOException ex) {
+				System.out.println("스트림 또는 연결 닫기 중 오류 발생: " + ex.getMessage());
+				ex.printStackTrace();
+			}
+		}
 		%>
 
+		<%
+		TripDAO dao2 = new TripDAO();
+		List<domestic_trips> result = dao2.getTrips();
+		int result2 = 0;
+		for (int i = 0; i < result.size(); i++) {
+			result2 += result.get(i).getCount();
+		}
+		%>
 
 
 		<!-- 오른쪽 섹션 -->
@@ -160,13 +187,17 @@
 				<div class="text-card">
 					전기충전소<br>
 					<%=six%></div>
-				
-				<br>
-				임시<span></span>
-				<br>			
-				<div class="text-card">국내 여행객 수</div>
-				<div class="text-card">올해에 비해 증가한 비율</div>
-				<div class="text-card">추가 텍스트 3</div>
+
+				<br> 임시<span></span> <br>
+				<div class="text-card">
+					국내 총 여행객 수<br><%=result2%></div>
+				<div class="text-card">
+					전년도 대비 관강객 증감 비율 <br>2.25%
+				</div>
+				<div class="text-card">
+					방문자 증가율 Top 5 <br>01. 인천광역시7 % <br>02. 대전광역시5.6 % <br>03.
+					대구광역시4.8 %
+				</div>
 
 
 			</div>
@@ -178,10 +209,7 @@
 		</div>
 	</div>
 
-	<%
-	TripDAO dao2 = new TripDAO();
-	List<domestic_trips> result = dao2.getTrips();
-	%>
+
 
 	<script>
         // 데이터 추출
@@ -196,21 +224,21 @@
 
       const data = [
           <%for (int i = 0; i < result.size(); i++) {
-				domestic_trips trip = result.get(i);
-				int count = trip.getCount();
-				out.print(count);
-				if (i < result.size() - 1)
-					out.print(","); // 콤마 추가
-			}%>
+	domestic_trips trip = result.get(i);
+	int count = trip.getCount();
+	out.print(count);
+	if (i < result.size() - 1)
+		out.print(","); // 콤마 추가
+}%>
       ];        
     </script>
 	<script type="text/javascript" src="js/main_bar.js"></script>
-
-
 	<%
 	ServiceAreaDAO dao = new ServiceAreaDAO();
 	List<tb_service_area> getArea = dao.getServiceArea();
 	%>
+
+
 	<script>
 var positions = [
     <%for (int i = 0; i < getArea.size(); i++) {
