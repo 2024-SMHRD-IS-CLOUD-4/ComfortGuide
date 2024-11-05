@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>고객의 소리 작성</title>
+    
     <style>
-         * {
+        /* 기존 CSS 그대로 유지 */
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -16,8 +17,6 @@
             margin: 0;
             background-color: #f5f5f5;
         }
-
-        /* 헤더 스타일 */
         .header {
            display: flex;
            justify-content: space-between;
@@ -27,13 +26,10 @@
            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
            height: 60px;
        }
-
         .header .logo {
             font-weight: bold;
             font-size: 20px;
         }
-
-        /* 메뉴 스타일 */
         .menu {
             display: flex;
             justify-content: space-between;
@@ -41,7 +37,6 @@
             background-color: #eaf4f9;
             padding: 10px 20px;
         }
-
         .menu a {
             margin-right: 20px;
             text-decoration: none;
@@ -50,24 +45,19 @@
             padding: 10px 15px;
             transition: background-color 0.3s;
         }
-
         .menu a:active,
         .menu a:focus {
             background-color: #ffffff;
             color: black;
         }
-
-        /* user-info 스타일 */
         .menu .user-info {
             display: flex;
             align-items: center;
             font-size: 14px;
         }
-
         .menu .user-info span {
             margin-right: 15px;
         }
-
         .menu .user-info a {
             margin-left: 10px;
             text-decoration: none;
@@ -77,25 +67,22 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-
         .menu .user-info a:hover {
             background-color: #b3b3b3;
         }
         
-        /* 고객의 소리 박스 스타일 */
         .container {
             display: flex;
             justify-content: left;
             flex-direction: column;
-            margin: 100px auto; /* 헤더 및 메뉴 아래 공간 확보 */
-            width: 900px;
-            min-height: 500px; /* 최소 높이 설정 */
+            margin: 100px auto;
+            width: 1100px;
+            min-height: 700px;
             background-color: #fff;
             padding: 20px;
             border: 1px solid #ddd;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         .section-title {
             background-color: #d3d3d3;
             padding: 10px;
@@ -107,7 +94,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            width: 100%; /* 폼 그룹의 너비 설정 */
+            width: 100%;
         }
         .form-group label {
             width: 100px;
@@ -122,11 +109,8 @@
             font-size: 14px;
         }
         .form-group textarea {
-            height: 150px;
+            height: 350px;
             resize: vertical;
-        }
-        .form-group input[type="file"] {
-            border: none;
         }
         .file-input-container {
             display: flex;
@@ -161,12 +145,10 @@
     </style>
 </head>
 <body>
-     <!-- 헤더 -->
-     <div class="header">
+    <!-- 헤더와 메뉴 -->
+    <div class="header">
         <div class="logo">Comfort Guide</div>
     </div>
-
-    <!-- 메뉴 -->
     <div class="menu">
         <div>
             <a href="mainpage.html" class="active">메인 페이지</a>
@@ -174,8 +156,6 @@
             <a href="manager.html">관리자 페이지</a>
             <a href="suggestion.html">고객의 소리</a>
         </div>
-        
-        <!-- 사용자 정보와 링크 -->
         <div class="user-info">
             <span>정현지 님</span>
             <a href="profile.html">회원정보 수정</a>
@@ -185,7 +165,6 @@
 
     <div class="container">
         <div class="section-title">고객의 소리</div>
-
         <form>
             <div class="form-group">
                 <label for="title">제목</label>
@@ -198,7 +177,7 @@
             <div class="form-group">
                 <label for="image">이미지</label>
                 <div class="file-input-container">
-                    <input type="text" placeholder="선택된 파일 없음" readonly>
+                    <input type="text" placeholder="선택된 파일 없음" readonly id="file-name">
                     <label for="file-upload">파일선택</label>
                     <input type="file" id="file-upload" name="image" style="display: none;">
                 </div>
@@ -214,13 +193,30 @@
         </form>
     </div>
 
+    <!-- Tesseract.js 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
+    
     <script>
-        // 파일 선택 시 선택된 파일명을 표시
         document.getElementById('file-upload').addEventListener('change', function() {
-            const fileName = this.files[0] ? this.files[0].name : "선택된 파일 없음";
-            this.previousElementSibling.previousElementSibling.value = fileName;
+            const file = this.files[0];
+            const fileNameDisplay = document.getElementById('file-name');
+            const contentTextarea = document.getElementById('content');
+            
+            // 파일명 표시
+            fileNameDisplay.value = file ? file.name : "선택된 파일 없음";
+
+            if (file) {
+                // Tesseract.js를 사용하여 이미지에서 텍스트 추출
+                Tesseract.recognize(file, 'kor', { logger: m => console.log(m) })
+                    .then(({ data: { text } }) => {
+                        contentTextarea.value = text; // 추출된 텍스트를 컨텐츠 영역에 채움
+                    })
+                    .catch(error => {
+                        console.error("OCR 오류:", error);
+                        contentTextarea.value = "텍스트를 추출할 수 없습니다.";
+                    });
+            }
         });
     </script>
-
 </body>
 </html>

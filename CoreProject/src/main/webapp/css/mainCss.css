@@ -88,6 +88,8 @@
         .map-container {
             background-color: #ffffff;
             padding: 20px;
+            font-size: 24px;
+            font-weight : bold;
             border: 1px solid #ddd;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: left;
@@ -103,11 +105,11 @@
         /* 지도 스타일 */
         #map {
             width: 100%; /* 지도의 너비 */
-            height: 500px; /* 지도의 높이 */
+            height: 1000px; /* 지도의 높이 */
             max-width: 1000px; /* 최대 너비 */
             max-height: 600px; /* 최대 높이 */
-            min-width: 300px; /* 최소 너비 */
-            min-height: 300px; /* 최소 높이 */
+            min-width: 1000px; /* 최소 너비 */
+            min-height: 1000px; /* 최소 높이 */
             border: 1px solid #ddd;
         }
 	
