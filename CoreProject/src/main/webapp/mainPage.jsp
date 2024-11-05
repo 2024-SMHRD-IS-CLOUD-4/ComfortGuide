@@ -266,6 +266,7 @@
 	<%
 		ServiceAreaDAO dao = new ServiceAreaDAO();
 		List<tb_service_area> getArea = dao.getServiceArea();
+
 	%>
 
 

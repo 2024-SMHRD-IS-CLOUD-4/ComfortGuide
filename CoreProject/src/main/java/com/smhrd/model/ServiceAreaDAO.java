@@ -63,14 +63,23 @@ public class ServiceAreaDAO {
 	}
 	
 	public boolean existAdminId(String id) {
+	    SqlSession session = factory.openSession(true);
+	    try {
+	        Integer count = session.selectOne("ServiceMapper.existAdminId", id);
+	        System.out.println("아이디 존재 여부: " + (count != null && count > 0));
+	        return count != null && count > 0; // count가 1 이상이면 true 반환
+	    } finally {
+	        session.close();
+	    }
+	}
+
+
+	
+	public List<String> getAddrByRegion(String region) {
 		SqlSession session = factory.openSession(true);
-		tb_admin result = session.selectOne("ServiceMapper.existAdminId",id);
+		List<String> result = session.selectList("ServiceMapper.getAddrByRegion",region); 
 		session.close();
-		if(result!=null) {
-			return true; // 
-		}else {
-			return false;
-		}
+		return result;
 	}
 
 

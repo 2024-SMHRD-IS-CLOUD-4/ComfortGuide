@@ -22,7 +22,7 @@ public class joinController extends HttpServlet {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String tel = request.getParameter("tel");
-		String sa_name = request.getParameter("sa_name");
+		String sa_name = request.getParameter("restStop");
 		String sa_addr = request.getParameter("address");
 		String position = request.getParameter("position");
 		
