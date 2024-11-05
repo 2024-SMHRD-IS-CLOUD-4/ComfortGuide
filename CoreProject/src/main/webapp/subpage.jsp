@@ -146,14 +146,12 @@
 		    background-color: #f9f9f9;
 		    padding: 10px;
 		    border: 1px solid #ddd;
-		    border-radius: 8px;
 		    text-align: center;
 		}
 		
 		.weather-item {
 		    background-color: #fff;
 		    border: 1px solid #ccc;
-		    border-radius: 4px;
 		    padding: 10px;
 		    display: flex;
 		    flex-direction: column;
@@ -186,6 +184,18 @@
             justify-content: center;
             font-size: 14px;
         }
+        
+        /* 휴게소에 있는 시설들 */
+        .facilities-card .item {
+        	display : flex;
+        	flex-direction: column;
+        	align-items: center;
+        	justify-content: center;
+        	font-size: 14px;
+        
+        }
+        
+        
 
         /* 인기 판매 품목 차트 내부 박스 스타일 */
         .popular-item-box {
@@ -199,7 +209,7 @@
            
         }
 
-        /* Individual sizes for boxes inside 인기 판매 품목 차트 */
+        /* 인기 판매 품목 차트 */
         .popular-item-box-1 {
             height: 150px; 
         }
@@ -217,7 +227,7 @@
             grid-row: 1 / 3; 
             text-align: left; 
             padding: 20px; 
-            height: 520px; 
+            height: 600px; 
             width: 100%; 
             font-size: 16px; 
         }
@@ -354,6 +364,7 @@
             <div class="facility"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div>
         </div>
         
+     
         <!-- 인기 판매 품목 차트 나눔 -->
         <div class="card popular-items-chart">
             <div class="popular-item-box popular-item-box-1">
@@ -368,7 +379,7 @@
         
         <!-- 방문 후기 -->
         <div class="card reviews-card">
-        <div>방문후기 (크롤링)</div>
+        <div>방문후기</div>
         <div id="reviews-container">
             <!-- 방문후기 내용이 여기에 표시됩니다. -->
             <p>여기에 방문후기 내용이 표시됩니다.</p>
@@ -376,7 +387,7 @@
         </div>
     
         <!-- 고객의 소리 버튼 (링크) -->
-        <a href="suggestion.html" class="card feedback-card">고객의 소리(버튼)</a>
+        <a href="suggestion.html" class="card feedback-card">고객의 소리</a>
     </div>
    
 
