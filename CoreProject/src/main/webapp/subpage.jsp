@@ -1,3 +1,7 @@
+<%@page import="com.smhrd.model.ServiceAreaDAO"%>
+<%@page import="com.smhrd.model.tb_admin"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -134,8 +138,42 @@
 
         /* 개별 섹션 스타일 */
         .video-card { grid-column: 1 / 2; grid-row: 1; height: 300px; } /* Customize height */
-        .weather-card { grid-column: 1 / 2; grid-row: 2; text-align: left; padding: 20px; height: 200px; } /* Customize height */
-        .facilities-card { grid-column: 2 / 3; grid-row: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; font-size: 14px; height: 300px; } /* Customize height */
+		
+		.weather-card {
+		    display: grid;
+		    grid-template-columns: repeat(4, 1fr); /* 1행 4열로 구성 */
+		    gap: 10px; /* 각 항목 사이의 간격 */
+		    background-color: #f9f9f9;
+		    padding: 10px;
+		    border: 1px solid #ddd;
+		    border-radius: 8px;
+		    text-align: center;
+		}
+		
+		.weather-item {
+		    background-color: #fff;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		    padding: 10px;
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    font-size: 14px;
+		    font-weight: bold;
+		}
+		
+		.weather-item span:first-child {
+		    color: #555;
+		    font-weight: normal;
+		}
+		
+		.weather-item span:last-child {
+		    font-size: 16px;
+		    font-weight: bold;
+		    color: #333;
+		}
+		
+		.facilities-card { grid-column: 2 / 3; grid-row: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; font-size: 14px; height: 300px; } /* Customize height */
         .popular-items-chart { grid-column: 2 / 3; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; height: 200px; } /* Customize height */
         .reviews-card { grid-column: 3 / 4; grid-row: 1 / 3; text-align: left; padding: 20px; height: 500px; } /* Customize height */
         .feedback-card { grid-column: 3 / 4; grid-row: 3; height: 80px; display: flex; align-items: center; justify-content: center; cursor: pointer; background-color: #e0f7fa; } /* Customize height */
@@ -235,18 +273,26 @@
     <!-- 메뉴 -->
     <div class="menu">
         <div>
-            <a href="mainpage.jsp" class="active">메인 페이지</a>
+            <a href="mainPage.jsp" class="active">메인 페이지</a>
             <a href="subpage.html">검색 페이지</a>
             <a href="manager.html">관리자 페이지</a>
             <a href="suggestion.html">고객의 소리</a>
         </div>
         
         <!-- 사용자 정보와 링크 -->
-        <div class="user-info">
-            <span>정현지 님</span>
-            <a href="profile.html">회원정보 수정</a>
-            <a href="login.html">로그아웃</a>
-        </div>
+		<div class="user-info">
+		<%tb_admin login = (tb_admin)session.getAttribute("login"); 
+		if(login!=null){
+		%>
+		
+			<span><%=login.getAdmin_id() %> 님</span> 
+			<a href="profile.html">회원정보 수정</a> 
+			<a href="login.html">로그아웃</a>
+		<%}else{ %>
+			<a href="login.html">로그인</a>
+			<a href="Join.html">회원가입</a>
+		<%} %>
+		</div>
     </div>
 
     <!-- 검색 필터와 아이콘 -->
@@ -274,12 +320,25 @@
     <!-- 대시보드 -->
     <div class="dashboard">
         <!-- 유튜브 소개 영상 -->
-        <div class="card video-card">유튜브 소개 영상<div class="video">▶</div></div>
+        <div class="card video-card">유튜브 소개 영상<div class="video">▶</div>	</div>
         <!-- 날씨 정보 -->
-        <div class="card weather-card">
-            <div>날씨, 온도, 미세먼지 등등</div>
-            
-
+        <div class="card weather-card" id="weatherInfo">
+        <div class="weather-item" id="temperature">
+		    <span>현재 온도:</span>
+		    <span>111°C</span>
+		</div>
+	    <div class="weather-item" id="humidity">
+	        <span>습도:</span>
+	        <span>65%</span>
+	    </div>
+	    <div class="weather-item" id="weather_conditions">
+	        <span>날씨 상태:</span>
+	        <span>흐림</span>
+	    </div>
+	    <div class="weather-item" id="Precipitation_probability">
+	        <span>강수 확률:</span>
+	        <span>30%</span>
+	    </div>
         </div>
         <!-- 시설 현황 -->
         <div class="card facilities-card">
@@ -320,9 +379,12 @@
         <!-- 고객의 소리 버튼 (링크) -->
         <a href="suggestion.html" class="card feedback-card">고객의 소리(버튼)</a>
     </div>
+   
+
+    
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/sub_review.js"></script>
     <script type="text/javascript" src="js/join_region.js"></script>
-    
+    <script type="text/javascript" src="js/sub_weather.js"></script>
 </body>
 </html>

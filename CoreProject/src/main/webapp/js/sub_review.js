@@ -11,7 +11,7 @@ $(document).ready(function() {
                     const reviewsContainer = $('#reviews-container');
                     reviewsContainer.empty(); // 기존 내용 삭제
 
-                    // 최대 8개의 리뷰만 출력
+                    // 최대 8개의 리뷰만 출력 (필요에 따라 개수 조정)
                     data.slice(0, 50).forEach(review => {
                         const reviewDiv = `
                             <div class="review-item">
@@ -22,8 +22,8 @@ $(document).ready(function() {
                         reviewsContainer.append(reviewDiv);
                     });
                 },
-                error: function(error) {
-                    console.error("데이터를 불러오는 중 오류 발생:", error);
+                error: function(xhr, status, error) {
+                    console.error("데이터를 불러오는 중 오류 발생:", xhr.status, status, error);
                     $('#reviews-container').html("<p>데이터를 불러오는 중 오류가 발생했습니다.</p>");
                 }
             });

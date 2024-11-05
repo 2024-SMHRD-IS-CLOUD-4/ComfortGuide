@@ -81,6 +81,13 @@ public class ServiceAreaDAO {
 		session.close();
 		return result;
 	}
+	
+	public tb_service_area getServiceAreaBySaName(String sa_name) {
+		SqlSession session = factory.openSession(true);
+		tb_service_area result = session.selectOne("ServiceMapper.getServiceAreaBySaName", sa_name);
+		session.close();
+		return result;
+	}
 
 
 }

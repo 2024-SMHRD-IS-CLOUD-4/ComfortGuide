@@ -67,5 +67,8 @@
         SELECT sa_name FROM tb_service_area WHERE CONTAINS(sa_addr, #{region}, 1) > 0
     </select>
 
+<select id="getServiceAreaBySaName" resultType="com.smhrd.model.tb_service_area">
+	select * from tb_service_area where sa_name = #{sa_name}
+</select>
 
 </mapper>
