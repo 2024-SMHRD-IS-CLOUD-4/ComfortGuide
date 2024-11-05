@@ -84,76 +84,93 @@
             gap: 20px;
         }
 
-        /* 스타일 - 큰 카드 */
-       /* 반응형 스타일 - #map 크기 */
-		#map {
-   			 background-color: #ffffff;
-   			 padding: 20px;
-			    text-align: center;
-			    font-size: 24px;
-			    font-weight: bold;
-			    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-			    border: 1px solid #ddd;
-			    
-			    /* 기본 크기 설정 */
-			    width: 90vw; /* viewport의 너비 90% */
-			    height: 50vh; /* viewport의 높이 50% */
-			    
-			    /* 최소 및 최대 크기 제한 */
-			    max-width: 1000px;
-			    min-width: 300px;
-			    max-height: 600px;
-			    min-height: 300px;
-			}
+        /* 공통 제목 스타일 */
+   		 .title {
+        font-size: 24px; /* 제목 글자 크기 */
+        font-weight: bold; /* 굵은 글씨 */
+        color: #333; /* 제목 색상 */
+        margin-top: 10px;
+        margin-bottom: 10px; /* 제목 하단 여백 */
+        text-align: center;
+    }
 
-        /* 텍스트 카드 스타일 */
-        .text-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            
-        }
-        .text-card {
-            background-color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            font-size: 18px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-        }
+    /* 반응형 스타일 - #map 크기 */
+    #map {
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        
+        /* 기본 크기 설정 */
+        width: 90vw; /* viewport의 너비 90% */
+        height: 50vh; /* viewport의 높이 50% */
+        
+        /* 최소 및 최대 크기 제한 */
+        max-width: 1000px;
+        min-width: 300px;
+        max-height: 600px;
+        min-height: 300px;
+    }
+	
 
-        /* 표 스타일 */
-        .table-card {
-            background-color: #ffffff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-        }
-        .table-card table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .table-card th, .table-card td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        .table-card th {
-            background-color: #f9eac3;
-            font-weight: bold;
-        }
-        
-        /* 차트 카드 스타일 */
-        .chart-card {
-            background-color: #ffffff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-            text-align: center;
-            font-size: 15px;
-            height: 500px; /* 차트 높이 고정 */
-            
-        
+    /* 내부 텍스트 카드 스타일 */
+    .text-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .text-card {
+        background-color: #f9f9f9;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    /* 표 스타일 */
+    .table-card {
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+    }
+    .table-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #333;
+        text-align: left;
+    }
+    
+    .table-card table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table-card th, .table-card td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+    .table-card th {
+        background-color: #f9eac3;
+        font-weight: bold;
+    }
+    
+    /* 차트 카드 스타일 */
+    .chart-card {
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        text-align: center;
+        font-size: 15px;
+        height: 500px; /* 차트 높이 고정 */
+    }
 	        
-     
-        }
+  
+        

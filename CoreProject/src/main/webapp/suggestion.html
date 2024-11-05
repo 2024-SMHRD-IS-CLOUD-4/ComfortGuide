@@ -14,9 +14,75 @@
             font-family: Arial, sans-serif;
             margin: 0;
             background-color: #f5f5f5;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
         }
-        
+
+        /* Centering container wrapper */
+        .center-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh; /* 상하 가운데 정렬을 위해 높이 설정 */
+            padding-top: 20px;
+        }
+
+        .container {
+            width: 900px;
+            min-height: 600px; /* 세로 길이 확장을 위해 추가 */
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            background-color: #d3d3d3;
+            padding: 10px;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .table-container {
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .button-container {
+            text-align: left;
+        }
+
+        .button-container button {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            background-color: #d3d3d3;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #b3b3b3;
+        }
+
         /* 헤더 스타일 */
         .header {
             display: flex;
@@ -41,6 +107,7 @@
             background-color: #eaf4f9;
             padding: 10px 20px;
         }
+
         .menu a {
             margin-right: 20px;
             text-decoration: none;
@@ -49,21 +116,24 @@
             padding: 10px 15px;
             transition: background-color 0.3s;
         }
+
         .menu a:active,
         .menu a:focus {
             background-color: #ffffff;
             color: black;
         }
-        
+
         /* user-info 스타일 */
         .menu .user-info {
             display: flex;
             align-items: center;
             font-size: 14px;
         }
+
         .menu .user-info span {
             margin-right: 15px;
         }
+
         .menu .user-info a {
             margin-left: 10px;
             text-decoration: none;
@@ -73,104 +143,9 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
+
         .menu .user-info a:hover {
             background-color: #b3b3b3;
-        }
-        
-        /* 검색 필터 스타일 */
-        .search-bar-container {
-            display: flex;
-            justify-content: flex-end;
-            padding: 10px 20px;
-            background-color: #f1f1f1;
-        }
-        .search-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .search-bar select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
-            font-size: 14px;
-            min-width: 120px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .search-bar .search-icon {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 대시보드 컨테이너 */
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr; /* 3등분 */
-            gap: 20px;
-            padding: 20px;
-            max-width: 100vw;
-        }
-
-        /* 카드 스타일 */
-        .card {
-            background-color: #ffffff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        /* 개별 섹션 스타일 */
-        .video-card { grid-column: 1 / 2; grid-row: 1; height: 300px; } /* Customize height */
-        .weather-card { grid-column: 1 / 2; grid-row: 2; text-align: left; padding: 20px; height: 200px; } /* Customize height */
-        .facilities-card { grid-column: 2 / 3; grid-row: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; font-size: 14px; height: 300px; } /* Customize height */
-        .popular-items-chart { grid-column: 2 / 3; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; height: 200px; } /* Customize height */
-        .reviews-card { grid-column: 3 / 4; grid-row: 1 / 3; text-align: left; padding: 20px; height: 500px; } /* Customize height */
-        .feedback-card { grid-column: 3 / 4; grid-row: 3; height: 80px; display: flex; align-items: center; justify-content: center; cursor: pointer; background-color: #e0f7fa; } /* Customize height */
-        
-        /* 개별 시설 스타일 */
-        .facilities-card .facility {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-
-        /* 인기 판매 품목 차트 내부 박스 스타일 */
-        .popular-item-box {
-            background-color: #f8f8f8;
-            padding: 20px;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            font-size: 16px;
-            font-weight: normal;
-           
-        }
-
-        /* Individual sizes for boxes inside 인기 판매 품목 차트 */
-        .popular-item-box-1 {
-            height: 150px; 
-        }
-        .popular-item-box-2 {
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
         }
     </style>
 </head>
@@ -186,7 +161,7 @@
         <div>
             <a href="mainpage.html" class="active">메인 페이지</a>
             <a href="subpage.html">검색 페이지</a>
-            <a href="#">관리자 페이지</a>
+            <a href="manager.html">관리자 페이지</a>
             <a href="suggestion.html">고객의 소리</a>
         </div>
         
@@ -198,70 +173,34 @@
         </div>
     </div>
 
-    <!-- 검색 필터와 아이콘 -->
-    <div class="search-bar-container">
-        <div class="search-bar">
-            <select>
-                <option>지역</option>
-                <option>서울</option>
-                <option>부산</option>
-                <option>대구</option>
-            </select>
-            <select>
-                <option>휴게소 이름</option>
-                <option>휴게소1</option>
-                <option>휴게소2</option>
-                <option>휴게소3</option>
-            </select>
-            <select>
-                <option>상행/하행</option>
-                <option>상행</option>
-                <option>하행</option>
-            </select>
-            <div class="search-icon">🔍</div>
-        </div>
-    </div>
-    
-    <!-- 대시보드 -->
-    <div class="dashboard">
-        <!-- 유튜브 소개 영상 -->
-        <div class="card video-card">유튜브 소개 영상<div class="video">▶</div></div>
-        <!-- 날씨 정보 -->
-        <div class="card weather-card">
-            <div>날씨, 온도, 미세먼지 등등</div>
+    <!-- Center Wrapper for "고객의 소리" container -->
+    <div class="center-wrapper">
+        <div class="container">
+            <div class="section-title">고객의 소리</div>
             
-
-        </div>
-        <!-- 시설 현황 -->
-        <div class="card facilities-card">
-            <div class="facility"><img src="#" alt="약국" width="40" height="40"><p>약국</p></div>
-            <div class="facility"><img src="#" alt="수유실" width="40" height="40"><p>수유실</p></div>
-            <div class="facility"><img src="#" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
-            <div class="facility"><img src="#" alt="식당" width="40" height="40"><p>식당</p></div>
-            <div class="facility"><img src="#" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
-            <div class="facility"><img src="#" alt="병원" width="40" height="40"><p>병원</p></div>
-            <div class="facility"><img src="#" alt="주유소" width="40" height="40"><p>주유소</p></div>
-            <div class="facility"><img src="#" alt="편의점" width="40" height="40"><p>편의점</p></div>
-        </div>
-        
-        <!-- 인기 판매 품목 차트 나눔 -->
-        <div class="card popular-items-chart">
-            <div class="popular-item-box popular-item-box-1">
-                인기 품목 차트 1
-                <img src="path/to/donut_chart1.png" alt="chart" style="width: 100%; height: auto;">
-            </div>
-            <div class="popular-item-box popular-item-box-2">
-               text
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" style="height: 50px;"></td> <!-- 빈 줄로 유지 -->
+                        </tr>
+                    </tbody>
+                </table>
                 
+                <div class="button-container">
+                    <button onclick="location.href='write.html'">글 작성</button> <!-- 글 작성 페이지로 이동 -->
+                </div>
             </div>
         </div>
-        
-        <!-- 방문 후기 -->
-        <div class="card reviews-card"><div>방문후기 (크롤링)</div><p>여기에 방문후기 내용이 표시됩니다.</p></div>
-    
-        <!-- 고객의 소리 버튼 (링크) -->
-        <a href="suggestion.html" class="card feedback-card">고객의 소리(버튼)</a>
     </div>
-    
+
 </body>
 </html>
