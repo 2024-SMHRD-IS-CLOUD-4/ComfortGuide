@@ -201,7 +201,22 @@
         }
         .feedback-card:hover {
             background-color: #c4d8f7; 
-        }
+        }.review-item {
+		    border: 1px solid #ddd;
+		    padding: 10px;
+		    margin: 5px 0;
+		    border-radius: 4px;
+		    background-color: #f9f9f9;
+		}
+		.review-item p {
+		    margin: 0;
+		    font-size: 14px;
+		    font-weight: bold;
+		}
+		.review-item a {
+		    font-size: 12px;
+		    color: #0073e6;
+		}
        
     </style>
 </head>
@@ -232,18 +247,21 @@
     <!-- 검색 필터와 아이콘 -->
     <div class="search-bar-container">
         <div class="search-bar">
-            <select>
-                <option>지역</option>
-                <option>서울</option>
-                <option>부산</option>
-                <option>대구</option>
-            </select>
-            <select>
-                <option>휴게소 이름</option>
-                <option>휴게소1</option>
-                <option>휴게소2</option>
-                <option>휴게소3</option>
-            </select>
+            <select id="region" name="region" required>
+				<option value="">지역 선택</option>
+				<option value="강원">강원</option>
+				<option value="경기">경기</option>
+				<option value="전남">전남</option>
+				<option value="전북">전북</option>
+				<option value="충남">충남</option>
+				<option value="충북">충북</option>
+				<option value="경남">경남</option>
+				<option value="경북">경북</option>
+				<option value="제주">제주</option>
+			</select>
+            <select id="restStop" name="restStop" required>
+				<option value="">휴게소 선택</option>
+			</select>
             <div class="search-icon">🔍</div>
         </div>
     </div>
@@ -260,21 +278,24 @@
         </div>
         <!-- 시설 현황 -->
         <div class="card facilities-card">
-            <div class="facility"><img src="#" alt="약국" width="40" height="40"><p>약국</p></div>
-            <div class="facility"><img src="#" alt="수유실" width="40" height="40"><p>수유실</p></div>
-            <div class="facility"><img src="#" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
-            <div class="facility"><img src="#" alt="식당" width="40" height="40"><p>식당</p></div>
-            <div class="facility"><img src="#" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
-            <div class="facility"><img src="#" alt="병원" width="40" height="40"><p>병원</p></div>
-            <div class="facility"><img src="#" alt="주유소" width="40" height="40"><p>주유소</p></div>
-            <div class="facility"><img src="#" alt="편의점" width="40" height="40"><p>편의점</p></div>
+            <div class="facility"><img src="images/drug.png" alt="약국" width="40" height="40"><p>약국</p></div>
+            <div class="facility"><img src="images/nursing.png" alt="수유실" width="40" height="40"><p>수유실</p></div>
+            <div class="facility"><img src="images/ev.png" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
+            <div class="facility"><img src="images/restaurant.png" alt="식당" width="40" height="40"><p>식당</p></div>
+            <div class="facility"><img src="images/lpg.png" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
+            <div class="facility"><img src="images/gas_station.png" alt="주유소" width="40" height="40"><p>주유소</p></div>
+            <div class="facility"><img src="images/snack.png" alt="편의점" width="40" height="40"><p>편의점</p></div>
+            <div class="facility"><img src="images/break.png" alt="쉼터" width="40" height="40"><p>쉼터</p></div>
+            <div class="facility"><img src="images/car_maintenace.png" alt="정비소" width="40" height="40"><p>정비소</p></div>
+            <div class="facility"><img src="images/hydrogen.png" alt="수소차 충전소" width="40" height="40"><p>수소차 충전소</p></div>
+            <div class="facility"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div>
         </div>
         
         <!-- 인기 판매 품목 차트 나눔 -->
         <div class="card popular-items-chart">
             <div class="popular-item-box popular-item-box-1">
                 인기 품목 차트 1
-                <img src="path/to/donut_chart1.png" alt="chart" style="width: 100%; height: auto;">
+                <img src="#" alt="chart" style="width: 100%; height: auto;">
             </div>
             <div class="popular-item-box popular-item-box-2">
                text
@@ -283,12 +304,20 @@
         </div>
         
         <!-- 방문 후기 -->
-        <div class="card reviews-card"><div>방문후기 (크롤링)</div><p>여기에 방문후기 내용이 표시됩니다.</p></div>
+        <div class="card reviews-card">
+        <div>방문후기 (크롤링)</div>
+        <div id="reviews-container">
+            <!-- 방문후기 내용이 여기에 표시됩니다. -->
+            <p>여기에 방문후기 내용이 표시됩니다.</p>
+        </div>
+        </div>
     
         <!-- 고객의 소리 버튼 (링크) -->
         <a href="suggestion.html" class="card feedback-card">고객의 소리(버튼)</a>
     </div>
-    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/sub_review.js"></script>
+    <script type="text/javascript" src="js/join_region.js"></script>
     
 </body>
 </html>
