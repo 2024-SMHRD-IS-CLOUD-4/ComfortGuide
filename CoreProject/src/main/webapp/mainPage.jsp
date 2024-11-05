@@ -398,6 +398,13 @@
 		.info .link {
 		    color: #5085BB;
 		}
+		th:nth-child(1) {
+            width: 130px;
+        }
+
+        th:nth-child(3) {
+            width: 110px;
+        }
    
     </style>
     
