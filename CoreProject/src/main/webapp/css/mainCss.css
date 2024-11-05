@@ -1,5 +1,5 @@
 @charset "UTF-8";
-* {
+		* {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -112,8 +112,8 @@
         min-height: 300px;
     }
 	
-
-    /* 내부 텍스트 카드 스타일 */
+	
+        /* 내부 텍스트 카드 스타일 */
     .text-cards {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -123,13 +123,15 @@
 
     .text-card {
         background-color: #f9f9f9;
-        padding: 15px;
+        padding: 25px;
         text-align: center;
         font-size: 18px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         border: 1px solid #ddd;
-        border-radius: 5px;
+        
+        
     }
+
 
     /* 표 스타일 */
     .table-card {
