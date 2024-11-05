@@ -12,7 +12,7 @@ $(document).ready(function() {
                     reviewsContainer.empty(); // 기존 내용 삭제
 
                     // 최대 8개의 리뷰만 출력
-                    data.slice(0, 8).forEach(review => {
+                    data.slice(0, 50).forEach(review => {
                         const reviewDiv = `
                             <div class="review-item">
                                 <p><strong>제목:</strong> <a href="${review.link}" target="_blank">${review.title}</a></p>
