@@ -226,7 +226,7 @@
                 </table>
                 
                 <div class="button-container">
-                    <button onclick="location.href='write.html'">글 작성</button> <!-- 글 작성 페이지로 이동 -->
+                    <button onclick="location.href='writer.jsp'">글 작성</button> <!-- 글 작성 페이지로 이동 -->
                 </div>
             </div>
         </div>
