@@ -120,7 +120,6 @@
 		    display: inline-block;
 		    width: 0;
 		    height: 0;
-		    margin-left: 5px; /* 텍스트와 삼각형 사이의 여백 */
 		    border-left: 6px solid transparent;
 		    border-right: 6px solid transparent;
 		    border-bottom: 10px solid red; /* 빨간색 삼각형 */
@@ -380,6 +379,17 @@
 		    font-size: 18px;
 		    font-weight: bold;
 		}
+			/* 주유 가격 제목 스타일 */
+			.title-with-line {
+			    margin: 0;
+			    font-size: 24px;
+			    font-weight: bold;
+			    color: #333;
+			    padding-bottom: 10px; /* 텍스트와 선 사이 간격 */
+			    border-bottom: 2px solid #ccc; /* 밑줄 추가 */
+			    display: inline-block;
+			    width: calc(100% - 20px); /* 왼쪽과 오른쪽 padding에 맞춘 너비 */
+			}
 		
 		.info .close {
 		    position: absolute;
@@ -605,7 +615,7 @@
         <!-- 오른쪽 섹션 -->
         <div class="right-section">
             <div class="large-card" id="gas">
-                <h2>주유 가격</h2>
+                <h2 class="title-with-line">주유 가격</h2>
                 <br>
                 <div class="fuel-price-card">
                     <div class="price-item">
@@ -643,9 +653,9 @@
                 <div class="chart-text">
                 <strong>방문자 증가율 Top 3</strong><br>
 
-                <br>1등. <%= growth.get(0).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>%
-           		<br>2등. <%= growth.get(1).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>%
-            	<br>3등. <%= growth.get(2).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(2).getTourismGrowthRate()) %>%
+                <br>1위 <%= growth.get(0).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>%
+           		<br>2위 <%= growth.get(1).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>%
+            	<br>3위 <%= growth.get(2).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(2).getTourismGrowthRate()) %>%
                 
                 </div>
             </div>
@@ -675,7 +685,7 @@
         </div> 
         <div>
         <div class="chart-card">
-        <h2>이용자별 국내여행 횟수</h2>
+       <h2 class="title-with-line">이용자별 국내여행 횟수</h2>
         		<br><br><br>
                 <canvas id="myChart"></canvas>
             </div>

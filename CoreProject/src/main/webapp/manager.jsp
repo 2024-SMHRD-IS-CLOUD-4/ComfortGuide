@@ -177,7 +177,7 @@
           </div>
           
           <div class="text-card" id="ColdPossibility" style="display: block;">
-              <div ">감기 가능 지수</div>
+              <div >감기 가능 지수</div>
              <br>
              <div id="ColdData">-</div>
          </div>
