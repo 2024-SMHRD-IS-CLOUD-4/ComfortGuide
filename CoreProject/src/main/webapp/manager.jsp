@@ -8,7 +8,7 @@
 <%@page import="com.smhrd.model.ServiceAreaDAO"%>
 <%@page import="com.smhrd.model.tb_admin"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,19 +21,19 @@
 </head>
 <body>
 
-	<%
-	tb_admin login = (tb_admin) session.getAttribute("login");
-	String saName = "";
-	if (login != null) {
-		saName = login.getSa_name(); // 예: "강원(춘천)"
-	}
-	ServiceAreaDAO dao = new ServiceAreaDAO();
-	tb_service_area area = dao.getServiceAreaBySaName(login.getSa_name());
-	int tempLat = (int) area.getLat();
-	int tempLon = (int) area.getLon();
-	%>
+   <%
+   tb_admin login = (tb_admin) session.getAttribute("login");
+   String saName = "";
+   if (login != null) {
+      saName = login.getSa_name(); // 예: "강원(춘천)"
+   }
+   ServiceAreaDAO dao = new ServiceAreaDAO();
+   tb_service_area area = dao.getServiceAreaBySaName(login.getSa_name());
+   int tempLat = (int) area.getLat();
+   int tempLon = (int) area.getLon();
+   %>
 
-	<script type="text/javascript">
+   <script type="text/javascript">
         // JSP에서 saName 값을 JavaScript 변수로 전달
         const tempData = "<%=saName.split("\\(")[0]%>"; // "강원(춘천)"에서 "강원"만 사용
         const tempData2 = "<%=saName.split("\\(")[1]%>".replace(")","");
@@ -45,158 +45,158 @@
         const lon2 = <%=tempLon%>;
     </script>
 
-	<script type="text/javascript">
-	    function confirmLogin(page) {
-	        <%if (login == null) {%>
-	            alert("로그인이 필요한 서비스입니다!");
-	            window.location.href = "login.html";
-	        <%} else {%>
-	            window.location.href = page;
-	        <%}%>
-	    }
-	</script>
-	<!-- 헤더 -->
-	<script type="text/javascript">
-	    function confirmLogin(page) {
-	        <%if (login == null) {%>
-	            alert("로그인이 필요한 서비스입니다!");
-	            window.location.href = "login.html";
-	        <%} else {%>
-	            window.location.href = page;
-	        <%}%>
-	    }
-	</script>
+   <script type="text/javascript">
+       function confirmLogin(page) {
+           <%if (login == null) {%>
+               alert("로그인이 필요한 서비스입니다!");
+               window.location.href = "login.html";
+           <%} else {%>
+               window.location.href = page;
+           <%}%>
+       }
+   </script>
+   <!-- 헤더 -->
+   <script type="text/javascript">
+       function confirmLogin(page) {
+           <%if (login == null) {%>
+               alert("로그인이 필요한 서비스입니다!");
+               window.location.href = "login.html";
+           <%} else {%>
+               window.location.href = page;
+           <%}%>
+       }
+   </script>
 
-	<div class="header">
-		<div class="logo">Comfort Guide</div>
-	</div>
+   <div class="header">
+      <div class="logo">Comfort Guide</div>
+   </div>
 
-	<!-- 메뉴 -->
-	<div class="menu">
-		<div>
-			<a href="mainPage.jsp" class="active">메인 페이지</a> <a
-				href="subpage.jsp">검색 페이지</a>
-			<!-- 로그인 체크가 필요한 링크 -->
-			<a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자
-				페이지</a> <a href="javascript:void(0);"
-				onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
-		</div>
+   <!-- 메뉴 -->
+   <div class="menu">
+      <div>
+         <a href="mainPage.jsp" class="active">메인 페이지</a> <a
+            href="subpage.jsp">검색 페이지</a>
+         <!-- 로그인 체크가 필요한 링크 -->
+         <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자
+            페이지</a> <a href="javascript:void(0);"
+            onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
+      </div>
 
-		<!-- 사용자 정보와 링크 -->
-		<div class="user-info">
-			<%
-			if (login != null) {
-			%>
-			<span><%=login.getAdmin_id()%> 님</span> <a href="profile.html">회원정보
-				수정</a> <a href="logout">로그아웃</a>
-			<%
-			} else {
-			%>
-			<a href="login.html">로그인</a> <a href="Join.html">회원가입</a>
-			<%
-			}
-			%>
-		</div>
-	</div>
+      <!-- 사용자 정보와 링크 -->
+      <div class="user-info">
+         <%
+         if (login != null) {
+         %>
+         <span><%=login.getAdmin_id()%> 님</span> <a href="profile.html">회원정보
+            수정</a> <a href="logout">로그아웃</a>
+         <%
+         } else {
+         %>
+         <a href="login.html">로그인</a> <a href="Join.html">회원가입</a>
+         <%
+         }
+         %>
+      </div>
+   </div>
 
-	<!-- 컨테이너 -->
-	<div class="container">
-		<!-- 차트 영역 -->
-		<div class="chart-card">차트 영역 (빈 공간)</div>
+   <!-- 컨테이너 -->
+   <div class="container">
+      <!-- 차트 영역 -->
+      <div class="chart-card">차트 영역 (빈 공간)</div>
 
-		<%
-		String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");
-		String url = "http://localhost:5000/searchService?name=" + encodedService;
-		System.out.println("Request URL: " + url);
+      <%
+      String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");
+      String url = "http://localhost:5000/searchService?name=" + encodedService;
+      System.out.println("Request URL: " + url);
 
-		URL obj = new URL(url);
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-		con.setRequestMethod("GET");
+      URL obj = new URL(url);
+      HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+      con.setRequestMethod("GET");
 
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer responseData = new StringBuffer();
+      BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      String inputLine;
+      StringBuffer responseData = new StringBuffer();
 
-		while ((inputLine = in.readLine()) != null) {
-			responseData.append(inputLine);
-		}
-		in.close();
+      while ((inputLine = in.readLine()) != null) {
+         responseData.append(inputLine);
+      }
+      in.close();
 
-		// JSON 파싱
-		JSONObject jsonResponse = new JSONObject(responseData.toString());
-		double positive = jsonResponse.getDouble("positive");
-		double negative = jsonResponse.getDouble("negative");
-		double neutral = jsonResponse.getDouble("neutral");
-		System.out.println(positive);
-		System.out.println(negative);
-		System.out.println(neutral);
-		%>
+      // JSON 파싱
+      JSONObject jsonResponse = new JSONObject(responseData.toString());
+      double positive = jsonResponse.getDouble("positive");
+      double negative = jsonResponse.getDouble("negative");
+      double neutral = jsonResponse.getDouble("neutral");
+      System.out.println(positive);
+      System.out.println(negative);
+      System.out.println(neutral);
+      %>
 
-		<!-- 오른쪽 상단 3개의 정보 박스 그룹 -->
-		<div class="info-container">
-			<div class="info-sales-card info-card"></div>
-			<div class="info-guests-card info-card"></div>
-			<div class="info-traffic-card info-card"></div>
-		</div>
+      <!-- 오른쪽 상단 3개의 정보 박스 그룹 -->
+      <div class="info-container">
+         <div class="info-sales-card info-card"></div>
+         <div class="info-guests-card info-card"></div>
+         <div class="info-traffic-card info-card"></div>
+      </div>
 
-		<!-- 고객의 소리 박스 -->
-		<div class="large-info-card">고객의 소리</div>
+      <!-- 고객의 소리 박스 -->
+      <div class="large-info-card">고객의 소리</div>
 
-		<!-- 하단의 넓은 박스 -->
-		<div class="table-container">휴게소 하나의 음식코너 매출액</div>
+      <!-- 하단의 넓은 박스 -->
+      <div class="table-container">휴게소 하나의 음식코너 매출액</div>
 
-		<!-- 하단의 작은 박스들 -->
-		<div class="text-card-container">
-			<div class="text-card" id="sentiment">
-				<span>만족도, 감정분석</span>
-				<div class="sentiment-container">
-					<!-- 1행 3열로 배치된 구역 -->
-					<div class="sentiment-box">
-						<img src="images/good.png" alt="좋음" class="sentiment-icon">
-						<span class="sentiment-text">좋음</span> <span
-							class="sentiment-text"><%=positive%></span>
-					</div>
-					<div class="sentiment-box">
-						<img src="images/middle.png" alt="보통" class="sentiment-icon">
-						<span class="sentiment-text">보통</span> <span
-							class="sentiment-text"><%=neutral%></span>
-					</div>
-					<div class="sentiment-box">
-						<img src="images/bad.png" alt="나쁨" class="sentiment-icon"> <span
-							class="sentiment-text">나쁨</span> <span class="sentiment-text"><%=negative%></span>
-					</div>
-				</div>
-			</div>
-			<div class="text-card" id="foodPoisonIndex" style="display: block;">
-				<div>식중독 지수</div>
-				<br>
-				<div id="foodPoisonValue">-</div>
-			</div>
+      <!-- 하단의 작은 박스들 -->
+      <!-- 하단의 작은 박스들 -->
+        <div class="text-card-container">
+          <div class="text-card" id="sentiment">
+             <span>만족도, 감정분석</span>
+             <br><br><br><br>
+             <div class="sentiment-container">
+                 <!-- 1행 3열로 배치된 구역 -->
+                 <div class="sentiment-box">
+                     <img src="images/good.png" alt="좋음" class="sentiment-icon">
+                     <span class="sentiment-text">좋음</span>
+                     <span class="sentiment-text"><%=positive %></span>
+                 </div>
+                 <div class="sentiment-box">
+                     <img src="images/middle.png" alt="보통" class="sentiment-icon">
+                     <span class="sentiment-text">보통</span>
+                     <span class="sentiment-text"><%=neutral %></span>
+                 </div>
+                 <div class="sentiment-box">
+                     <img src="images/bad.png" alt="나쁨" class="sentiment-icon">
+                     <span class="sentiment-text">나쁨</span>
+                     <span class="sentiment-text"><%=negative %></span>
+                 </div>
+             </div>
+         </div>
+          <div class="text-card" id="foodPoisonIndex" style="display: block;">
+              <div>식중독 지수</div>
+              <br>
+              <div id="foodPoisonValue">-</div>
+          </div>
+          
+          <div class="text-card" id="ColdPossibility" style="display: block;">
+              <div ">감기 가능 지수</div>
+             <br>
+             <div id="ColdData">-</div>
+         </div>
 
-			<div class="text-card" id="ColdPossibility" style="display: block;">
-				<div">감기 가능 지수</div>
-				<br>
-				<div id="ColdData">-</div>
-			</div>
+          <div class="text-card" id="corruption" style="display: block;">
+              <div>부패 가능 지수</div>
+              <br>
+              <div id="corruptionValue">-</div>
+          </div>
+          <div class="text-card" id="dustIndex" style="display: block;">
+              <div style="width: 100%">미세먼지 지수</div>
+              <br>
+              <div id="dustValue">-</div>
+          </div>
+      </div>
+   </div>
 
-			<div class="text-card" id="corruption" style="display: block;">
-				<div>부패 가능 지수</div>
-				<br>
-				<div id="corruptionValue">-</div>
-			</div>
-			<div class="text-card" id="dustIndex" style="display: block;">
-				<div style="width: 100%">미세먼지 지수</div>
-				<br>
-				<div id="dustValue">-</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- JavaScript 파일 연결 -->
-	<script>
-	 // 로그인한 사용자의 sa_name에 해당하는 휴게소 명 (예시: '강천산(광주)')
-    const selectedRestAreaName = '강천산(광주)';
-
+   <!-- JavaScript 파일 연결 -->
+   <script>
     // CSV 데이터 경로
     const csvFilePath = 'path/to/한국도로공사_휴게소_이용객_통행량_매출액.csv';
 
@@ -308,102 +308,11 @@
         fetchAndDisplayChartData().catch(error => {
     console.error('Error fetching or displaying chart data:', error);
 });
-    </script>
-	<script>
-    const selectedRestAreaName = '강천산(광주)';
-    const csvFilePath = 'path/to/한국도로공사_휴게소_이용객_통행량_매출액.csv';
-
-    async function fetchAndDisplayChartData() {
-        const response = await fetch(csvFilePath);
-        const data = await response.text();
-        const csvData = parseCSV(data);
-
-        const filteredData = csvData.filter(row => row['휴게소명'] === selectedRestAreaName);
-
-        // 2024년 실제 데이터 가져오기
-        const data2024 = filteredData.find(row => row['연도'] === '2024');
-        const years = [2024];
-        const annualUsage = [parseInt(data2024['연간 이용객 수'])];
-        const annualTraffic = [parseInt(data2024['연간 차량 통행량'])];
-        const annualRevenue = [parseInt(data2024['연간 매출액(원)'])];
-
-        const futureYears = [2025, 2026, 2027, 2028, 2029, 2030];
-        const predictedUsage = predictFutureData(years, annualUsage, futureYears);
-        const predictedTraffic = predictFutureData(years, annualTraffic, futureYears);
-        const predictedRevenue = predictFutureData(years, annualRevenue, futureYears);
-
-        // 각 info-card에 canvas 요소 추가
-        const usageCard = document.querySelectorAll('.info-guests-card');
-        const trafficCard = document.querySelectorAll('.info-traffic-card');
-        const revenueCard = document.querySelectorAll('.info-sales-card');
-          
-        const usageCanvas = document.createElement('canvas');
-        const trafficCanvas = document.createElement('canvas');
-        const revenueCanvas = document.createElement('canvas');
-
-        usageCard.appendChild(usageCanvas);
-        trafficCard.appendChild(trafficCanvas);
-        revenueCard.appendChild(revenueCanvas);
-
-        // 각 데이터셋으로 바 그래프 생성
-        createBarChart(usageCanvas, years.concat(futureYears), annualUsage.concat(predictedUsage), 'Annual Usage', 'blue');
-        createBarChart(trafficCanvas, years.concat(futureYears), annualTraffic.concat(predictedTraffic), 'Annual Traffic', 'green');
-        createBarChart(revenueCanvas, years.concat(futureYears), annualRevenue.concat(predictedRevenue), 'Annual Revenue', 'red');
-    }
-
-    function createBarChart(canvas, labels, data, label, color) {
-        new Chart(canvas, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: label,
-                    data: data,
-                    backgroundColor: color
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: { title: { display: true, text: 'Year' }},
-                    y: { title: { display: true, text: 'Value' }}
-                }
-            }
-        });
-    }
-
-    function predictFutureData(years, values, futureYears) {
-        const regressionData = years.map((year, index) => [year, values[index]]);
-        const result = regression.linear(regressionData);
-        const gradient = result.equation[0];
-        const intercept = result.equation[1];
-
-        return futureYears.map(year => gradient * year + intercept);
-    }
-
-    function parseCSV(data) {
-        const rows = data.split('\n').slice(1);
-        return rows.map(row => {
-            const columns = row.split(',');
-            return {
-                '휴게소명': columns[0],
-                '연도': columns[1],
-                '연간 이용객 수': columns[2],
-                '연간 차량 통행량': columns[3],
-                '연간 매출액(원)': columns[4]
-            };
-        });
-    }
-
-    fetchAndDisplayChartData().catch(error => {
-        console.error('Error fetching or displaying chart data:', error);
-    });
-
-    </script>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/manager_weather.js"></script>
-	<script type="text/javascript" src="js/manager_poison.js"></script>
-	<script type="text/javascript" src="js/manager_dust.js"></script>
+   </script>
+   <script type="text/javascript" src="js/jquery.min.js"></script>
+   <script type="text/javascript" src="js/manager_weather.js"></script>
+   <script type="text/javascript" src="js/manager_poison.js"></script>
+   <script type="text/javascript" src="js/manager_dust.js"></script>
 
 </body>
 </html>

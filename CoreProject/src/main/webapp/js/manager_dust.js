@@ -11,17 +11,17 @@ $(document).ready(function() {
 			const pm10 = component.pm10;
 			const pm2_5 = component.pm2_5;
 			if (pm10 <= 15 || pm2_5 <= 30) {
-				document.getElementById('dustValue').innerHTML = `좋음<br>pm2.5 : ${pm2_5} <br>pm 10 : ${pm10}`;
-				document.getElementById('dustValue').style.cssText = 'color: blue;';
+				document.getElementById('dustValue').innerHTML = '<img src="images/smile.png" alt="좋음" class="small-block-icon"><br>좋음'
+				document.getElementById('dustValue').style.cssText='color: blue;'
 			} else if (pm10 <= 80 || pm2_5 <= 35) {
-				document.getElementById('dustValue').innerHTML = `보통<br>pm2.5 : ${pm2_5} <br>pm 10 : ${pm10}`;
-				document.getElementById('dustValue').style.cssText = 'color: green;';
+				document.getElementById('dustValue').innerHTML = '<img src="images/what.png" alt="보통" class="small-block-icon"><br>보통'
+				document.getElementById('dustValue').style.cssText='color: green;'
 			} else if (pm10 <= 150 || pm2_5 <= 75) {
-				document.getElementById('dustValue').innerHTML = `나쁨<br>pm2.5 : ${pm2_5} <br>pm 10 : ${pm10}`;
-				document.getElementById('dustValue').style.cssText = 'color: yellow;';
+				document.getElementById('dustValue').innerHTML = '<img src="images/mask_normal.png" alt="나쁨" class="small-block-icon"><br>나쁨'
+				document.getElementById('dustValue').style.cssText='color: yellow;'
 			} else {
-				document.getElementById('dustValue').innerHTML = `매우 나쁨<br>pm2.5 : ${pm2_5} <br>pm 10 : ${pm10}`;
-				document.getElementById('dustValue').style.cssText = 'color: red;';
+				document.getElementById('dustValue').innerHTML = '<img src="images/mask_hard.png" alt="매우 나쁨" class="small-block-icon"><br>매우 나쁨'
+				document.getElementById('dustValue').style.cssText='color: red;'
 			}
 		})
 		.catch(error => console.error('Error:', error)); // 에러 처리

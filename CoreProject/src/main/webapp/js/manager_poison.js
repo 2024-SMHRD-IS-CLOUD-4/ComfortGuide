@@ -24,7 +24,22 @@ $(document).ready(function() {
                 const result = temp.find(item => item.OCCRNC_AREA && item.OCCRNC_AREA.split('(')[0] === tempData2);
                 
                 if (result && result.PATNT_CNT) {
-                    document.getElementById('foodPoisonValue').innerText = result.PATNT_CNT;
+					if(result.PATNT_CNT<35){
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="images/smile.png" alt="관심" class="small-block-icon"><br>관심'
+						document.getElementById('foodPoisonValue').style.cssText='color: green;'
+					}
+				else if(result.PATNT_CNT<70){
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="images/what.png" alt="주의" class="small-block-icon"><br>주의'
+						document.getElementById('foodPoisonValue').style.cssText='color: yellow;'
+					}
+				else if(result.PATNT_CNT<95){
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="image/so_bad.png" alt="경고" class="small-block-icon"><br>경고'
+						document.getElementById('foodPoisonValue').style.cssText='color: orange;'
+					}
+				else if(result.PATNT_CNT>=95){
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="images/bad.png" alt="위험" class="small-block-icon"><br>위험'
+						document.getElementById('foodPoisonValue').style.cssText='color: red;'
+					}
                 } else {
                     console.log("해당 지역의 데이터가 없습니다.");
                     document.getElementById('foodPoisonValue').innerText = "N/A";

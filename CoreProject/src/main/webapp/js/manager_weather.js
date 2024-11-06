@@ -80,21 +80,25 @@ $(document).ready(function() {
 						// 기타 지역에 대한 감기 가능 지수 계산 (생략)
 
 						// 감기 가능 지수 텍스트
-						let ColdData = '';
+						
 						if (ColdPossibility < 33) {
-							ColdData = '낮음';
+							document.getElementById('ColdPossibility').innerHTML = '<img src="images/good.png" alt="낮음" class="small-block-icon"><br>낮음';
+							document.getElementById('ColdPossibility').style.cssText='color: blue;';					
 						} else if (ColdPossibility < 66) {
-							ColdData = '보통';
+							document.getElementById('ColdPossibility').innerHTML = '<img src="images/soso.png" alt="보통" class="small-block-icon"><br>보통';
+							document.getElementById('ColdPossibility').style.cssText='color: green;
 						} else if (ColdPossibility < 85) {
-							ColdData = '높음';
+							document.getElementById('ColdPossibility').innerHTML = '<img src="images/so_bad.png" alt="높음" class="small-block-icon"><br>높음';
+							document.getElementById('ColdPossibility').style.cssText='color: yellow;
 						} else {
-							ColdData = '매우 높음';
+							document.getElementById('ColdPossibility').innerHTML = '<img src="images/mask_normal.png" alt="매우 높음" class="small-block-icon"><br>매우 높음';
+							document.getElementById('ColdPossibility').style.cssText='color: red;
 						}
+						
 						let corruption = ((humidity-65)/14)*Math.pow(1.054,temperature);
 						// HTML 요소에 데이터 삽입
-
-						$('#ColdData').text(ColdData);
-						$('#corruptionValue').text(corruption);
+						
+						
 					} else {
 						console.log(`데이터가 없습니다: ${baseDate}`);
 					}
