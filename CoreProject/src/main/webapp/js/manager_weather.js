@@ -77,26 +77,48 @@ $(document).ready(function() {
 						} else {
 							ColdPossibility = 0;
 						}
-						// 기타 지역에 대한 감기 가능 지수 계산 (생략)
-
-						// 감기 가능 지수 텍스트
 						
+						// 감기 가능 지수 텍스트 설정
 						if (ColdPossibility < 33) {
-							document.getElementById('ColdPossibility').innerHTML = '<img src="images/good.png" alt="낮음" class="small-block-icon"><br>낮음';
-							document.getElementById('ColdPossibility').style.cssText='color: blue;';					
+							document.getElementById('ColdData').innerHTML = '<img src="images/good.png" alt="낮음" class="small-block-icon"><br>낮음';
+							document.getElementById('ColdData').style.cssText = 'color: blue;';					
 						} else if (ColdPossibility < 66) {
-							document.getElementById('ColdPossibility').innerHTML = '<img src="images/soso.png" alt="보통" class="small-block-icon"><br>보통';
-							document.getElementById('ColdPossibility').style.cssText='color: green;
+							document.getElementById('ColdData').innerHTML = '<img src="images/soso.png" alt="보통" class="small-block-icon"><br>보통';
+							document.getElementById('ColdData').style.cssText = 'color: green;';
 						} else if (ColdPossibility < 85) {
-							document.getElementById('ColdPossibility').innerHTML = '<img src="images/so_bad.png" alt="높음" class="small-block-icon"><br>높음';
-							document.getElementById('ColdPossibility').style.cssText='color: yellow;
+							document.getElementById('ColdData').innerHTML = '<img src="images/so_bad.png" alt="높음" class="small-block-icon"><br>높음';
+							document.getElementById('ColdData').style.cssText = 'color: yellow;';
 						} else {
-							document.getElementById('ColdPossibility').innerHTML = '<img src="images/mask_normal.png" alt="매우 높음" class="small-block-icon"><br>매우 높음';
-							document.getElementById('ColdPossibility').style.cssText='color: red;
+							document.getElementById('ColdData').innerHTML = '<img src="images/mask_normal.png" alt="매우 높음" class="small-block-icon"><br>매우 높음';
+							document.getElementById('ColdData').style.cssText = 'color: red;';
 						}
 						
-						let corruption = ((humidity-65)/14)*Math.pow(1.054,temperature);
-						// HTML 요소에 데이터 삽입
+						
+						let corruptionText = '';
+						let corruptionImage = '';
+						if (corruption < 35.0) {
+							corruptionText = '낮음';
+							corruptionImage = 'images/smile.png';
+							document.getElementById('corruptionValue').style.cssText = 'color: blue;';					
+
+						} else if (corruption < 70.0) {
+							corruptionText = '보통';
+							corruptionImage = 'images/what.png';
+							document.getElementById('corruptionValue').style.cssText = 'color: yellow;';					
+
+						} else if (corruption < 95.0) {
+							corruptionText = '높음';
+							corruptionImage = 'images/soso.png';
+							document.getElementById('corruptionValue').style.cssText = 'color: orange;';					
+
+						} else {
+							corruptionText = '위험';
+							corruptionImage = 'images/bad.png';
+							document.getElementById('corruptionValue').style.cssText = 'color: red;';					
+
+						}
+							// HTML 요소에 부패 지수 이미지 및 텍스트 추가
+						document.getElementById('corruptionValue').innerHTML = `<img src="${corruptionImage}" alt="${corruptionText}" class="small-block-icon"><br>${corruptionText}`;
 						
 						
 					} else {
