@@ -55,11 +55,22 @@
 	    }
 	</script>
     <!-- 헤더 -->
-    <div class="header">
-        <div class="logo">Comfort Guide</div>
-    </div>
-
-    <!-- 메뉴 -->
+    <script type="text/javascript">
+	    function confirmLogin(page) {
+	        <% if (login == null) { %>
+	            alert("로그인이 필요한 서비스입니다!");
+	            window.location.href = "login.html";
+	        <% } else { %>
+	            window.location.href = page;
+	        <% } %>
+	    }
+	</script>
+	
+	<div class="header">
+	    <div class="logo">Comfort Guide</div>
+	</div>
+	
+	<!-- 메뉴 -->
 	<div class="menu">
 	    <div>
 	        <a href="mainPage.jsp" class="active">메인 페이지</a>

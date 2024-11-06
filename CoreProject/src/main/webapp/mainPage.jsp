@@ -441,8 +441,8 @@
       double two = 0.0;
       double three = 0.0;
       double four = 1103.6;
-      double five = 0.0;
-      double six = 0.0;
+      double five = 1307.99;
+      double six = 1016.68;
       try {
          URI uri = new URI(url2); // URI 객체를 먼저 생성
          URL obj = uri.toURL();
@@ -586,27 +586,27 @@
                 <div class="fuel-price-card">
                     <div class="price-item">
                         <div class="label">고급 휘발유</div>
-                        <div class="price">1880.89원</div>
+                        <div class="price"><%=one %>원</div>
                     </div>
                     <div class="price-item">
                         <div class="label">휘발유</div>
-                        <div class="price">1612.34원</div>
+                        <div class="price"><%=two %>원</div>
                     </div>
                     <div class="price-item">
                         <div class="label">경유</div>
-                        <div class="price">1440.59원</div>
+                        <div class="price"><%=three %>원</div>
                     </div>
                     <div class="price-item">
                         <div class="label">LPG</div>
-                        <div class="price">1029.71원</div>
+                        <div class="price"><%=four %>원</div>
                     </div>
                     <div class="price-item">
                         <div class="label">등유</div>
-                        <div class="price">1307.99원</div>
+                        <div class="price"><%=five %>원</div>
                     </div>
                     <div class="price-item">
                         <div class="label">전기충전소</div>
-                        <div class="price">1016.68원</div>
+                        <div class="price"><%=six %>원</div>
                     </div>
                 </div>
             </div>

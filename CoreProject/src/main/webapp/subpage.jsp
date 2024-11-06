@@ -288,32 +288,43 @@
         }
     </script>
     
-    <div class="header">
-        <div class="logo">Comfort Guide</div>
-    </div>
-    
-    <!-- 메뉴 -->
-    <div class="menu">
-        <div>
-            <a href="mainPage.jsp" class="active">메인 페이지</a>
-            <a href="subpage.jsp">검색 페이지</a>
-            <!-- 로그인 체크가 필요한 링크 -->
-            <a href="javascript:void(0);" onclick="confirmLogin('adminpage.html')">관리자 페이지</a>
-            <a href="javascript:void(0);" onclick="confirmLogin('suggestion.html')">고객의 소리</a>
-        </div>
-        
-        <!-- 사용자 정보와 링크 -->
-        <div class="user-info">
-            <% if (login != null) { %>
-                <span><%= login.getAdmin_id() %> 님</span> 
-                <a href="profile.html">회원정보 수정</a> 
-                <a href="logout.jsp">로그아웃</a>
-            <% } else { %>
-                <a href="login.html">로그인</a>
-                <a href="Join.html">회원가입</a>
-            <% } %>
-        </div>
-    </div>
+    <script type="text/javascript">
+	    function confirmLogin(page) {
+	        <% if (login == null) { %>
+	            alert("로그인이 필요한 서비스입니다!");
+	            window.location.href = "login.html";
+	        <% } else { %>
+	            window.location.href = page;
+	        <% } %>
+	    }
+	</script>
+	
+	<div class="header">
+	    <div class="logo">Comfort Guide</div>
+	</div>
+	
+	<!-- 메뉴 -->
+	<div class="menu">
+	    <div>
+	        <a href="mainPage.jsp" class="active">메인 페이지</a>
+	        <a href="subpage.jsp">검색 페이지</a>
+	        <!-- 로그인 체크가 필요한 링크 -->
+	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
+	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
+	    </div>
+	    
+	    <!-- 사용자 정보와 링크 -->
+	    <div class="user-info">
+	        <% if (login != null) { %>
+	            <span><%= login.getAdmin_id() %> 님</span> 
+	            <a href="profile.html">회원정보 수정</a> 
+	            <a href="logout">로그아웃</a>
+	        <% } else { %>
+	            <a href="login.html">로그인</a>
+	            <a href="Join.html">회원가입</a>
+	        <% } %>
+	    </div>
+	</div>
 
     <!-- 검색 필터와 아이콘 -->
     <div class="search-bar-container">
