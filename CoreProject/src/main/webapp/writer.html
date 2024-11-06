@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>고객의 소리 작성</title>
+   
     
     <style>
         /* 기존 CSS 그대로 유지 */
@@ -103,7 +104,8 @@
             font-weight: bold;
         }
         .form-group input[type="text"],
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             flex: 1;
             padding: 10px;
             border: 1px solid #ddd;
@@ -113,7 +115,6 @@
         .form-group textarea {
             height: 350px;
             resize: vertical;
-           
         }
         .file-input-container {
             display: flex;
@@ -145,6 +146,14 @@
         .buttons button:hover {
             background-color: #b3b3b3;
         }
+
+        .select-group {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -173,6 +182,29 @@
                 <label for="title">제목</label>
                 <input type="text" id="title" name="title" placeholder="Enter title">
             </div>
+            
+            <!-- 지역 선택과 휴게소 선택을 같은 줄에 배치 -->
+            <div class="form-group select-group">
+             <label for="position">휴게소</label>
+                <select id="region" name="region" required>
+                    <option value="">지역 선택</option>
+                    <option value="강원">강원</option>
+                    <option value="경기">경기</option>
+                    <option value="전남">전남</option>
+                    <option value="전북">전북</option>
+                    <option value="충남">충남</option>
+                    <option value="충북">충북</option>
+                    <option value="경남">경남</option>
+                    <option value="경북">경북</option>
+                    <option value="제주">제주</option>
+                </select>
+                
+                 <select id="restStop" name="restStop" required>
+				        <option value="">휴게소 선택</option>
+				    </select>
+            </div>
+
+         
             <div class="form-group">
                 <label for="content">내용</label>
                 <textarea id="content" name="content" placeholder="내용을 입력하세요"></textarea>
@@ -198,6 +230,10 @@
 
     <!-- Tesseract.js 라이브러리 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
+  
+    
+
+    
     
     <script>
         document.getElementById('file-upload').addEventListener('change', function() {
@@ -220,6 +256,8 @@
                     });
             }
         });
+        
+        
     </script>
 </body>
 </html>
