@@ -23,7 +23,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mainpage</title>
-
     
     <style>
         /* 기본 스타일 */
@@ -31,7 +30,12 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
+		
         }
+         
+		
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -98,6 +102,21 @@
         .menu .user-info a:hover {
             background-color: #b3b3b3;
         }
+        /* 빨간색 삼각형 추가 스타일 */
+   
+		.triangle-up {
+		    display: inline-block;
+		    width: 0;
+		    height: 0;
+		    margin-left: 5px; /* 텍스트와 삼각형 사이의 여백 */
+		    border-left: 6px solid transparent;
+		    border-right: 6px solid transparent;
+		    border-bottom: 10px solid red; /* 빨간색 삼각형 */
+		    vertical-align: middle; /* 텍스트 가운데 정렬 */
+		    position: relative; /* 위치를 조정하기 위해 relative 사용 */
+		    top: -2px; /* 위로 2px 이동 */
+		}
+
 
         /* 대시보드 컨테이너 */
         .container {
@@ -211,7 +230,7 @@
             height: 40%;
             display: flex;
             width: 48%;
-            background-color: #f9f9f9;
+            background-color:#faf67f;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -229,8 +248,8 @@
         }
 
         .price-item .label {
-            background-color: #f0e68c;
-            font-weight: bold;
+            background-color: #fffb90;
+            
         }
 
         .price-item .price {
@@ -248,10 +267,11 @@
             background-color: #ffffff;
             padding: 20px;
             text-align: center;
-            font-size: 18px;
+            font-size: 17px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
             flex: 1;
+            ;
         }
 
         /* 표 스타일 */
@@ -261,6 +281,8 @@
             height: 600px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
+            text-align: center
+            
         }
         .table-card table {
             width: 100%;
@@ -281,7 +303,7 @@
             background-color: #ffffff;
             padding: 20px;
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 1px solid #ddd;
             width: 50%; /* 1행 2열을 위해 */
@@ -442,7 +464,7 @@
             one = jsonResponse.getDouble("고급휘발유");
             two = jsonResponse.getDouble("휘발유");
             three = jsonResponse.getDouble("경유");
-            //four = jsonResponse.getDouble("등유");
+            four = jsonResponse.getDouble("등유");
             five = jsonResponse.getDouble("LPG");
             six = jsonResponse.getDouble("전기충전소");
 
@@ -595,11 +617,11 @@
                 <br><%=rateByTour %>%
                 </div>
                 <div class="chart-text">
-                <strong>방문자 증가율 Top 3</strong> 
+                <strong>방문자 증가율 Top 3</strong><br>
 
-                <br>1. <%= growth.get(0).getRegion() + " " %> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>% 
-                <br>2. <%= growth.get(1).getRegion() + " " %> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>% 
-                <br>3. <%= growth.get(2).getRegion() + " " %> <%= String.format("%.1f", growth.get(2).getTourismGrowthRate()) %>% 
+                <br>1등. <%= growth.get(0).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(0).getTourismGrowthRate()) %>%
+           		<br>2등. <%= growth.get(1).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(1).getTourismGrowthRate()) %>%
+            	<br>3등. <%= growth.get(2).getRegion() %> <span class="triangle-up"></span> <%= String.format("%.1f", growth.get(2).getTourismGrowthRate()) %>%
                 
                 </div>
             </div>
@@ -628,7 +650,8 @@
             
         </div> 
         <div>
-        <div class="chart-card">그래프
+        <div class="chart-card">
+        <h2>이용자별 국내여행 횟수</h2>
         		<br><br><br>
                 <canvas id="myChart"></canvas>
             </div>
