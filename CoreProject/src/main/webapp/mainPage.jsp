@@ -104,6 +104,18 @@
         }
         /* 빨간색 삼각형 추가 스타일 */
    
+   		.b_triangle-up {
+		    display: inline-block;
+		    width: 0;
+		    height: 0;
+		    margin-left: 5px; /* 텍스트와 삼각형 사이의 여백 */
+		    border-left: 8px solid transparent;
+		    border-right: 8px solid transparent;
+		    border-bottom: 13px solid red; /* 빨간색 삼각형 */
+		    vertical-align: middle; /* 텍스트 가운데 정렬 */
+		    position: relative; /* 위치를 조정하기 위해 relative 사용 */
+		    top: -2px; /* 위로 2px 이동 */
+		}
 		.triangle-up {
 		    display: inline-block;
 		    width: 0;
@@ -112,6 +124,18 @@
 		    border-left: 6px solid transparent;
 		    border-right: 6px solid transparent;
 		    border-bottom: 10px solid red; /* 빨간색 삼각형 */
+		    vertical-align: middle; /* 텍스트 가운데 정렬 */
+		    position: relative; /* 위치를 조정하기 위해 relative 사용 */
+		    top: -2px; /* 위로 2px 이동 */
+		}
+		.triangle-down {
+		    display: inline-block;
+		    width: 0;
+		    height: 0;
+		    margin-left: 5px; /* 텍스트와 삼각형 사이의 여백 */
+		    border-left: 6px solid transparent;
+		    border-right: 6px solid transparent;
+		    border-top: 10px solid blue; /* 빨간색 삼각형 */
 		    vertical-align: middle; /* 텍스트 가운데 정렬 */
 		    position: relative; /* 위치를 조정하기 위해 relative 사용 */
 		    top: -2px; /* 위로 2px 이동 */
@@ -614,7 +638,7 @@
                 <div class="chart-text">
                 <strong>관광 지출액 수 증감률</strong>
                 <br>
-                <br><%=rateByTour %>%
+                <br><h2><%=rateByTour %>%<span class="b_triangle-up"></span></h2>
                 </div>
                 <div class="chart-text">
                 <strong>방문자 증가율 Top 3</strong><br>

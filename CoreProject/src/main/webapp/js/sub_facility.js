@@ -34,7 +34,7 @@ $(document).ready(function () {
         function setFacilityBackground(facilityDetails) {
 			const facilities = {
 			        drugStore: facilityDetails.is_drug_store,
-			        nursingRoom: facilityDetails.is_nursinng_room,
+			        nursingRoom: facilityDetails.is_nursing_room,
 			        evCharge: facilityDetails.is_ev_charge,
 			        restaurant: facilityDetails.is_restaurant,
 			        lpgStation: facilityDetails.is_lpg_station,

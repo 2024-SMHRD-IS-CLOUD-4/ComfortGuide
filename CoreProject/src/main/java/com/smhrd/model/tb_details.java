@@ -12,7 +12,7 @@ public class tb_details {
 
 	public tb_details(String sa_name, int parking_space, String is_car_maintenance, String is_gas_station,
 			String is_lpg_station, String is_ev_charge, String is_break_room, String is_rest_room, String is_drug_store,
-			String is_nursinng_room, String is_snack_bar, String is_restaurant, String is_hydrogen_charge,
+			String is_nursing_room, String is_snack_bar, String is_restaurant, String is_hydrogen_charge,
 			Timestamp created_at) {
 		super();
 		this.sa_name = sa_name;
