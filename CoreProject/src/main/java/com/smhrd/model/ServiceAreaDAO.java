@@ -88,6 +88,13 @@ public class ServiceAreaDAO {
 		session.close();
 		return result;
 	}
+	
+	public tb_details getFacility(String sa_name) {
+		SqlSession session = factory.openSession(true);
+		tb_details result = session.selectOne("ServiceMapper.getFacility",sa_name); 
+		session.close();
+		return result;
+	}
 
 
 }

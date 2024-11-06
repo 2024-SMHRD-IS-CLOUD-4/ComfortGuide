@@ -24,7 +24,7 @@ public class tb_details {
 		this.is_break_room = is_break_room;
 		this.is_rest_room = is_rest_room;
 		this.is_drug_store = is_drug_store;
-		this.is_nursinng_room = is_nursinng_room;
+		this.is_nursing_room = is_nursing_room;
 		this.is_snack_bar = is_snack_bar;
 		this.is_restaurant = is_restaurant;
 		this.is_hydrogen_charge = is_hydrogen_charge;
@@ -39,7 +39,7 @@ public class tb_details {
 	String is_break_room;
 	String is_rest_room;
 	String is_drug_store;
-	String is_nursinng_room;
+	String is_nursing_room;
 	String is_snack_bar;
 	String is_restaurant;
 	String is_hydrogen_charge;

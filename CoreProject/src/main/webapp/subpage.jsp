@@ -266,6 +266,11 @@
             padding-right: 10px;
             max-height: 400px; /* 방문후기 박스 높이에 맞춤 */
         }
+        .facility {
+    background-color: gray; /* 기본 배경색을 회색으로 지정 */
+}
+
+
     </style>
 </head>
 <body>
@@ -332,6 +337,7 @@
         </div>
     </div>
     
+    
     <!-- 대시보드 -->
     <div class="dashboard">
         <!-- 유튜브 소개 영상 -->
@@ -359,18 +365,18 @@
 
         <!-- 시설 현황 -->
         <div class="card facilities-card">
-            <div class="facility"><img src="images/drug.png" alt="약국" width="40" height="40"><p>약국</p></div>
-            <div class="facility"><img src="images/nursing.png" alt="수유실" width="40" height="40"><p>수유실</p></div>
-            <div class="facility"><img src="images/ev.png" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
-            <div class="facility"><img src="images/restaurant.png" alt="식당" width="40" height="40"><p>식당</p></div>
-            <div class="facility"><img src="images/lpg.png" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
-            <div class="facility"><img src="images/gas_station.png" alt="주유소" width="40" height="40"><p>주유소</p></div>
-            <div class="facility"><img src="images/snack.png" alt="편의점" width="40" height="40"><p>편의점</p></div>
-            <div class="facility"><img src="images/break.png" alt="쉼터" width="40" height="40"><p>쉼터</p></div>
-            <div class="facility"><img src="images/car_maintenace.png" alt="정비소" width="40" height="40"><p>정비소</p></div>
-            <div class="facility"><img src="images/hydrogen.png" alt="수소차 충전소" width="40" height="40"><p>수소차 충전소</p></div>
-            <div class="facility"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div>
-            <div class="facility" style="background-color: gray;"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div> <!-- 추가된 화장실 아이콘 -->
+            <div id="drugStore" class="facility"><img src="images/drug.png" alt="약국" width="40" height="40"><p>약국</p></div>
+		    <div id="nursingRoom" class="facility"><img src="images/nursing.png" alt="수유실" width="40" height="40"><p>수유실</p></div>
+		    <div id="evCharge" class="facility"><img src="images/ev.png" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
+		    <div id="restaurant" class="facility"><img src="images/restaurant.png" alt="식당" width="40" height="40"><p>식당</p></div>
+		    <div id="lpgStation" class="facility"><img src="images/lpg.png" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
+		    <div id="gasStation" class="facility"><img src="images/gas_station.png" alt="주유소" width="40" height="40"><p>주유소</p></div>
+		    <div id="snackBar" class="facility"><img src="images/snack.png" alt="편의점" width="40" height="40"><p>편의점</p></div>
+		    <div id="breakRoom" class="facility"><img src="images/break.png" alt="쉼터" width="40" height="40"><p>쉼터</p></div>
+		    <div id="carMaintenance" class="facility"><img src="images/car_maintenace.png" alt="정비소" width="40" height="40"><p>정비소</p></div>
+		    <div id="hydrogenCharge" class="facility"><img src="images/hydrogen.png" alt="수소차 충전소" width="40" height="40"><p>수소차 충전소</p></div>
+		    <div id="restRoom" class="facility"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div>
+            <div class="facility" style="background-color: gray;"><img  width="40" height="40"><p></p></div> <!-- 해당 시설이 없을 시 표시-->
         </div>
 
         <!-- 인기 판매 품목 차트 나눔 -->
@@ -401,5 +407,7 @@
     <script type="text/javascript" src="js/sub_review.js"></script>
     <script type="text/javascript" src="js/join_region.js"></script>
     <script type="text/javascript" src="js/sub_weather.js"></script>
+    <script type="text/javascript" src="js/sub_facility.js"></script>
+    	
 </body>
 </html>

@@ -71,4 +71,8 @@
 	select * from tb_service_area where sa_name = #{sa_name}
 </select>
 
+<select id="getFacility" resultType="com.smhrd.model.tb_details">
+	select * from tb_details where sa_name = #{sa_name}
+</select>
+
 </mapper>
