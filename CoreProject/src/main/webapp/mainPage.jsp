@@ -525,8 +525,8 @@
 	        <a href="mainPage.jsp" class="active">메인 페이지</a>
 	        <a href="subpage.jsp">검색 페이지</a>
 	        <!-- 로그인 체크가 필요한 링크 -->
-	        <a href="javascript:void(0);" onclick="confirmLogin('adminpage.html')">관리자 페이지</a>
-	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.html')">고객의 소리</a>
+	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
+	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
 	    </div>
 	    
 	    <!-- 사용자 정보와 링크 -->
