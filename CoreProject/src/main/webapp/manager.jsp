@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.smhrd.model.tb_suggestion"%>
+<%@page import="java.util.List"%>
 <%@page import="java.net.URL"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.io.InputStreamReader"%>
@@ -105,31 +108,34 @@
       <div class="chart-card">차트 영역 (빈 공간)</div>
 
       <%
-      String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");
-      String url = "http://localhost:5000/searchService?name=" + encodedService;
-      System.out.println("Request URL: " + url);
+      //String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");
+      //String url = "http://localhost:5000/searchService?name=" + encodedService;
+      //System.out.println("Request URL: " + url);
 
-      URL obj = new URL(url);
-      HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-      con.setRequestMethod("GET");
+      //URL obj = new URL(url);
+      //HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+      //con.setRequestMethod("GET");
 
-      BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-      String inputLine;
-      StringBuffer responseData = new StringBuffer();
+      //BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      //String inputLine;
+      //StringBuffer responseData = new StringBuffer();
 
-      while ((inputLine = in.readLine()) != null) {
-         responseData.append(inputLine);
-      }
-      in.close();
+      //while ((inputLine = in.readLine()) != null) {
+         //responseData.append(inputLine);
+      //}
+      //in.close();
 
       // JSON 파싱
-      JSONObject jsonResponse = new JSONObject(responseData.toString());
-      double positive = jsonResponse.getDouble("positive");
-      double negative = jsonResponse.getDouble("negative");
-      double neutral = jsonResponse.getDouble("neutral");
-      System.out.println(positive);
-      System.out.println(negative);
-      System.out.println(neutral);
+      //JSONObject jsonResponse = new JSONObject(responseData.toString());
+      double positive = 0.0; 
+	  //positive = jsonResponse.getDouble("positive");
+      double negative = 0.0;
+      //negative = jsonResponse.getDouble("negative");
+      double neutral = 0.0;
+      //neutral = jsonResponse.getDouble("neutral");
+      //System.out.println(positive);
+      //System.out.println(negative);
+      //System.out.println(neutral);
       %>
 
       <!-- 오른쪽 상단 3개의 정보 박스 그룹 -->
@@ -138,9 +144,47 @@
          <div class="info-guests-card info-card"></div>
          <div class="info-traffic-card info-card"></div>
       </div>
-
+	<%
+	%>
       <!-- 고객의 소리 박스 -->
-      <div class="large-info-card">고객의 소리</div>
+      <div class="large-info-card">
+    고객의 소리
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>내용</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                List<tb_suggestion> slist = dao.getSuggestion(login.getSa_name());
+                for (int i = 0; i < 20; i++) {
+                    if (i < slist.size()) {
+                        tb_suggestion suggestion = slist.get(i);
+                        String content = suggestion.getSuggestion_content();
+                        String shortContent = content.length() > 20 ? content.substring(0, 20) + "..." : content;
+                %>
+                <tr>
+                    <td> <a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>"><%= suggestion.getSuggestion_title() %></a></td>
+                    <td class="content"><a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>"><%= shortContent %></a></td>
+                </tr>
+                <% 
+                    } else {
+                %>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <% 
+                    }
+                }
+                %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
       <!-- 하단의 넓은 박스 -->
       <div class="table-container">휴게소 하나의 음식코너 매출액</div>

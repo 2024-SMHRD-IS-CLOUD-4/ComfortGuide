@@ -129,13 +129,13 @@
                 <tr>
                     <th>신규 비밀번호<span class="required">*</span></th>
                     <td>
-                        <input type="password" placeholder="영문, 숫자 조합 또는 특수기호 조합, 7~12자리" name="pw">
+                        <input type="password" placeholder="신규 비밀번호를 입력하세요." name="pw">
                     </td>
                 </tr>
                 <tr>
                     <th>비밀번호 확인<span class="required">*</span></th>
                     <td>
-                        <input type="password" placeholder="영문, 숫자 조합 또는 특수기호 조합, 7~12자리">
+                        <input type="password" placeholder="비밀번호 확인을 위해 비밀번호를 한번 더 입력하세요.">
                     </td>
                 </tr>
                 <tr>
@@ -187,7 +187,7 @@
             <input class="submit-button" type="submit" value="완료">
         </form>
     </div>
-
-</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/join_region.js"></script>
+</body>
 </html>

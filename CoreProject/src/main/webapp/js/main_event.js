@@ -15,7 +15,7 @@ async function fetchData() {
         const listItems = xmlDoc.getElementsByTagName("list");
         let html = '';
 
-        for (let i = 0; i < listItems.length; i++) {
+        for (let i = 0; i < listItems.length/2; i++) {
             // 각 태그를 안전하게 가져오는 함수
             const getTagContent = (tagName) => {
                 const element = listItems[i].getElementsByTagName(tagName)[0];
