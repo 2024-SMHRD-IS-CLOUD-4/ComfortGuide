@@ -15,7 +15,7 @@ $(document).ready(function() {
                     data.slice(0, 50).forEach(review => {
                         const reviewDiv = `
                             <div class="review-item">
-                                <p><strong>제목:</strong> <a href="${review.link}" target="_blank">${review.title}</a></p>
+                                <p>  <a href="${review.link}" target="_blank" style="text-decoration: none; color: #5c7adb;">${review.title}</a></p>
                                 <p>${review.content}</p>
                             </div>
                         `;
