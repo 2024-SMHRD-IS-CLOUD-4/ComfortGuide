@@ -105,7 +105,7 @@
    <!-- 컨테이너 -->
    <div class="container">
       <!-- 차트 영역 -->
-      <div class="chart-card">차트 영역 (빈 공간)</div>
+      <div class="chart-card"></div>
 
       <%
       //String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");

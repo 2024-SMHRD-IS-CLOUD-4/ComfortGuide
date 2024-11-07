@@ -37,7 +37,8 @@
          
 		
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
             margin: 0;
             background-color: #f5f5f5;
         }

@@ -13,6 +13,8 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
         }
         body {
             font-family: Arial, sans-serif;
@@ -52,12 +54,18 @@
             font-weight: bold;
             padding: 10px 15px;
             transition: background-color 0.3s;
+            
         }
-        .menu a:active,
+        .menu a.active 
         .menu a:focus {
             background-color: #ffffff;
             color: black;
+           
         }
+        .menu a:hover {
+	    background-color: #ffffff; /* 마우스를 올렸을 때 배경을 하얀색으로 변경 */
+	    color: black; /* 텍스트 색상은 검정색으로 유지 */
+	}
 
         /* user-info 스타일 */
         .menu .user-info {
@@ -120,7 +128,7 @@
         .dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr; /* 3등분 */
-            gap: 5px; /* 전체 요소 사이의 간격을 줄임 */
+            gap: 10px; 
             padding: 10px;
             max-width: 100vw;
         }
@@ -221,7 +229,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom : -153px;
+            margin-bottom : -158px;
         }
 
         
@@ -299,7 +307,7 @@
 	    <div class="user-info">
 	        <% if (login != null) { %>
 	            <span><%= login.getAdmin_id() %> 님</span> 
-	            <a href="profile.jsp">회원정보 수정</a> 
+	            <a href="profile.html">회원정보 수정</a> 
 	            <a href="logout">로그아웃</a>
 	        <% } else { %>
 	            <a href="login.html">로그인</a>

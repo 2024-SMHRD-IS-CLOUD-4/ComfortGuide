@@ -9,7 +9,8 @@
     <title>회원정보 수정</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
             background-color: #f5f5f5;
             margin: 0;
             padding: 20px;

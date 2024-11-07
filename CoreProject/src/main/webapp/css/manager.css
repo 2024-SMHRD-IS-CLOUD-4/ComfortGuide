@@ -1,80 +1,79 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+		* {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
+        }
+        body {
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
+            margin: 0;
+            background-color: #f5f5f5;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
+        /* 헤더 스타일 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #cae3f8;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: 60px;
+        }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #cae3f8;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    height: 60px;
-}
+        .header .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
 
-.header .logo {
-    font-weight: bold;
-    font-size: 20px;
-}
+        
 
-.menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #eaf4f9;
-    padding: 10px 20px;
-    height: 50px;
-}
+         /* 메뉴 스타일 */
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaf4f9;
+            padding: 10px 20px;
+        }
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+        .menu a:active,
+        .menu a:focus {
+            background-color: #ffffff;
+            color: black;
+        }
 
-.menu a {
-    margin-right: 20px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    padding: 10px 15px;
-    transition: background-color 0.3s;
-}
-
-.menu a:active, .menu a:focus {
-    background-color: #ffffff;
-    color: black;
-}
-
-.menu .user-info {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-.menu .user-info span {
-    margin-right: 15px;
-}
-
-.menu .user-info a {
-    margin-left: 10px;
-    text-decoration: none;
-    color: #333;
-    background-color: #d3d3d3;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.menu .user-info a:hover {
-    background-color: #b3b3b3;
-}
-
+        /* user-info 스타일 */
+        .menu .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .menu .user-info span {
+            margin-right: 15px;
+        }
+        .menu .user-info a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #d3d3d3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .menu .user-info a:hover {
+            background-color: #b3b3b3;
+        }
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -147,7 +146,6 @@ body {
 	
     overflow-y: auto;
     max-height: 300px;
-    margin-top: 10px;
     width: 100%;
 }
 
