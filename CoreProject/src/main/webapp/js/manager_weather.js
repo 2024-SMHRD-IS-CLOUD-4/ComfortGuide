@@ -92,28 +92,25 @@ $(document).ready(function() {
 							document.getElementById('ColdData').innerHTML = '<img src="images/mask_normal.png" alt="매우 높음" class="small-block-icon"><br>매우 높음';
 							document.getElementById('ColdData').style.cssText = 'color: red;';
 						}
-						
+						let corruption = ((humidity-65)/14)*Math.pow(1.056,temperature);
+						console.log('corruption : '+corruption);
+						console.log('ColdData : ' +'ColdData');
 						
 						let corruptionText = '';
 						let corruptionImage = '';
-						if (corruption < 35.0) {
-							corruptionText = '낮음';
+						if (corruption < 3.0) {
+							corruptionText = '양호';
 							corruptionImage = 'images/smile.png';
 							document.getElementById('corruptionValue').style.cssText = 'color: blue;';					
 
-						} else if (corruption < 70.0) {
+						} else if (corruption < 7.0) {
 							corruptionText = '보통';
 							corruptionImage = 'images/what.png';
 							document.getElementById('corruptionValue').style.cssText = 'color: yellow;';					
 
-						} else if (corruption < 95.0) {
-							corruptionText = '높음';
-							corruptionImage = 'images/soso.png';
-							document.getElementById('corruptionValue').style.cssText = 'color: orange;';					
-
 						} else {
 							corruptionText = '위험';
-							corruptionImage = 'images/bad.png';
+							corruptionImage = 'images/so_bad.png';
 							document.getElementById('corruptionValue').style.cssText = 'color: red;';					
 
 						}

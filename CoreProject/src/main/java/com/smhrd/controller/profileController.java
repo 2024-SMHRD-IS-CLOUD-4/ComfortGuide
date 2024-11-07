@@ -36,7 +36,7 @@ public class profileController extends HttpServlet {
 		if (updateResult > 0) { // 업데이트가 성공한 경우
             response.setContentType("text/html; charset=UTF-8");
             response.getWriter().println("<script>");
-            response.getWriter().println("alert('회원정보 수정이 완료되었습니다!');");
+            response.getWriter().println("alert('회원정보 수정이 완료되었습니다! 다시 로그인 해주세요.');");
             response.getWriter().println("window.location.href = 'login.html';"); // 수정 완료 후 메인 페이지로 리다이렉트
             response.getWriter().println("</script>");
         } else {
