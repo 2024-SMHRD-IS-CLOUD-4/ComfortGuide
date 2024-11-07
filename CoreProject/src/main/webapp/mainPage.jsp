@@ -187,7 +187,7 @@
 		
 		.marker-list-container {
 		    width: 30%; /* 리스트 30% */
-		    height: 100%;
+		    height: 582px;
 		    overflow-y: auto;
 		    background-color: #ffffff;
 		    border: 1px solid #ddd;
@@ -228,7 +228,7 @@
             justify-content: start; /* 변경 */
         }
         #map{
-        	height:570px;
+        	height:582px;
         }
 
         /* 주유 가격 제목 간격 조절 */
