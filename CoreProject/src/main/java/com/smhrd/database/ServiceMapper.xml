@@ -94,6 +94,18 @@
 	WHERE ROWNUM = 1
 </select>
 
+<update id="updateProfile" parameterType="com.smhrd.model.tb_admin">
+    UPDATE tb_admin
+    SET 
+        admin_pw = #{admin_pw},          -- 비밀번호
+        admin_tel = #{admin_tel},        -- 전화번호
+        sa_name = #{sa_name},            -- 휴게소 이름
+        sa_addr = #{sa_addr},            -- 주소
+        position = #{position}           -- 직책
+    WHERE 
+        admin_id = #{admin_id}           -- 조건: admin_id가 일치하는 행만 업데이트
+</update>
+
 
 
 

@@ -127,6 +127,13 @@ public class ServiceAreaDAO {
 		session.close();
 		return result;
 	}
+	
+	public int updateProfile(tb_admin a) {
+		SqlSession session = factory.openSession(true);
+		int result = session.update("ServiceMapper.updateProfile",a);
+		session.close();
+		return result;
+	}
 
 
 }
