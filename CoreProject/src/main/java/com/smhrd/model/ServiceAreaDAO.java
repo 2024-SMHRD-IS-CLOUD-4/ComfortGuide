@@ -95,6 +95,20 @@ public class ServiceAreaDAO {
 		session.close();
 		return result;
 	}
+	
+	public List<tb_suggestion> getSuggestion(String sa_name){
+		SqlSession session = factory.openSession(true);
+		List<tb_suggestion> result = session.selectList("ServiceMapper.getSuggestion",sa_name); 
+		session.close();
+		return result;
+	}
+	
+	public int insertSuggestion(tb_suggestion t) {
+		SqlSession session = factory.openSession(true);
+		int result = session.insert("ServiceMapper.insertSuggestion",t); 
+		session.close();
+		return result;
+	}
 
 
 }

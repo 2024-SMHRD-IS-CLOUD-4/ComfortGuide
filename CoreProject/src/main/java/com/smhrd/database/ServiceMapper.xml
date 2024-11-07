@@ -75,4 +75,13 @@
 	select * from tb_details where sa_name = #{sa_name}
 </select>
 
+<select id="getSuggestion" resultType="com.smhrd.model.tb_suggestion">
+	select * from tb_suggestion where sa_name = #{sa_name}
+</select>
+
+<insert id="insertSuggestion" parameterType="com.smhrd.model.tb_suggestion">
+	INSERT INTO tb_suggestion (suggestion_title, suggestion_content, sa_name, suggestion_publisher)
+    VALUES (#{suggestion_title}, #{suggestion_content}, #{sa_name}, #{suggestion_publisher})
+</insert>
+
 </mapper>

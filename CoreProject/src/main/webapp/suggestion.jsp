@@ -1,3 +1,6 @@
+<%@page import="com.smhrd.model.tb_suggestion"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.ServiceAreaDAO"%>
 <%@page import="com.smhrd.model.tb_admin"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -202,6 +205,16 @@
 	        <% } %>
 	    </div>
 	</div>
+	
+	
+	<%
+		ServiceAreaDAO dao = new ServiceAreaDAO();
+		List<tb_suggestion> slist = dao.getSuggestion(login.getSa_name());
+		
+	
+	%>
+	
+	
 
     <!-- Center Wrapper for "고객의 소리" container -->
     <div class="center-wrapper">
@@ -209,26 +222,43 @@
             <div class="section-title">고객의 소리</div>
             
             <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>작성일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="4" style="height: 50px;"></td> <!-- 빈 줄로 유지 -->
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="button-container">
-                    <button onclick="location.href='writer.jsp'">글 작성</button> <!-- 글 작성 페이지로 이동 -->
-                </div>
-            </div>
+	            <table>
+	                <thead>
+	                    <tr>
+	                        <th>번호</th>
+	                        <th>제목</th>
+	                        <th>작성자</th>
+	                        <th>작성일</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <% 
+	                        if (slist != null && !slist.isEmpty()) {
+	                            for (int i = 0; i < slist.size(); i++) {
+	                                tb_suggestion suggestion = slist.get(i);
+	                    %>
+	                            <tr>
+	                                <td><%= (int)suggestion.getSuggestion_idx()%></td>
+	                                <td><%= suggestion.getSuggestion_title() %></td>
+	                                <td><%= suggestion.getSuggestion_publisher() %></td>
+	                                <td><%= suggestion.getCreate_at() %></td>
+	                            </tr>
+	                    <% 
+	                            }
+	                        } else { 
+	                    %>
+	                            <tr>
+	                                <td colspan="4">등록된 데이터가 없습니다.</td>
+	                            </tr>
+	                    <% 
+	                        } 
+	                    %>
+	                </tbody>
+	            </table>
+	        </div>
+	        <div class="button-container">
+	            <button onclick="location.href='writer.jsp'">글 작성</button>
+	        </div>
         </div>
     </div>
 

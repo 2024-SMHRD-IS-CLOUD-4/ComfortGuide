@@ -204,7 +204,7 @@
 
 	<div class="container">
 		<div class="section-title">고객의 소리</div>
-		<form>
+		<form action="suggestionController" method="post">
 			<div class="form-group">
 				<label for="title">제목</label> <input type="text" id="title"
 					name="title" placeholder="Enter title">
