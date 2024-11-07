@@ -84,4 +84,22 @@
     VALUES (#{suggestion_title}, #{suggestion_content}, #{sa_name}, #{suggestion_publisher})
 </insert>
 
+<select id="getInsertedSuggestionId" resultType="com.smhrd.model.tb_suggestion">
+    SELECT * 
+	FROM (
+	    SELECT * 
+	    FROM tb_suggestion 
+	    ORDER BY suggestion_idx DESC
+	) 
+	WHERE ROWNUM = 1
+</select>
+
+
+
+
+
+<select id="getSuggestionByIdx" resultType="com.smhrd.model.tb_suggestion">
+	select * from tb_suggestion where suggestion_idx = #{suggestion_idx}
+</select>
+
 </mapper>

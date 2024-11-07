@@ -103,9 +103,27 @@ public class ServiceAreaDAO {
 		return result;
 	}
 	
-	public int insertSuggestion(tb_suggestion t) {
+	public int insertSuggestion(tb_suggestion suggestion) {
+	    SqlSession session = factory.openSession();
+	    try {
+	        session.insert("ServiceMapper.insertSuggestion", suggestion); 
+	        tb_suggestion insertedId = session.selectOne("ServiceMapper.getInsertedSuggestionId");
+	        session.commit(); // 트랜잭션 커밋
+	        int result = (int)insertedId.getSuggestion_idx();
+	        return result;
+	    } catch (Exception e) {
+	        session.rollback(); // 에러 발생 시 롤백
+	        throw e;
+	    } finally {
+	        session.close();
+	    }
+	}
+
+
+	
+	public tb_suggestion getSuggestionByIdx(Integer a) {
 		SqlSession session = factory.openSession(true);
-		int result = session.insert("ServiceMapper.insertSuggestion",t); 
+		tb_suggestion result = session.selectOne("ServiceMapper.getSuggestionByIdx",(int)a); 
 		session.close();
 		return result;
 	}

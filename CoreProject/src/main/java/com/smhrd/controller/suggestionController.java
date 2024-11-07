@@ -28,9 +28,8 @@ public class suggestionController extends HttpServlet {
 		tb_suggestion suggestion = new tb_suggestion(suggestion_title, suggestion_content, sa_name, suggestion_publisher);
 		
 		ServiceAreaDAO dao = new ServiceAreaDAO();
-		dao.insertSuggestion(suggestion);
-		
-		response.sendRedirect("mainPage.jsp");
+		int suggestionId = dao.insertSuggestion(suggestion);
+		response.sendRedirect("suggestionDetail.jsp?suggestion_idx=" + suggestionId);
 	}
 
 }
