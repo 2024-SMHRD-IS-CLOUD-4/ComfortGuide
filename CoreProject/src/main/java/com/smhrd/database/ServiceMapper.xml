@@ -114,4 +114,9 @@
 	select * from tb_suggestion where suggestion_idx = #{suggestion_idx}
 </select>
 
+
+<select id="getLink" resultType="com.smhrd.model.tb_service_video">
+	select * from tb_service_video where sa_name = #{sa_name}
+</select>
+
 </mapper>

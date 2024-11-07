@@ -134,6 +134,13 @@ public class ServiceAreaDAO {
 		session.close();
 		return result;
 	}
+	
+	public tb_service_video getLink(String saname) {
+		SqlSession session = factory.openSession(true);
+		tb_service_video result = session.selectOne("ServiceMapper.getLink",saname);
+		session.close();
+		return result;
+	}
 
 
 }
