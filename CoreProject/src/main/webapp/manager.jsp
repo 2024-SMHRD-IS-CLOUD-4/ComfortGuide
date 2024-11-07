@@ -167,8 +167,19 @@
                         String shortContent = content.length() > 20 ? content.substring(0, 20) + "..." : content;
                 %>
                 <tr>
-                    <td> <a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>"><%= suggestion.getSuggestion_title() %></a></td>
-                    <td class="content"><a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>"><%= shortContent %></a></td>
+                    <!-- 제목 링크 -->
+<td>
+    <a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>" class="suggestion-link">
+        <%= suggestion.getSuggestion_title() %>
+    </a>
+</td>
+<!-- 내용 링크 -->
+<td class="content">
+    <a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>" class="suggestion-link">
+        <%= shortContent %>
+    </a>
+</td>
+
                 </tr>
                 <% 
                     } else {

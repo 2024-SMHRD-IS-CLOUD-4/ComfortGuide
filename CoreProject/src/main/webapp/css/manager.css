@@ -5,6 +5,16 @@
             font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
             font-style: normal;
         }
+        /* 링크 스타일: 검정색, 밑줄 없음 */
+			a.suggestion-link {
+			    color: black;
+			    text-decoration: none;
+			}
+			
+			a.suggestion-link:hover {
+			    color: #007BFF; /* 호버 시 색상 변화를 주어 시각적 피드백 */
+			}
+        
         body {
             font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
             font-style: normal;
