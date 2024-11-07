@@ -87,7 +87,7 @@
          <%
          if (login != null) {
          %>
-         <span><%=login.getAdmin_id()%> 님</span> <a href="profile.html">회원정보
+         <span><%=login.getAdmin_id()%> 님</span> <a href="profile.jsp">회원정보
             수정</a> <a href="logout">로그아웃</a>
          <%
          } else {

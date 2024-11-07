@@ -86,7 +86,7 @@
         .button-container {
             bottom: 15px;
             right: 15px;
-         text-align: right;
+			text-align: right;
             
         }
 
@@ -173,7 +173,7 @@
     </style>
 </head>
 <body>
-   <% tb_admin login = (tb_admin)session.getAttribute("login"); %>
+	<% tb_admin login = (tb_admin)session.getAttribute("login"); %>
 
     <script type="text/javascript">
         function confirmLogin(page) {
@@ -216,7 +216,7 @@
        <div class="user-info">
            <% if (login != null) { %>
                <span><%= login.getAdmin_id() %> 님</span> 
-               <a href="profile.html">회원정보 수정</a> 
+               <a href="profile.jsp">회원정보 수정</a> 
                <a href="logout">로그아웃</a>
            <% } else { %>
                <a href="login.html">로그인</a>
@@ -225,14 +225,14 @@
        </div>
    </div>
 
-   
-   <%
-      ServiceAreaDAO dao = new ServiceAreaDAO();
-      List<tb_suggestion> slist = dao.getSuggestion(login.getSa_name());
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-      int rowsToDisplay = 8; // 디폴트로 8줄을 표시
-   %>
-   
+	
+	<%
+		ServiceAreaDAO dao = new ServiceAreaDAO();
+		List<tb_suggestion> slist = dao.getSuggestion(login.getSa_name());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		int rowsToDisplay = 8; // 디폴트로 8줄을 표시
+	%>
+	
 
     <!-- Center Wrapper for "고객의 소리" container -->
     <div class="center-wrapper">
@@ -240,50 +240,50 @@
             <div class="section-title">고객의 소리</div>
             
             <div class="table-container">
-               <table>
-                   <thead>
-                       <tr>
-                           <th>번호</th>
-                           <th>제목</th>
-                           <th>작성자</th>
-                           <th>작성일</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                   <% 
-                       for (int i = 0; i < rowsToDisplay; i++) {
-                           if (i < slist.size()) {
-                               tb_suggestion suggestion = slist.get(i);
-                   %>
-                       <tr>
-                           <td><%= suggestion.getSuggestion_idx() %></td>
-                           <!-- 제목에 링크 추가 -->
-                           <td>
-                               <a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>">
-                                   <%= suggestion.getSuggestion_title() %>
-                               </a>
-                           </td>
-                           <td><%= suggestion.getSuggestion_publisher() %></td>
-                           <td><%= sdf.format(suggestion.getCreate_at()) %></td>
-                       </tr>
-                   <% 
-                           } else {
-                   %>
-                       <tr>
-                           <td colspan="4">&nbsp;</td>
-                       </tr>
-                   <% 
-                           }
-                       }
-                   %>
-               </tbody>
+	            <table>
+	                <thead>
+	                    <tr>
+	                        <th>번호</th>
+	                        <th>제목</th>
+	                        <th>작성자</th>
+	                        <th>작성일</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+					    <% 
+					        for (int i = 0; i < rowsToDisplay; i++) {
+					            if (i < slist.size()) {
+					                tb_suggestion suggestion = slist.get(i);
+					    %>
+					        <tr>
+					            <td><%= suggestion.getSuggestion_idx() %></td>
+					            <!-- 제목에 링크 추가 -->
+					            <td>
+					                <a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>">
+					                    <%= suggestion.getSuggestion_title() %>
+					                </a>
+					            </td>
+					            <td><%= suggestion.getSuggestion_publisher() %></td>
+					            <td><%= sdf.format(suggestion.getCreate_at()) %></td>
+					        </tr>
+					    <% 
+					            } else {
+					    %>
+					        <tr>
+					            <td colspan="4">&nbsp;</td>
+					        </tr>
+					    <% 
+					            }
+					        }
+					    %>
+					</tbody>
 
-               </table>
-           </div>
-           <div class="button-container" style="display: block;">
-                   <button onclick="location.href='writer.jsp'">글 작성</button>
-               </div>    
-           
+	            </table>
+	        </div>
+	        <div class="button-container" style="display: block;">
+	                <button onclick="location.href='writer.jsp'">글 작성</button>
+	            </div>    
+	        
         </div>
     </div>
 

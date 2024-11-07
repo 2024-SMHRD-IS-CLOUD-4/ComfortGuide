@@ -590,7 +590,7 @@
 	    <div class="user-info">
 	        <% if (login != null) { %>
 	            <span><%= login.getAdmin_id() %> 님</span> 
-	            <a href="profile.html">회원정보 수정</a> 
+	            <a href="profile.jsp">회원정보 수정</a> 
 	            <a href="logout">로그아웃</a>
 	        <% } else { %>
 	            <a href="login.html">로그인</a>
