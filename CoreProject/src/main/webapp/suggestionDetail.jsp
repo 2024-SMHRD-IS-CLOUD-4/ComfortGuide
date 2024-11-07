@@ -75,6 +75,7 @@
         }
         .container {
             width: 900px;
+            min-height: 500px;
             margin: 50px auto;
             background-color: #fff;
             padding: 20px;
@@ -89,18 +90,34 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        .detail-field {
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        .detail-field span {
-            font-weight: bold;
+       .detail-field {
+		    margin-bottom: 25px;
+		    font-size: 16px;   
+		    display: flex; /* 내용과 상자를 수평 정렬하기 위해 플렉스 속성 추가 */
+		    align-items: center;
+		}
+		
+		.detail-field span {
+		    font-weight: bold;
+		    display: inline-block;
+		    width: 100px;
+		    text-align: center;
+		    margin-right: 15px; /* 박스와 제목 사이 간격 추가 */
+		}
+        .detail-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #fafafa;
             display: inline-block;
-            width: 100px;
+            width: 100%; 
+            height: 50px; 
+            overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
+            white-space: nowrap; /* 한 줄로 표시 */
+            text-overflow: ellipsis; /* 넘칠 경우 말줄임 표시 */
         }
         .buttons {
             text-align: center;
-            margin-top: 20px;
         }
         .buttons a {
             padding: 10px 20px;
@@ -108,7 +125,7 @@
             border: none;
             border-radius: 4px;
             background-color: #d3d3d3;
-            color: white;
+            color: black;
             text-decoration: none;
             cursor: pointer;
         }
@@ -157,17 +174,19 @@
     %>
 
     <div class="detail-field">
-        <span>제목:</span> <%= suggestion.getSuggestion_title() %>
+        <span>제목</span><br> <div class="detail-box"><%= suggestion.getSuggestion_title() %></div>
     </div>
     <div class="detail-field">
-        <span>작성자:</span> <%= suggestion.getSuggestion_publisher() %>
+        <span>작성자</span> <div class="detail-box"><%= suggestion.getSuggestion_publisher() %></div>
     </div>
     <div class="detail-field">
-        <span>작성일:</span> <%= sdf.format(suggestion.getCreate_at()) %>
+        <span>작성일</span> <div class="detail-box"><%= sdf.format(suggestion.getCreate_at()) %></div>
     </div>
     <div class="detail-field">
-        <span>내용:</span> 
-        <p><%= suggestion.getSuggestion_content().replaceAll("\n", "<br>") %></p>
+        <span>내용</span> 
+        <div class="detail-box" style="height: 100px; overflow: auto; white-space: normal;">
+            <p><%= suggestion.getSuggestion_content().replaceAll("\n", "<br>") %></p>
+        </div>
     </div>
 
     <div class="buttons">
