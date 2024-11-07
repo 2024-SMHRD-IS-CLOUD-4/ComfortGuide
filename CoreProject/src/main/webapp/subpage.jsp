@@ -217,36 +217,35 @@
         .reviews-card {
             grid-column: 3 / 4;
             grid-row: 1 / 2;
-            text-align: left;
+            text-align: center;
             padding: 10px;
-            height: 500px; /* 높이 확대 */
             border: 1px solid #ddd;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom : -10px;
+            margin-bottom : -153px;
         }
 
         
         .review-item {
-            border: 1px solid #ddd;
+            border: 1px solid #5c7adb;
             padding: 10px;
-            margin: 5px 0;
+            margin: 12px 0;
             border-radius: 4px;
             background-color: #f9f9f9;
         }
         .review-item p {
-            margin: 0;
+            margin: 4px;
             font-size: 14px;
             font-weight: bold;
         }
         .review-item a {
-            font-size: 12px;
-            color: #0073e6;
+            font-size: 15px;
+            color: #5c7adb;
         }
         #reviews-container {
             flex: 1;
             overflow-y: auto;
             padding-right: 10px;
-            max-height: 400px; /* 방문후기 박스 높이에 맞춤 */
+            max-height: 550px; /* 방문후기 박스 높이에 맞춤 */
         }
         .facility {
     background-color: gray; /* 기본 배경색을 회색으로 지정 */
@@ -290,9 +289,10 @@
 	    <div>
 	        <a href="mainPage.jsp" class="active">메인 페이지</a>
 	        <a href="subpage.jsp">검색 페이지</a>
+	        <a href="writer.jsp">글 작성</a>
 	        <!-- 로그인 체크가 필요한 링크 -->
-	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
 	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
+	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
 	    </div>
 	    
 	    <!-- 사용자 정보와 링크 -->
@@ -387,12 +387,12 @@
         <div class="card reviews-card">
             <div>방문후기</div>
             	<div id="reviews-container">
-                <!-- 방문후기 내용이 여기에 표시됩니다. -->
-                <p>여기에 방문후기 내용이 표시됩니다.</p>
+                <!-- 방문후기 내용이 표시됩니다. -->
+                <p>휴게소 방문 후기 내용이 표시됩니다.</p>
             	</div>
        		 </div>    
  	   </div>
-
+       
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/sub_review.js"></script>
     <script type="text/javascript" src="js/join_region.js"></script>

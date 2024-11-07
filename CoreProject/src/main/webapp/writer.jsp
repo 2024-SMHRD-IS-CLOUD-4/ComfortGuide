@@ -106,6 +106,7 @@
         .form-group label {
             width: 100px;
             font-weight: bold;
+            text-align: center;
         }
         .form-group input[type="text"],
         .form-group textarea,
@@ -153,9 +154,7 @@
 
         .select-group {
             display: flex;
-            align-items: center;
-            gap: 3px;
-            margin-bottom: 15px;
+            gap: 10px;
             width: 100%;
         }
     </style>
@@ -184,9 +183,10 @@
 	    <div>
 	        <a href="mainPage.jsp" class="active">메인 페이지</a>
 	        <a href="subpage.jsp">검색 페이지</a>
+	        <a href="writer.jsp">글 작성</a>
 	        <!-- 로그인 체크가 필요한 링크 -->
-	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
 	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
+	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
 	    </div>
 	    
 	    <!-- 사용자 정보와 링크 -->
