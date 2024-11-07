@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.smhrd.model.tb_suggestion"%>
 <%@page import="java.util.List"%>
 <%@page import="com.smhrd.model.ServiceAreaDAO"%>
@@ -26,13 +27,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80vh; /* 상하 가운데 정렬을 위해 높이 설정 */
+            min-height: 80vh;
             padding-top: 20px;
         }
 
         .container {
             width: 900px;
-            min-height: 600px; /* 세로 길이 확장을 위해 추가 */
+            min-height: 600px;
             background-color: #fff;
             padding: 20px;
             border: 1px solid #ddd;
@@ -51,6 +52,9 @@
             border: 1px solid #ddd;
             padding: 15px;
             background-color: #f9f9f9;
+            overflow-y: auto;
+            max-height: 600px; /* 스크롤을 위한 최대 높이 설정 */
+            position: relative;
         }
 
         table {
@@ -63,6 +67,8 @@
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
+            min-width: 50px;
+            white-space: nowrap;
         }
 
         th {
@@ -70,16 +76,28 @@
             font-weight: bold;
         }
 
-        .button-container {
+        /* 제목 열 너비 100% 설정 */
+        td:nth-child(2) {
             text-align: left;
+            width: 80%;
+        }
+
+        /* 버튼 스타일을 테이블 안쪽 오른쪽 하단에 위치 */
+        .button-container {
+            bottom: 15px;
+            right: 15px;
+         text-align: right;
+            
         }
 
         .button-container button {
+            background-color: #d3d3d3; /* 회색 버튼 색상 */
+            color: white;
             padding: 10px 15px;
             font-size: 14px;
             border: none;
+            margin-top: 30px;
             border-radius: 4px;
-            background-color: #d3d3d3;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -155,7 +173,7 @@
     </style>
 </head>
 <body>
-	<% tb_admin login = (tb_admin)session.getAttribute("login"); %>
+   <% tb_admin login = (tb_admin)session.getAttribute("login"); %>
 
     <script type="text/javascript">
         function confirmLogin(page) {
@@ -169,53 +187,52 @@
     </script>
 
     <script type="text/javascript">
-	    function confirmLogin(page) {
-	        <% if (login == null) { %>
-	            alert("로그인이 필요한 서비스입니다!");
-	            window.location.href = "login.html";
-	        <% } else { %>
-	            window.location.href = page;
-	        <% } %>
-	    }
-	</script>
-	
-	<div class="header">
-	    <div class="logo">Comfort Guide</div>
-	</div>
-	
-	<!-- 메뉴 -->
-	<div class="menu">
-	    <div>
-	        <a href="mainPage.jsp" class="active">메인 페이지</a>
-	        <a href="subpage.jsp">검색 페이지</a>
-	        <a href="writer.jsp">글 작성</a>
-	        <!-- 로그인 체크가 필요한 링크 -->
-	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
-	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
-	    </div>
-	    
-	    <!-- 사용자 정보와 링크 -->
-	    <div class="user-info">
-	        <% if (login != null) { %>
-	            <span><%= login.getAdmin_id() %> 님</span> 
-	            <a href="profile.html">회원정보 수정</a> 
-	            <a href="logout">로그아웃</a>
-	        <% } else { %>
-	            <a href="login.html">로그인</a>
-	            <a href="Join.html">회원가입</a>
-	        <% } %>
-	    </div>
-	</div>
-	
-	
-	<%
-		ServiceAreaDAO dao = new ServiceAreaDAO();
-		List<tb_suggestion> slist = dao.getSuggestion(login.getSa_name());
-		
-	
-	%>
-	
-	
+       function confirmLogin(page) {
+           <% if (login == null) { %>
+               alert("로그인이 필요한 서비스입니다!");
+               window.location.href = "login.html";
+           <% } else { %>
+               window.location.href = page;
+           <% } %>
+       }
+   </script>
+   
+   <div class="header">
+       <div class="logo">Comfort Guide</div>
+   </div>
+   
+   <!-- 메뉴 -->
+   <div class="menu">
+       <div>
+           <a href="mainPage.jsp" class="active">메인 페이지</a>
+           <a href="subpage.jsp">검색 페이지</a>
+           <a href="writer.jsp">글 작성</a>
+           <!-- 로그인 체크가 필요한 링크 -->
+           <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
+           <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
+       </div>
+       
+       <!-- 사용자 정보와 링크 -->
+       <div class="user-info">
+           <% if (login != null) { %>
+               <span><%= login.getAdmin_id() %> 님</span> 
+               <a href="profile.html">회원정보 수정</a> 
+               <a href="logout">로그아웃</a>
+           <% } else { %>
+               <a href="login.html">로그인</a>
+               <a href="Join.html">회원가입</a>
+           <% } %>
+       </div>
+   </div>
+
+   
+   <%
+      ServiceAreaDAO dao = new ServiceAreaDAO();
+      List<tb_suggestion> slist = dao.getSuggestion(login.getSa_name());
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      int rowsToDisplay = 8; // 디폴트로 8줄을 표시
+   %>
+   
 
     <!-- Center Wrapper for "고객의 소리" container -->
     <div class="center-wrapper">
@@ -223,43 +240,50 @@
             <div class="section-title">고객의 소리</div>
             
             <div class="table-container">
-	            <table>
-	                <thead>
-	                    <tr>
-	                        <th>번호</th>
-	                        <th>제목</th>
-	                        <th>작성자</th>
-	                        <th>작성일</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
-	                    <% 
-	                        if (slist != null && !slist.isEmpty()) {
-	                            for (int i = 0; i < slist.size(); i++) {
-	                                tb_suggestion suggestion = slist.get(i);
-	                    %>
-	                            <tr>
-	                                <td><%= (int)suggestion.getSuggestion_idx()%></td>
-	                                <td><%= suggestion.getSuggestion_title() %></td>
-	                                <td><%= suggestion.getSuggestion_publisher() %></td>
-	                                <td><%= suggestion.getCreate_at() %></td>
-	                            </tr>
-	                    <% 
-	                            }
-	                        } else { 
-	                    %>
-	                            <tr>
-	                                <td colspan="4">등록된 데이터가 없습니다.</td>
-	                            </tr>
-	                    <% 
-	                        } 
-	                    %>
-	                </tbody>
-	            </table>
-	        </div>
-	        <div class="button-container">
-	            <button onclick="location.href='writer.jsp'">글 작성</button>
-	        </div>
+               <table>
+                   <thead>
+                       <tr>
+                           <th>번호</th>
+                           <th>제목</th>
+                           <th>작성자</th>
+                           <th>작성일</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                   <% 
+                       for (int i = 0; i < rowsToDisplay; i++) {
+                           if (i < slist.size()) {
+                               tb_suggestion suggestion = slist.get(i);
+                   %>
+                       <tr>
+                           <td><%= suggestion.getSuggestion_idx() %></td>
+                           <!-- 제목에 링크 추가 -->
+                           <td>
+                               <a href="suggestionDetail.jsp?suggestion_idx=<%= suggestion.getSuggestion_idx() %>">
+                                   <%= suggestion.getSuggestion_title() %>
+                               </a>
+                           </td>
+                           <td><%= suggestion.getSuggestion_publisher() %></td>
+                           <td><%= sdf.format(suggestion.getCreate_at()) %></td>
+                       </tr>
+                   <% 
+                           } else {
+                   %>
+                       <tr>
+                           <td colspan="4">&nbsp;</td>
+                       </tr>
+                   <% 
+                           }
+                       }
+                   %>
+               </tbody>
+
+               </table>
+           </div>
+           <div class="button-container" style="display: block;">
+                   <button onclick="location.href='writer.jsp'">글 작성</button>
+               </div>    
+           
         </div>
     </div>
 
