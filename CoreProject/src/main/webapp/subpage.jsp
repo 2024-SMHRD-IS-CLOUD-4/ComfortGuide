@@ -225,25 +225,7 @@
             margin-bottom : -10px;
         }
 
-        /* 고객의 소리 버튼 스타일 */
-        .feedback-card {
-            grid-column: 3 / 4;
-            grid-row: 2 / 3;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #c4d8f7;
-            cursor: pointer;
-            text-decoration: none; 
-            color: inherit; 
-            font-weight: bold;
-            transition: background-color 0.3s;
-            margin-bottom :10px; 
-        }
-        .feedback-card:hover {
-            background-color: #c4d8f7; 
-        }
+        
         .review-item {
             border: 1px solid #ddd;
             padding: 10px;
@@ -404,15 +386,12 @@
         <!-- 방문 후기 -->
         <div class="card reviews-card">
             <div>방문후기</div>
-            <div id="reviews-container">
+            	<div id="reviews-container">
                 <!-- 방문후기 내용이 여기에 표시됩니다. -->
                 <p>여기에 방문후기 내용이 표시됩니다.</p>
-            </div>
-        </div>
-    
-        <!-- 고객의 소리 버튼 (링크) -->
-        <a href="suggestion.html" class="card feedback-card">고객의 소리</a>
-    </div>
+            	</div>
+       		 </div>    
+ 	   </div>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/sub_review.js"></script>
