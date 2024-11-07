@@ -163,8 +163,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
+        }
+
+        .weather-item .value {
+            font-size: 24px; /* 가운데의 글자 크기를 키움 */
+            font-weight: bold;
+            margin-top: 10px; /* 상단에 약간의 여백 추가 */
         }
 
         .facilities-card { 
@@ -224,7 +230,6 @@
             margin-bottom : -153px;
         }
 
-        
         .review-item {
             border: 1px solid #5c7adb;
             padding: 10px;
@@ -248,13 +253,24 @@
             max-height: 550px; /* 방문후기 박스 높이에 맞춤 */
         }
         .facility {
-	    background-color: gray; /* 기본 배경색을 회색으로 지정 */
-		}
-	#videoContainer iframe {
-            width: 100%;
-            height: 100%;
+            background-color: gray; /* 기본 배경색을 회색으로 지정 */
         }
 
+        /* 비디오 컨테이너 스타일 조정 */
+        #videoContainer {
+            width: 100%;
+            height: calc(100% - 50px); /* 카드 내부에서 제목을 제외한 나머지 영역 차지 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* 내용이 카드 안에 완전히 들어가도록 처리 */
+        }
+
+        #videoContainer iframe {
+            width: 100%;
+            height: 100%;
+            border: none; /* 프레임의 외곽선 제거 */
+        }
 
     </style>
 </head>
@@ -272,45 +288,34 @@
             <% } %>
         }
     </script>
-    
-    <script type="text/javascript">
-	    function confirmLogin(page) {
-	        <% if (login == null) { %>
-	            alert("로그인이 필요한 서비스입니다!");
-	            window.location.href = "login.html";
-	        <% } else { %>
-	            window.location.href = page;
-	        <% } %>
-	    }
-	</script>
-	
-	<div class="header">
-	    <div class="logo">Comfort Guide</div>
-	</div>
-	
-	<!-- 메뉴 -->
-	<div class="menu">
-	    <div>
-	        <a href="mainPage.jsp" class="active">메인 페이지</a>
-	        <a href="subpage.jsp">검색 페이지</a>
-	        <a href="writer.jsp">글 작성</a>
-	        <!-- 로그인 체크가 필요한 링크 -->
-	        <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
-	        <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
-	    </div>
-	    
-	    <!-- 사용자 정보와 링크 -->
-	    <div class="user-info">
-	        <% if (login != null) { %>
-	            <span><%= login.getAdmin_id() %> 님</span> 
-	            <a href="profile.jsp">회원정보 수정</a> 
-	            <a href="logout">로그아웃</a>
-	        <% } else { %>
-	            <a href="login.html">로그인</a>
-	            <a href="Join.html">회원가입</a>
-	        <% } %>
-	    </div>
-	</div>
+
+    <div class="header">
+        <div class="logo">Comfort Guide</div>
+    </div>
+
+    <!-- 메뉴 -->
+    <div class="menu">
+        <div>
+            <a href="mainPage.jsp" class="active">메인 페이지</a>
+            <a href="subpage.jsp">검색 페이지</a>
+            <a href="writer.jsp">글 작성</a>
+            <!-- 로그인 체크가 필요한 링크 -->
+            <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
+            <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
+        </div>
+
+        <!-- 사용자 정보와 링크 -->
+        <div class="user-info">
+            <% if (login != null) { %>
+                <span><%= login.getAdmin_id() %> 님</span> 
+                <a href="profile.jsp">회원정보 수정</a> 
+                <a href="logout">로그아웃</a>
+            <% } else { %>
+                <a href="login.html">로그인</a>
+                <a href="Join.html">회원가입</a>
+            <% } %>
+        </div>
+    </div>
 
     <!-- 검색 필터와 아이콘 -->
     <div class="search-bar-container">
@@ -333,50 +338,50 @@
             <div class="search-icon">🔍</div>
         </div>
     </div>
-    
-    
+
     <!-- 대시보드 -->
     <div class="dashboard">
         <!-- 유튜브 소개 영상 -->
         <div class="card video-card">
-        	유튜브 소개 영상
-        	<div class="video" id="videoContainer">▶
-        	</div>
+            유튜브 소개 영상
+            <div class="video" id="videoContainer"><br>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/<YOUR_VIDEO_ID>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
         
         <!-- 날씨 정보 -->
         <div class="card weather-card" id="weatherInfo">
             <div class="weather-item" id="temperature">
-                <span>현재 온도:</span>
-                <span>0°C</span>
+                <span>현재 온도</span><br>
+                <span class="value">0°C</span>
             </div>
             <div class="weather-item" id="humidity">
-                <span>습도:</span>
-                <span>0%</span>
+                <span>습도</span><br>
+                <span class="value">0%</span>
             </div>
             <div class="weather-item" id="weather_conditions">
-                <span>날씨 상태:</span>
-                <span>맑음</span>
+                <span>날씨 상태</span><br>
+                <span class="value">맑음</span>
             </div>
             <div class="weather-item" id="Precipitation_probability">
-                <span>강수 확률:</span>
-                <span>0%</span>
+                <span>강수 확률</span><br>
+                <span class="value">0%</span>
             </div>
         </div>
 
         <!-- 시설 현황 -->
         <div class="card facilities-card">
             <div id="drugStore" class="facility"><img src="images/drug.png" alt="약국" width="40" height="40"><p>약국</p></div>
-		    <div id="nursingRoom" class="facility"><img src="images/nursing.png" alt="수유실" width="40" height="40"><p>수유실</p></div>
-		    <div id="evCharge" class="facility"><img src="images/ev.png" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
-		    <div id="restaurant" class="facility"><img src="images/restaurant.png" alt="식당" width="40" height="40"><p>식당</p></div>
-		    <div id="lpgStation" class="facility"><img src="images/lpg.png" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
-		    <div id="gasStation" class="facility"><img src="images/gas_station.png" alt="주유소" width="40" height="40"><p>주유소</p></div>
-		    <div id="snackBar" class="facility"><img src="images/snack.png" alt="편의점" width="40" height="40"><p>편의점</p></div>
-		    <div id="breakRoom" class="facility"><img src="images/break.png" alt="쉼터" width="40" height="40"><p>쉼터</p></div>
-		    <div id="carMaintenance" class="facility"><img src="images/car_maintenace.png" alt="정비소" width="40" height="40"><p>정비소</p></div>
-		    <div id="hydrogenCharge" class="facility"><img src="images/hydrogen.png" alt="수소차 충전소" width="40" height="40"><p>수소차 충전소</p></div>
-		    <div id="restRoom" class="facility"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div>
+            <div id="nursingRoom" class="facility"><img src="images/nursing.png" alt="수유실" width="40" height="40"><p>수유실</p></div>
+            <div id="evCharge" class="facility"><img src="images/ev.png" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
+            <div id="restaurant" class="facility"><img src="images/restaurant.png" alt="식당" width="40" height="40"><p>식당</p></div>
+            <div id="lpgStation" class="facility"><img src="images/lpg.png" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
+            <div id="gasStation" class="facility"><img src="images/gas_station.png" alt="주유소" width="40" height="40"><p>주유소</p></div>
+            <div id="snackBar" class="facility"><img src="images/snack.png" alt="편의점" width="40" height="40"><p>편의점</p></div>
+            <div id="breakRoom" class="facility"><img src="images/break.png" alt="쉼터" width="40" height="40"><p>쉼터</p></div>
+            <div id="carMaintenance" class="facility"><img src="images/car_maintenace.png" alt="정비소" width="40" height="40"><p>정비소</p></div>
+            <div id="hydrogenCharge" class="facility"><img src="images/hydrogen.png" alt="수소차 충전소" width="40" height="40"><p>수소차 충전소</p></div>
+            <div id="restRoom" class="facility"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div>
             <div class="facility" style="background-color: gray;"><img  width="40" height="40"><p></p></div> <!-- 해당 시설이 없을 시 표시-->
         </div>
 
@@ -394,12 +399,12 @@
         <!-- 방문 후기 -->
         <div class="card reviews-card">
             <div>방문후기</div>
-            	<div id="reviews-container">
+            <div id="reviews-container">
                 <!-- 방문후기 내용이 표시됩니다. -->
                 <p>휴게소 방문 후기 내용이 표시됩니다.</p>
-            	</div>
-       		 </div>    
- 	   </div>
+            </div>
+        </div>    
+    </div>
        
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/sub_review.js"></script>
