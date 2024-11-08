@@ -160,7 +160,8 @@
       <!-- 고객의 소리 박스 -->
       <div class="large-info-card">
     고객의 소리
-    <div class="table-container">
+   <div class="table-container customer-feedback-table">
+    <!-- 첫 번째 사진의 고객의 소리 표 내용 -->
         <table>
             <thead>
                 <tr>
@@ -209,7 +210,8 @@
 
 
       <!-- 하단의 넓은 박스 -->
-      <div class="table-container">
+      <div class="table-container sales-chart-table">
+    <!-- 두 번째 사진의 매출액 표 내용 -->
       휴게소 하나의 음식코너 매출액
       <canvas id="foodcorner-chart" style="width: 100%; height: 50%;"></canvas>
       </div>
@@ -219,7 +221,7 @@
         <div class="text-card-container">
           <div class="text-card" id="sentiment">
              <span>만족도, 감정분석</span>
-             <br><br><br><br>
+             <br><br>
              <div class="sentiment-container">
                  <!-- 1행 3열로 배치된 구역 -->
                  <div class="sentiment-box">
