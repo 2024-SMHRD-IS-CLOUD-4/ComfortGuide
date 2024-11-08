@@ -45,7 +45,7 @@
             background-color: #d3d3d3;
             padding: 10px;
             font-weight: bold;
-            text-align: left;
+            text-align: center;
             margin-bottom: 15px;
         }
 
@@ -101,7 +101,7 @@
 
         .button-container button {
             background-color: #d3d3d3; /* 회색 버튼 색상 */
-            color: white;
+            color: black;
             padding: 10px 15px;
             font-size: 14px;
             border: none;
