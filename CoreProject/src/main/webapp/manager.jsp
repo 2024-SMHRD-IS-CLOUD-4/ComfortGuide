@@ -103,10 +103,15 @@
    </div>
 
    <!-- 컨테이너 -->
-   <div class="container">
-      <!-- 차트 영역 -->
-      <div class="chart-card"></div>
+ <script type="text/javascript">
+    const saName = "<%= saName %>";
+</script>
 
+<div class="container">
+    <!-- 차트가 표시될 영역 -->
+    <div class="chart-card" id="chartContainer">
+    <canvas id="manager-chart"></canvas>
+    </div>
       <%
       //String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");
       //String url = "http://localhost:5000/searchService?name=" + encodedService;
@@ -140,10 +145,16 @@
 
       <!-- 오른쪽 상단 3개의 정보 박스 그룹 -->
       <div class="info-container">
-         <div class="info-sales-card info-card"></div>
-         <div class="info-guests-card info-card"></div>
-         <div class="info-traffic-card info-card"></div>
-      </div>
+    <div class="info-guests-card info-card">
+    <canvas id="guests-chart"></canvas>
+    </div>
+    <div class="info-traffic-card info-card">
+    <canvas id="traffic-chart"></canvas>
+    </div>
+    <div class="info-sales-card info-card">
+        <canvas id="sales-chart"></canvas>
+    </div>
+ </div>
 	<%
 	%>
       <!-- 고객의 소리 박스 -->
@@ -198,7 +209,10 @@
 
 
       <!-- 하단의 넓은 박스 -->
-      <div class="table-container">휴게소 하나의 음식코너 매출액</div>
+      <div class="table-container">
+      휴게소 하나의 음식코너 매출액
+      <canvas id="foodcorner-chart" style="width: 100%; height: 50%;"></canvas>
+      </div>
 
       <!-- 하단의 작은 박스들 -->
       <!-- 하단의 작은 박스들 -->
@@ -251,123 +265,13 @@
    </div>
 
    <!-- JavaScript 파일 연결 -->
-   <script>
-    // CSV 데이터 경로
-    const csvFilePath = 'path/to/한국도로공사_휴게소_이용객_통행량_매출액.csv';
-
-    // CSV 파일을 불러와서 특정 휴게소 데이터를 필터링하는 함수
-    async function fetchAndDisplayChartData() {
-        const response = await fetch(csvFilePath);
-        const data = await response.text();
-        const csvData = parseCSV(data);
-
-        // 휴게소 명이 selectedRestAreaName과 일치하는 데이터만 필터링
-        const filteredData = csvData.filter(row => row['휴게소명'] === selectedRestAreaName);
-
-        // 2015~2023 연도별 임의 데이터 설정 및 2024 실제 데이터
-        const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
-        const annualUsage = [40000, 42500, 39000, 41000, 45000, 32000, 31000, 30000, 35500]; // 2020-2022 하향
-        const annualTraffic = [40000, 43100, 42000, 43000, 45000, 34000, 31200, 33800, 35800]; // 2020-2022 하향
-        const annualRevenue = [40000, 41000, 42000, 43000, 44000, 37000, 35210, 38240, 43000]; // 2020-2022 하향
-
-        // 2024년 데이터는 CSV에서 가져온 실제 값 사용
-        const data2024 = filteredData.find(row => row['연도'] === '2024');
-        if (data2024) {
-            years.push(2024);
-            annualUsage.push(parseInt(data2024['연간 이용객 수']));
-            annualTraffic.push(parseInt(data2024['연간 차량 통행량']));
-            annualRevenue.push(parseInt(data2024['연간 매출액(원)']));
-        }
-
-        // 예측 모델을 사용하여 2025~2030 데이터 예측
-        const futureYears = [2025, 2026, 2027, 2028, 2029, 2030];
-        const predictedUsage = predictFutureData(years, annualUsage, futureYears);
-        const predictedTraffic = predictFutureData(years, annualTraffic, futureYears);
-        const predictedRevenue = predictFutureData(years, annualRevenue, futureYears);
-
-        // 차트 카드에 canvas 요소 추가
-        const chartCard = document.querySelector('.chart-card');
-        const canvas = document.createElement('canvas');
-        canvas.id = 'adminChart';
-        chartCard.appendChild(canvas);
-
-        // Chart.js를 이용한 차트 생성
-        const ctx = canvas.getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: years.concat(futureYears),
-                datasets: [
-                    {
-                        label: '이용객 수',
-                        data: annualUsage.concat(predictedUsage),
-                        borderColor: 'blue',
-                        fill: false
-                    },
-                    {
-                        label: '차량 통행량',
-                        data: annualTraffic.concat(predictedTraffic),
-                        borderColor: 'green',
-                        fill: false
-                    },
-                    {
-                        label: '매출액(원)',
-                        data: annualRevenue.concat(predictedRevenue),
-                        borderColor: 'red',
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: `Annual Data with Predictions for ${selectedRestAreaName}`
-                },
-                scales: {
-                    x: { title: { display: true, text: 'Year' }},
-                    y: { title: { display: true, text: 'Value' }}
-                }
-            }
-        });
-    }
-
-    // 간단한 선형 회귀 모델을 사용하여 미래 데이터 예측 함수
-    function predictFutureData(years, values, futureYears) {
-        // regression-js를 사용하여 선형 회귀 모델 생성
-        const regressionData = years.map((year, index) => [year, values[index]]);
-        const result = regression.linear(regressionData);
-        const gradient = result.equation[0];
-        const intercept = result.equation[1];
-
-        // 미래 연도에 대해 예측 값 생성
-        return futureYears.map(year => gradient * year + intercept);
-    }
-
-    // CSV 데이터를 JSON으로 변환하는 함수
-    function parseCSV(data) {
-        const rows = data.split('\n').slice(1); // 첫 번째 줄 제거 (헤더)
-        const csvData = rows.map(row => {
-            const columns = row.split(',');
-            return {
-                '휴게소명': columns[0],
-                '연도': columns[1],
-                '연간 이용객 수': columns[2],
-                '연간 차량 통행량': columns[3],
-                '연간 매출액(원)': columns[4]
-            };
-        });
-        return csvData;
-    }
-
-    // 차트 데이터를 가져와서 표시
-        fetchAndDisplayChartData().catch(error => {
-    console.error('Error fetching or displaying chart data:', error);
-});
-   </script>
+   
    <script type="text/javascript" src="js/jquery.min.js"></script>
    <script type="text/javascript" src="js/manager_weather.js"></script>
    <script type="text/javascript" src="js/manager_poison.js"></script>
    <script type="text/javascript" src="js/manager_dust.js"></script>
+   <script type="text/javascript" src="js/manager_prediction_chart.js"></script>
+    <script type="text/javascript" src="js/sa_foodcorner.js"></script>
 
 </body>
 </html>

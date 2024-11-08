@@ -118,5 +118,11 @@
 <select id="getLink" resultType="com.smhrd.model.tb_service_video">
 	select * from tb_service_video where sa_name = #{sa_name}
 </select>
+<!-- rest_stops_top_ranking 테이블에서 휴게소명(sa_name)에 맞는 데이터를 조회하는 쿼리 -->
+    <select id="sa_ranking" resultType="com.smhrd.model.sa_ranking">
+        SELECT  monthly_sales, sa_sr, store_name
+        FROM 	sa_ranking
+        WHERE sa_name = #{sa_name}
+    </select>
 
 </mapper>

@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>subpage</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             padding: 0;
@@ -385,15 +386,13 @@
         </div>
 
         <!-- 인기 판매 품목 차트 나눔 -->
-        <div class="card popular-items-chart">
-            <div class="popular-item-box popular-item-box-1">
-                인기 품목 차트 1
-                <img src="#" alt="chart" style="width: 100%; height: auto;">
-            </div>
-            <div class="popular-item-box popular-item-box-2">
-               text
-            </div>
+        <div class="card popular-items-chart" id="chartContainer">
+        <div class="popular-item-box popular-item-box-1">
+            인기 품목 차트 1
+            <canvas id="donutChart" style="width: 100%; height: 80%;"></canvas>
         </div>
+        <div class="popular-item-box popular-item-box-2" id="rankingContainer">text</div>
+    </div>
         
         <!-- 방문 후기 -->
         <div class="card reviews-card">
@@ -411,5 +410,7 @@
     <script type="text/javascript" src="js/sub_weather.js"></script>
     <script type="text/javascript" src="js/sub_facility.js"></script>
     <script type="text/javascript" src="js/sub_video.js"></script>
+     <script type="text/javascript" src="js/sub_rank.js"></script>
+    
 </body>
 </html>
