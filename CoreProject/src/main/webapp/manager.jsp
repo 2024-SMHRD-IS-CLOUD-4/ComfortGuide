@@ -209,17 +209,17 @@
              <div class="sentiment-container">
                  <!-- 1행 3열로 배치된 구역 -->
                  <div class="sentiment-box">
-                     <img src="images/good.png" alt="좋음" class="sentiment-icon">
+                     <img src="https://drive.google.com/thumbnail?id=1ZBmHr_wDIQgvoaaVU81exfdNec8Lirb0" alt="좋음" class="sentiment-icon">
                      <span class="sentiment-text">좋음</span>
                      <span class="sentiment-text"><%=positive %></span>
                  </div>
                  <div class="sentiment-box">
-                     <img src="images/middle.png" alt="보통" class="sentiment-icon">
+                     <img src="https://drive.google.com/thumbnail?id=1YDllWL8CIlk4Yq75sz7vODvLK6n9nbOW" alt="보통" class="sentiment-icon">
                      <span class="sentiment-text">보통</span>
                      <span class="sentiment-text"><%=neutral %></span>
                  </div>
                  <div class="sentiment-box">
-                     <img src="images/bad.png" alt="나쁨" class="sentiment-icon">
+                     <img src="https://drive.google.com/thumbnail?id=1cHzvZasD_eBy0SqddlphJHvnclIyyWqe" alt="나쁨" class="sentiment-icon">
                      <span class="sentiment-text">나쁨</span>
                      <span class="sentiment-text"><%=negative %></span>
                  </div>

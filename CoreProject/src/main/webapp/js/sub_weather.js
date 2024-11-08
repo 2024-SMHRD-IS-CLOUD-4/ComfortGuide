@@ -4,7 +4,7 @@ $(document).ready(function() {
     // 휴게소를 선택했을 때 `lat`과 `lon`을 가져와 날씨 API 호출
     $('#restStop').on('change', function() {
         const restStop = $(this).val();
-
+		console.log('휴게소 선택 : ',  restStop);
         if (restStop) {
             // 서버에 AJAX 요청으로 `lat`과 `lon`을 가져옴
             $.ajax({
@@ -14,6 +14,7 @@ $(document).ready(function() {
                 success: function(data) {
                     const lat = Math.floor(data.lat);
                     const lon = Math.floor(data.lon);
+					console.log('변환된 좌표 :'+lat+'/'+ lon)
                     fetchWeatherData(lat, lon); // 날씨 API 호출
                 },
                 error: function(error) {

@@ -45,51 +45,80 @@ $(document).ready(function() {
                   const precipitationProbability = precipitationProbabilityItem ? precipitationProbabilityItem.fcstValue : 'N/A';
 
                   // 감기 가능 지수 계산 (tempData 변수는 JSP에서 전달된 값 사용)
-                  let ColdPossibility = 0;
-                  if (tempData.includes('경기') || tempData.includes('서울')) {
-                     ColdPossibility = 0.4 * (Number(temperature)) + 0.3 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 5;
-                  } else if (tempData.includes('강원')) {
-                     ColdPossibility = 0.5 * (Number(temperature)) + 0.2 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 10;
-                  } else if (tempData.includes('충북') || tempData.includes('충청북도')) {
-                     ColdPossibility = 0.35 * (Number(temperature)) + 0.3 * (Number(humidity)) + 0.25 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 4;
-                  } else if (tempData.includes('충남') || tempData.includes('충청남도')) {
-                     ColdPossibility = 0.3 * (Number(temperature)) + 0.35 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.15 * (Number(precipitationProbability)) + 4;
-                  } else if (tempData.includes('경남') || tempData.includes('경상남도')) {
-                     ColdPossibility = 0.35 * (Number(temperature)) + 0.3 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.15 * (Number(precipitationProbability)) + 3;
-                  } else if (tempData.includes('경북') || tempData.includes('경상북도')) {
-                     ColdPossibility = 0.4 * (Number(temperature)) + 0.25 * (Number(humidity)) + 0.25 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 3;
-                  } else if (tempData.includes('전북') || tempData.includes('전라북도')) {
-                     ColdPossibility = 0.3 * (Number(temperature)) + 0.4 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 2;
-                  } else if (tempData.includes('전남') || tempData.includes('전라남도')) {
-                     ColdPossibility = 0.3 * (Number(temperature)) + 0.35 * (Number(humidity)) + 0.15 * (Number(wind)) + 0.2 * (Number(precipitationProbability)) + 2;
-                  } else if (tempData.includes('광주')) {
-                     ColdPossibility = 0.35 * (Number(temperature)) + 0.35 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 3;
-                  } else if (tempData.includes('대전')) {
-                     ColdPossibility = 0.4 * (Number(temperature)) + 0.3 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 5;
-                  } else if (tempData.includes('대구')) {
-                     ColdPossibility = 0.45 * (Number(temperature)) + 0.25 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.1 * (Number(precipitationProbability)) + 6;
-                  } else if (tempData.includes('부산')) {
-                     ColdPossibility = 0.3 * (Number(temperature)) + 0.4 * (Number(humidity)) + 0.25 * (Number(wind)) + 0.25 * (Number(precipitationProbability)) + 2;
-                  } else if (tempData.includes('울산')) {
-                     ColdPossibility = 0.3 * (Number(temperature)) + 0.35 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.15 * (Number(precipitationProbability)) + 2;
-                  } else if (tempData.includes('제주')) {
-                     ColdPossibility = 0.25 * (Number(temperature)) + 0.4 * (Number(humidity)) + 0.2 * (Number(wind)) + 0.15 * (Number(precipitationProbability)) + 3;
-                  } else {
-                     ColdPossibility = 0;
-                  }
+				  const regionMap = {
+				      "서울": ["서울"],
+				      "경기": ["경기", "수원", "성남", "안양", "부천", "고양", "용인", "의정부", "평택", "시흥", "파주", "이천", "안산", "광명", "하남", "광주", "김포", "군포", "여주", "양평", "구리", "오산", "의왕", "포천", "동두천", "가평", "과천"],
+				      "강원": ["강원", "춘천", "원주", "강릉", "동해", "속초", "삼척", "태백", "정선", "철원", "화천", "양구", "인제", "고성", "양양"],
+				      "충북": ["충북", "충청북도", "청주", "충주", "제천", "보은", "옥천", "영동", "증평", "진천", "괴산", "음성", "단양"],
+				      "충남": ["충남", "충청남도", "천안", "아산", "서산", "태안", "공주", "보령", "논산", "계룡", "당진", "부여", "서천", "홍성", "예산", "청양"],
+				      "경북": ["경북", "경상북도", "포항", "구미", "경주", "안동", "김천", "영주", "영천", "상주", "문경", "경산", "의성", "청송", "영양", "영덕", "청도", "고령", "성주", "칠곡", "예천", "봉화", "울진", "울릉"],
+				      "경남": ["경남", "경상남도", "창원", "김해", "진주", "양산", "거제", "사천", "밀양", "통영", "거창", "함안", "창녕", "고성", "하동", "산청", "함양", "합천", "남해"],
+				      "전북": ["전북", "전라북도", "전주", "군산", "익산", "정읍", "남원", "김제", "완주", "진안", "무주", "장수", "임실", "순창", "고창", "부안"],
+				      "전남": ["전남", "전라남도", "목포", "여수", "순천", "광양", "나주", "담양", "고흥", "보성", "화순", "장흥", "강진", "해남", "영암", "무안", "함평", "영광", "장성", "완도", "진도", "신안"],
+				      "광주": ["광주"],
+				      "대전": ["대전"],
+				      "대구": ["대구"],
+				      "울산": ["울산"],
+				      "부산": ["부산"],
+				      "제주": ["제주", "서귀포"],
+				      "세종": ["세종"]
+				  };
+
+				  function findProvince(tempData) {
+				      for (let province in regionMap) {
+				          if (regionMap[province].some(region => tempData.includes(region))) {
+				              return province;
+				          }
+				      }
+				      return null; // 일치하는 시/도가 없으면 null 반환
+				  }
+				  const province = findProvince(tempData);
+				  if (province === "경기" || province === "서울") {
+				      ColdPossibility = 0.4 * Number(temperature) + 0.3 * Number(humidity) + 0.2 * Number(wind) + 0.1 * Number(precipitationProbability) + 5;
+				  } else if (province === "강원") {
+				      ColdPossibility = 0.5 * Number(temperature) + 0.2 * Number(humidity) + 0.2 * Number(wind) + 0.1 * Number(precipitationProbability) + 10;
+				  } else if (province === "충북") {
+				      ColdPossibility = 0.35 * Number(temperature) + 0.3 * Number(humidity) + 0.25 * Number(wind) + 0.1 * Number(precipitationProbability) + 4;
+				  } else if (province === "충남") {
+				      ColdPossibility = 0.3 * Number(temperature) + 0.35 * Number(humidity) + 0.2 * Number(wind) + 0.15 * Number(precipitationProbability) + 4;
+				  } else if (province === "경남") {
+				      ColdPossibility = 0.35 * Number(temperature) + 0.3 * Number(humidity) + 0.2 * Number(wind) + 0.15 * Number(precipitationProbability) + 3;
+				  } else if (province === "경북") {
+				      ColdPossibility = 0.4 * Number(temperature) + 0.25 * Number(humidity) + 0.25 * Number(wind) + 0.1 * Number(precipitationProbability) + 3;
+				  } else if (province === "전북") {
+				      ColdPossibility = 0.3 * Number(temperature) + 0.4 * Number(humidity) + 0.2 * Number(wind) + 0.1 * Number(precipitationProbability) + 2;
+				  } else if (province === "전남") {
+				      ColdPossibility = 0.3 * Number(temperature) + 0.35 * Number(humidity) + 0.15 * Number(wind) + 0.2 * Number(precipitationProbability) + 2;
+				  } else if (province === "광주") {
+				      ColdPossibility = 0.35 * Number(temperature) + 0.35 * Number(humidity) + 0.2 * Number(wind) + 0.1 * Number(precipitationProbability) + 3;
+				  } else if (province === "대전") {
+				      ColdPossibility = 0.4 * Number(temperature) + 0.3 * Number(humidity) + 0.2 * Number(wind) + 0.1 * Number(precipitationProbability) + 5;
+				  } else if (province === "대구") {
+				      ColdPossibility = 0.45 * Number(temperature) + 0.25 * Number(humidity) + 0.2 * Number(wind) + 0.1 * Number(precipitationProbability) + 6;
+				  } else if (province === "부산") {
+				      ColdPossibility = 0.3 * Number(temperature) + 0.4 * Number(humidity) + 0.25 * Number(wind) + 0.25 * Number(precipitationProbability) + 2;
+				  } else if (province === "울산") {
+				      ColdPossibility = 0.3 * Number(temperature) + 0.35 * Number(humidity) + 0.2 * Number(wind) + 0.15 * Number(precipitationProbability) + 2;
+				  } else if (province === "제주") {
+				      ColdPossibility = 0.25 * Number(temperature) + 0.4 * Number(humidity) + 0.2 * Number(wind) + 0.15 * Number(precipitationProbability) + 3;
+				  } else {
+				      ColdPossibility = 0; // 일치하는 시/도가 없을 경우
+				  }
+				  console.log("ColdPossibility:", ColdPossibility);
+
                   
                   // 감기 가능 지수 텍스트 설정
                   if (ColdPossibility < 33) {
-                     document.getElementById('ColdData').innerHTML = '<img src="images/good.png" alt="낮음" class="small-block-icon"><br>낮음';
+                     document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1ZBmHr_wDIQgvoaaVU81exfdNec8Lirb0" alt="낮음" class="small-block-icon"><br>낮음';
                      document.getElementById('ColdData').style.cssText = 'color: blue;';               
                   } else if (ColdPossibility < 66) {
-                     document.getElementById('ColdData').innerHTML = '<img src="images/soso.png" alt="보통" class="small-block-icon"><br>보통';
+                     document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1szB7v1RhanjIB8jmnZ1HrxTjl9NFcMQK" alt="보통" class="small-block-icon"><br>보통';
                      document.getElementById('ColdData').style.cssText = 'color: green;';
                   } else if (ColdPossibility < 85) {
-                     document.getElementById('ColdData').innerHTML = '<img src="images/so_bad.png" alt="높음" class="small-block-icon"><br>높음';
+                     document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1E6m-7DIC6l23uemNzOtIwxdVGB8uPZ8j" alt="높음" class="small-block-icon"><br>높음';
                      document.getElementById('ColdData').style.cssText = 'color: yellow;';
                   } else {
-                     document.getElementById('ColdData').innerHTML = '<img src="images/mask_normal.png" alt="매우 높음" class="small-block-icon"><br>매우 높음';
+                     document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=16I0ql4_Q5SA2D-KcjxN31p4KDNT8Lq0m" alt="매우 높음" class="small-block-icon"><br>매우 높음';
                      document.getElementById('ColdData').style.cssText = 'color: red;';
                   }
                   let corruption = ((humidity-65)/14)*Math.pow(1.056,temperature);
@@ -100,17 +129,17 @@ $(document).ready(function() {
                   let corruptionImage = '';
                   if (corruption < 3.0) {
                      corruptionText = '양호';
-                     corruptionImage = 'images/smile.png';
+                     corruptionImage = 'https://drive.google.com/thumbnail?id=10-_0PuNhgHsv14FaehmcIVd8508zujpo';
                      document.getElementById('corruptionValue').style.cssText = 'color: blue;';               
 
                   } else if (corruption < 7.0) {
                      corruptionText = '보통';
-                     corruptionImage = 'images/what.png';
+                     corruptionImage = 'https://drive.google.com/thumbnail?id=1aYPt0Ma6cjQTGjHkuwdLTHi1n1rAuboU';
                      document.getElementById('corruptionValue').style.cssText = 'color: yellow;';               
 
                   } else {
                      corruptionText = '위험';
-                     corruptionImage = 'images/so_bad.png';
+                     corruptionImage = 'https://drive.google.com/thumbnail?id=1E6m-7DIC6l23uemNzOtIwxdVGB8uPZ8j';
                      document.getElementById('corruptionValue').style.cssText = 'color: red;';               
 
                   }

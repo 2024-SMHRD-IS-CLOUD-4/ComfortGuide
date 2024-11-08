@@ -25,19 +25,19 @@ $(document).ready(function() {
                 
                 if (result && result.PATNT_CNT) {
 					if(result.PATNT_CNT<35){
-						document.getElementById('foodPoisonValue').innerHTML = '<img src="images/smile.png" alt="관심" class="small-block-icon"><br>관심'
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=10-_0PuNhgHsv14FaehmcIVd8508zujpo" alt="관심" class="small-block-icon"><br>관심'
 						document.getElementById('foodPoisonValue').style.cssText='color: green;'
 					}
 				else if(result.PATNT_CNT<70){
-						document.getElementById('foodPoisonValue').innerHTML = '<img src="images/what.png" alt="주의" class="small-block-icon"><br>주의'
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1aYPt0Ma6cjQTGjHkuwdLTHi1n1rAuboU" alt="주의" class="small-block-icon"><br>주의'
 						document.getElementById('foodPoisonValue').style.cssText='color: yellow;'
 					}
 				else if(result.PATNT_CNT<95){
-						document.getElementById('foodPoisonValue').innerHTML = '<img src="image/so_bad.png" alt="경고" class="small-block-icon"><br>경고'
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1E6m-7DIC6l23uemNzOtIwxdVGB8uPZ8j" alt="경고" class="small-block-icon"><br>경고'
 						document.getElementById('foodPoisonValue').style.cssText='color: orange;'
 					}
 				else if(result.PATNT_CNT>=95){
-						document.getElementById('foodPoisonValue').innerHTML = '<img src="images/bad.png" alt="위험" class="small-block-icon"><br>위험'
+						document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1cHzvZasD_eBy0SqddlphJHvnclIyyWqe" alt="위험" class="small-block-icon"><br>위험'
 						document.getElementById('foodPoisonValue').style.cssText='color: red;'
 					}
                 } else {

@@ -370,17 +370,17 @@
 
         <!-- 시설 현황 -->
         <div class="card facilities-card">
-            <div id="drugStore" class="facility"><img src="images/drug.png" alt="약국" width="40" height="40"><p>약국</p></div>
-            <div id="nursingRoom" class="facility"><img src="images/nursing.png" alt="수유실" width="40" height="40"><p>수유실</p></div>
-            <div id="evCharge" class="facility"><img src="images/ev.png" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
-            <div id="restaurant" class="facility"><img src="images/restaurant.png" alt="식당" width="40" height="40"><p>식당</p></div>
-            <div id="lpgStation" class="facility"><img src="images/lpg.png" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
-            <div id="gasStation" class="facility"><img src="images/gas_station.png" alt="주유소" width="40" height="40"><p>주유소</p></div>
-            <div id="snackBar" class="facility"><img src="images/snack.png" alt="편의점" width="40" height="40"><p>편의점</p></div>
-            <div id="breakRoom" class="facility"><img src="images/break.png" alt="쉼터" width="40" height="40"><p>쉼터</p></div>
-            <div id="carMaintenance" class="facility"><img src="images/car_maintenace.png" alt="정비소" width="40" height="40"><p>정비소</p></div>
-            <div id="hydrogenCharge" class="facility"><img src="images/hydrogen.png" alt="수소차 충전소" width="40" height="40"><p>수소차 충전소</p></div>
-            <div id="restRoom" class="facility"><img src="images/rest_room.png" alt="화장실" width="40" height="40"><p>화장실</p></div>
+            <div id="drugStore" class="facility"><img src="https://drive.google.com/thumbnail?id=1zUvhdqJ3mgITB2tUDFqunzJD4IXNH63q" alt="약국" width="40" height="40"><p>약국</p></div>
+            <div id="nursingRoom" class="facility"><img src="https://drive.google.com/thumbnail?id=1YCgZ4I6h9sYdnuhgxrgnKT-D5l0xCSrW" alt="수유실" width="40" height="40"><p>수유실</p></div>
+            <div id="evCharge" class="facility"><img src="https://drive.google.com/thumbnail?id=14lyOQD92h0mO3L82dXzkTMNPMmWH3vLK" alt="전기차 충전소" width="40" height="40"><p>전기차 충전소</p></div>
+            <div id="restaurant" class="facility"><img src="https://drive.google.com/thumbnail?id=1sKbl8Ra3Lcb5k9HlD01a86oWDUkMyB7_" alt="식당" width="40" height="40"><p>식당</p></div>
+            <div id="lpgStation" class="facility"><img src="https://drive.google.com/thumbnail?id=1THlLHjtlqpjR3GS54Mp24Rdf9ayYSfqY" alt="LPG 충전소" width="40" height="40"><p>LPG 충전소</p></div>
+            <div id="gasStation" class="facility"><img src="https://drive.google.com/thumbnail?id=1C57wXa6y8RvReK1PFgS45Mkg5YP2WcTP" alt="주유소" width="40" height="40"><p>주유소</p></div>
+            <div id="snackBar" class="facility"><img src="https://drive.google.com/thumbnail?id=1t01ExJzTTnEY41Op9QQfMZhVUqySQIOX" alt="편의점" width="40" height="40"><p>편의점</p></div>
+            <div id="breakRoom" class="facility"><img src="https://drive.google.com/thumbnail?id=1ySqKu1xZfxaouuJJtJVYtcR7-aYsZVRz" alt="쉼터" width="40" height="40"><p>쉼터</p></div>
+            <div id="carMaintenance" class="facility"><img src="https://drive.google.com/thumbnail?id=199hJQ2t9ZPj8iRsUC09g78H9rqy5N8i-" alt="정비소" width="40" height="40"><p>정비소</p></div>
+            <div id="hydrogenCharge" class="facility"><img src="https://drive.google.com/thumbnail?id=1WicRWM1wbnCt4-0or43sGE-clYLn4jGg" alt="수소차 충전소" width="40" height="40"><p>수소차 충전소</p></div>
+            <div id="restRoom" class="facility"><img src="https://drive.google.com/thumbnail?id=1ZBKdH5fa53a_scX7hxjpiUkER8mi9IFl" alt="화장실" width="40" height="40"><p>화장실</p></div>
             <div class="facility" style="background-color: gray;"><img  width="40" height="40"><p></p></div> <!-- 해당 시설이 없을 시 표시-->
         </div>
 

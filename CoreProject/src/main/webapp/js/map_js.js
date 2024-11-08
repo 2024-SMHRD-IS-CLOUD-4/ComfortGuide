@@ -6,7 +6,7 @@ var mapContainer = document.getElementById('map'),
 
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
-var imageSrc = "images/pngwing.com.png";
+var imageSrc = "https://drive.google.com/thumbnail?id=1LoqoKvreDu8FjhTG__GGBcsbpBgrb6_O";
 var imageSize = new kakao.maps.Size(30, 30);
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 

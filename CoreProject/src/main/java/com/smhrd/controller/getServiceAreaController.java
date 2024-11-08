@@ -22,7 +22,7 @@ public class getServiceAreaController extends HttpServlet {
 
         ServiceAreaDAO dao = new ServiceAreaDAO();
         tb_service_area serviceArea = dao.getServiceAreaBySaName(restStopName); // lat, lon을 포함하는 객체 반환
-
+        System.out.println("입력 지역 좌표 : "+serviceArea.getLat()+"/"+serviceArea.getLon());
         if (serviceArea != null) {
             response.setContentType("application/json; charset=UTF-8");
             String json = new Gson().toJson(serviceArea);
