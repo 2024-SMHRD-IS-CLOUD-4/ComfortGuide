@@ -120,7 +120,7 @@
         .dashboard {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr; /* 3등분 */
-            gap: 5px; /* 전체 요소 사이의 간격을 줄임 */
+            gap: 10px; /* 전체 요소 사이의 간격을 줄임 */
             padding: 10px;
             max-width: 100vw;
         }
@@ -153,7 +153,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             text-align: center;
-            height: 150px;
+            height: 168px;
         }
 
         .weather-item {
@@ -204,20 +204,51 @@
             display: grid;
             grid-template-columns: 1fr 1fr; /* 가로 두 개의 칸으로 나누기 */
             gap: 5px; /* 차트 내부 요소 간격 줄이기 */
-            height: 300px; /* 시설물 박스와 동일한 높이로 설정 */
+            height: 320px; /* 시설물 박스와 동일한 높이로 설정 */
             margin-top: -150px; /* 시설물 박스와의 간격 줄이기 */
         }
 
         .popular-item-box {
             background-color: #f8f8f8;
-            padding: 20px;
+            padding: 15px;
             border: 1px solid #ddd;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
-            font-size: 16px;
-            font-weight: normal;
-            height: auto;
+            font-size: 15px;
+            font-weight: bold;
+            height: 280px;
+            margin : 5px;
         }
+        
+		    .popular-item-box-1 {
+		    background-color: #f8f8f8;
+		    padding: 15px;
+		    border: 1px solid #ddd;
+		    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		    text-align: center;
+		    font-size: 15px;
+		    font-weight: bold;
+		    height: 280px;
+		    margin: 5px;
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center; /* 세로 가운데 정렬 */
+		    align-items: center; /* 가로 가운데 정렬 */
+		}
+		.popular-item-box-2 {
+		    background-color: #f8f8f8;
+		    padding: 15px;
+		    border: 1px solid #ddd;
+		    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		    text-align: center;
+		    font-size: 16px; /* 글자 크기 조정 */
+		    font-weight: bold; /* 글자 굵기 조정 */
+		    font-family: 'Arial', sans-serif; /* 원하는 글꼴로 변경 */
+		    color: #333; /* 글자 색상 변경 */
+		    height: 280px;
+		    margin: 5px;
+		    line-height: 1.6; /* 줄 간격 설정, 필요에 따라 조정 가능 */
+		}
 
         /* 방문후기 박스 스타일 */
         .reviews-card {
@@ -227,7 +258,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom : -153px;
+            margin-bottom : -180px;
         }
 
         .review-item {
@@ -388,10 +419,10 @@
         <!-- 인기 판매 품목 차트 나눔 -->
         <div class="card popular-items-chart" id="chartContainer">
         <div class="popular-item-box popular-item-box-1">
-            인기 품목 차트 1
-            <canvas id="donutChart" style="width: 100%; height: 80%;"></canvas>
+            인기 품목 차트 
+            <canvas id="donutChart" style="width: 80%; height: 80%;"></canvas>
         </div>
-        <div class="popular-item-box popular-item-box-2" id="rankingContainer">text</div>
+        <div class="popular-item-box popular-item-box-2" id="rankingContainer"></div>
     </div>
         
         <!-- 방문 후기 -->
