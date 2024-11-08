@@ -15,11 +15,10 @@
             box-sizing: border-box;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
             margin: 0;
             background-color: #f5f5f5;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
-        }
+            overflow-x: hidden; 
 
         /* 헤더 스타일 */
         .header {
