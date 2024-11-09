@@ -111,39 +111,8 @@
    </div>
 
    <!-- Tesseract.js 라이브러리 추가 -->
-   <script
-      src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
-
-
-
-
-
-   <script>
-   document.getElementById('file-upload').addEventListener('change', function() {
-        const file = this.files[0];
-        const fileNameDisplay = document.getElementById('file-name');
-        const contentTextarea = document.getElementById('content');
-        
-        fileNameDisplay.value = file ? file.name : "선택된 파일 없음";
-
-        if (file) {
-            Tesseract.recognize(file, 'kor', { logger: m => console.log(m) })
-                .then(({ data: { text } }) => {
-                    const cleanedText = text
-                        .split('\n')                   
-                        .map(line => line.trim())      
-                        .map(line => line.replace(/\s+/g, ' ')) 
-                        .join('\n');                  
-
-                    contentTextarea.value = cleanedText; 
-                })
-                .catch(error => {
-                    console.error("OCR 오류:", error);
-                    contentTextarea.value = "텍스트를 추출할 수 없습니다.";
-                });
-        }
-    });
-    </script>
+   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
+   <script type="text/javascript" src="js/writer_result.js"></script>
    <script type="text/javascript" src="js/join_region.js"></script>
    <script type="text/javascript" src="js/writer_true.js"></script>
 </body>
