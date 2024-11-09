@@ -242,13 +242,20 @@
 		    border: 1px solid #ddd;
 		    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 		    text-align: center;
-		    font-size: 16px; /* 글자 크기 조정 */
+		    font-size: 14px; /* 글자 크기 조정 */
 		    font-weight: bold; /* 글자 굵기 조정 */
 		    font-family: 'Arial', sans-serif; /* 원하는 글꼴로 변경 */
 		    color: #333; /* 글자 색상 변경 */
 		    height: 280px;
 		    margin: 5px;
 		    line-height: 1.6; /* 줄 간격 설정, 필요에 따라 조정 가능 */
+		}
+		.ranking-table {
+		    width: 100%; /* 테이블이 부모 요소 너비에 맞게 확장되도록 */
+		}
+		.ranking-table td {
+		    text-align: center; /* 셀 내부 텍스트 중앙 정렬 */
+		    padding: 0px; /* 셀 여백 추가 */
 		}
 
         /* 방문후기 박스 스타일 */

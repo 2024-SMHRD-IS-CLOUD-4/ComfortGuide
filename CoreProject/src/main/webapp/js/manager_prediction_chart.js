@@ -362,19 +362,19 @@ new Chart(ctx, {
             {
                 label: '매출',
                 data: revenueData,
-                borderColor: 'blue',
+                borderColor: 'orange',// 주황색
                 fill: false,
             },
             {
                 label: '통행량',
                 data: trafficVolumeData,
-                borderColor: 'green',
+                borderColor: 'blue', // 파란색
                 fill: false,
             },
             {
-                label: '이용객 수',
+                label: '이용객',
                 data: visitorsData,
-                borderColor: 'orange',
+                borderColor: 'green',  // 녹색
                 fill: false,
             }
         ]
@@ -446,4 +446,4 @@ function createChart(canvasId, label, data, color) {
 // 각 차트를 해당 canvas 요소에 생성하며 각 차트의 색상을 지정
 createChart('sales-chart', '매출', revenueData, 'rgba(255, 159, 64, 0.7)');  // 주황색
 createChart('traffic-chart', '통행량', trafficVolumeData, 'rgba(54, 162, 235, 0.7)');  // 파란색
-createChart('guests-chart', '이용객 수', visitorsData, 'rgba(75, 192, 192, 0.7)');  // 녹색
+createChart('guests-chart', '이용객', visitorsData, 'rgba(75, 192, 192, 0.7)');  // 녹색
