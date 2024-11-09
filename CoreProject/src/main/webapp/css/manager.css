@@ -259,23 +259,17 @@
     text-align: center;
 }
 
-.sentiment-icon {
-    width: 80px;
+.sentiment-icon, .small-block-icon {
+    width: 80px; /* 아이콘 크기 증가 */
     height: 80px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .sentiment-text {
     font-size: 17px;
 }
 
-.small-block-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 5px;
-    display: inline-block;
-    vertical-align: middle;
-}
+
 
 /* 고객의 소리 표 스타일 */
 .customer-feedback-table {
@@ -298,3 +292,17 @@
     font-weight: bold;
     text-align: center;
 }
+
+.text-card > div:first-child {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+.sentiment-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+

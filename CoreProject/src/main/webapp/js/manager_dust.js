@@ -12,16 +12,21 @@ $(document).ready(function() {
 			const pm2_5 = component.pm2_5;
 			if (pm10 <= 15 || pm2_5 <= 30) {
 				document.getElementById('dustValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=10-_0PuNhgHsv14FaehmcIVd8508zujpo" alt="좋음" class="small-block-icon"><br>좋음'
-				document.getElementById('dustValue').style.cssText='color: blue;'
+				document.getElementById('dustValue').style.cssText='color: green;'
+				document.getElementById('dustIndex').style.backgroundColor = '#DFFFD6';//연두
+				
 			} else if (pm10 <= 80 || pm2_5 <= 35) {
 				document.getElementById('dustValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1aYPt0Ma6cjQTGjHkuwdLTHi1n1rAuboU" alt="보통" class="small-block-icon"><br>보통'
-				document.getElementById('dustValue').style.cssText='color: green;'
+				document.getElementById('dustValue').style.cssText='color: blue;'
+				document.getElementById('dustIndex').style.backgroundColor = '#D6F5FF';//파랑
 			} else if (pm10 <= 150 || pm2_5 <= 75) {
 				document.getElementById('dustValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=16I0ql4_Q5SA2D-KcjxN31p4KDNT8Lq0m" alt="나쁨" class="small-block-icon"><br>나쁨'
 				document.getElementById('dustValue').style.cssText='color: yellow;'
+				document.getElementById('dustIndex').style.backgroundColor = '#FFF9CC';//주황?
 			} else {
 				document.getElementById('dustValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1jfOjME7NJyR43qnXVwaZtA3OB1_dUdgd" alt="매우 나쁨" class="small-block-icon"><br>매우 나쁨'
 				document.getElementById('dustValue').style.cssText='color: red;'
+				document.getElementById('dustIndex').style.backgroundColor = '#FFD6E7';//빨강
 			}
 		})
 		.catch(error => console.error('Error:', error)); // 에러 처리

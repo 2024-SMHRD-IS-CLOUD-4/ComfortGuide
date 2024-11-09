@@ -170,7 +170,22 @@
         </div>
         <div class="content">
             <div class="map-container" id="map">지도</div>
+            <div id="map-side">
+            <select id="region" name="region" required>
+                <option value="">지역 선택</option>
+                <option value="강원">강원</option>
+                <option value="경기">경기</option>
+                <option value="전남">전남</option>
+                <option value="전북">전북</option>
+                <option value="충남">충남</option>
+                <option value="충북">충북</option>
+                <option value="경남">경남</option>
+                <option value="경북">경북</option>
+                <option value="제주">제주</option>
+            </select>
+
             <div class="marker-list-container" id="markerList"></div>
+            </div>
         </div>
     </div>
 
@@ -278,19 +293,20 @@
     ];     </script>
 
    <script>
-      var positions = [
-          <%for (int i = 0; i < getArea.size(); i++) {
-         String name = getArea.get(i).getSa_name().replace("(", " 휴게소(").replace(")", " 방향)");
-         double lat = Double.parseDouble(String.format("%.6f", getArea.get(i).getLat()));
-         double lon = Double.parseDouble(String.format("%.6f", getArea.get(i).getLon()));%>
-          {
-              title: '<%=name%>',
-              latlng: new kakao.maps.LatLng(<%=lat%>, <%=lon%>),
-              content: '<div class="wrap"><div class="info"><div class="title"><%=name%><div class="close" onclick="closeOverlay()" title="닫기"></div></div><div class="body"><div>휴게소 종류 : <%=getArea.get(i).getSa_type()%></div><div class="desc"><div class="ellipsis">주소 : <%=getArea.get(i).getSa_addr()%></div></div></div></div></div>'
-          }<%if (i < getArea.size() - 1) {%>,<%}%>
-          <%}%>
-      ];
-</script>
+	   var positions = [
+	       <%for (int i = 0; i < getArea.size(); i++) {
+	      String name = getArea.get(i).getSa_name().replace("(", " 휴게소(").replace(")", " 방향)");
+	      double lat = Double.parseDouble(String.format("%.6f", getArea.get(i).getLat()));
+	      double lon = Double.parseDouble(String.format("%.6f", getArea.get(i).getLon()));%>
+	       {
+	           title: '<%=name%>',
+	           latlng: new kakao.maps.LatLng(<%=lat%>, <%=lon%>),
+	           region: '<%= getArea.get(i).getSa_addr().split(" ")[0] %>', // 지역을 주소의 첫 번째 단어로 추출
+	           content: '<div class="wrap"><div class="info"><div class="title"><%=name%><div class="close" onclick="closeOverlay()" title="닫기"></div></div><div class="body"><div>휴게소 종류 : <%=getArea.get(i).getSa_type()%></div><div class="desc"><div class="ellipsis">주소 : <%=getArea.get(i).getSa_addr()%></div></div></div></div></div>'
+	       }<%if (i < getArea.size() - 1) {%>,<%}%>
+	       <%}%>
+	   ];
+	</script>
    <script type="text/javascript" src="js/main_bar.js"></script>
    <script type="text/javascript" src="js/map_js.js"></script>
    <script type="text/javascript" src="js/main_event.js"></script>

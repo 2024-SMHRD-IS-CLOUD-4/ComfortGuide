@@ -47,7 +47,7 @@ $(document).ready(function() {
                   // 감기 가능 지수 계산 (tempData 변수는 JSP에서 전달된 값 사용)
 				  const regionMap = {
 				      "서울": ["서울"],
-				      "경기": ["경기", "수원", "성남", "안양", "부천", "고양", "용인", "의정부", "평택", "시흥", "파주", "이천", "안산", "광명", "하남", "광주", "김포", "군포", "여주", "양평", "구리", "오산", "의왕", "포천", "동두천", "가평", "과천"],
+				      "경기": ["경기", "수원", "성남", "안양", "부천", "고양", "용인", "의정부", "평택", "시흥", "파주", "이천", "안산", "광명", "하남", "광주", "김포", "군포", "여주", "양평", "구리", "오산", "의왕", "포천", "동두천", "가평", "과천","세종"],
 				      "강원": ["강원", "춘천", "원주", "강릉", "동해", "속초", "삼척", "태백", "정선", "철원", "화천", "양구", "인제", "고성", "양양"],
 				      "충북": ["충북", "충청북도", "청주", "충주", "제천", "보은", "옥천", "영동", "증평", "진천", "괴산", "음성", "단양"],
 				      "충남": ["충남", "충청남도", "천안", "아산", "서산", "태안", "공주", "보령", "논산", "계룡", "당진", "부여", "서천", "홍성", "예산", "청양"],
@@ -60,8 +60,7 @@ $(document).ready(function() {
 				      "대구": ["대구"],
 				      "울산": ["울산"],
 				      "부산": ["부산"],
-				      "제주": ["제주", "서귀포"],
-				      "세종": ["세종"]
+				      "제주": ["제주", "서귀포"]
 				  };
 
 				  function findProvince(tempData) {
@@ -110,16 +109,20 @@ $(document).ready(function() {
                   // 감기 가능 지수 텍스트 설정
                   if (ColdPossibility < 33) {
                      document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1ZBmHr_wDIQgvoaaVU81exfdNec8Lirb0" alt="낮음" class="small-block-icon"><br>낮음';
-                     document.getElementById('ColdData').style.cssText = 'color: blue;';               
+                     document.getElementById('ColdData').style.cssText = 'color: green;';   
+					 document.getElementById('ColdPossibility').style.backgroundColor = '#DFFFD6';//연두
                   } else if (ColdPossibility < 66) {
                      document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1szB7v1RhanjIB8jmnZ1HrxTjl9NFcMQK" alt="보통" class="small-block-icon"><br>보통';
-                     document.getElementById('ColdData').style.cssText = 'color: green;';
+                     document.getElementById('ColdData').style.cssText = 'color: blue;';
+					 document.getElementById('ColdPossibility').style.backgroundColor = '#D6F5FF';//파랑
                   } else if (ColdPossibility < 85) {
                      document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1E6m-7DIC6l23uemNzOtIwxdVGB8uPZ8j" alt="높음" class="small-block-icon"><br>높음';
                      document.getElementById('ColdData').style.cssText = 'color: yellow;';
+					 document.getElementById('ColdPossibility').style.backgroundColor = '#FFF9CC';//주황?
                   } else {
                      document.getElementById('ColdData').innerHTML = '<img src="https://drive.google.com/thumbnail?id=16I0ql4_Q5SA2D-KcjxN31p4KDNT8Lq0m" alt="매우 높음" class="small-block-icon"><br>매우 높음';
                      document.getElementById('ColdData').style.cssText = 'color: red;';
+					 document.getElementById('ColdPossibility').style.backgroundColor ='#FFD6E7';//빨강
                   }
                   let corruption = ((humidity-65)/14)*Math.pow(1.056,temperature);
                   console.log('corruption : '+corruption);
@@ -130,18 +133,19 @@ $(document).ready(function() {
                   if (corruption < 3.0) {
                      corruptionText = '양호';
                      corruptionImage = 'https://drive.google.com/thumbnail?id=10-_0PuNhgHsv14FaehmcIVd8508zujpo';
-                     document.getElementById('corruptionValue').style.cssText = 'color: blue;';               
+                     document.getElementById('corruptionValue').style.cssText = 'color: green;';       
+					 document.getElementById('corruption').style.backgroundColor = '#DFFFD6';//연두
 
                   } else if (corruption < 7.0) {
                      corruptionText = '보통';
                      corruptionImage = 'https://drive.google.com/thumbnail?id=1aYPt0Ma6cjQTGjHkuwdLTHi1n1rAuboU';
                      document.getElementById('corruptionValue').style.cssText = 'color: yellow;';               
-
+					 document.getElementById('corruption').style.backgroundColor = '#FFF9CC';//주황?
                   } else {
                      corruptionText = '위험';
                      corruptionImage = 'https://drive.google.com/thumbnail?id=1E6m-7DIC6l23uemNzOtIwxdVGB8uPZ8j';
                      document.getElementById('corruptionValue').style.cssText = 'color: red;';               
-
+					 document.getElementById('corruption').style.backgroundColor = '#FFD6E7';//빨강
                   }
                      // HTML 요소에 부패 지수 이미지 및 텍스트 추가
                   document.getElementById('corruptionValue').innerHTML = `<img src="${corruptionImage}" alt="${corruptionText}" class="small-block-icon"><br>${corruptionText}`;

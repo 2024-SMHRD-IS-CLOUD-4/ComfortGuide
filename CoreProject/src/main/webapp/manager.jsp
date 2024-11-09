@@ -212,7 +212,7 @@
       <!-- 하단의 넓은 박스 -->
       <div class="table-container sales-chart-table">
     <!-- 두 번째 사진의 매출액 표 내용 -->
-      휴게소 하나의 음식코너 매출액
+      음식코너 매출액
       <canvas id="foodcorner-chart" style="width: 100%; height: 50%;"></canvas>
       </div>
 
@@ -242,7 +242,7 @@
              </div>
          </div>
           <div class="text-card" id="foodPoisonIndex" style="display: block;">
-              <div>식중독 지수</div>
+              <div>식중독 발생 건수</div>
               <br>
               <div id="foodPoisonValue">-</div>
           </div>
