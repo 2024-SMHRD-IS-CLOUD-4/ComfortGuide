@@ -104,7 +104,7 @@
 
    <!-- 컨테이너 -->
  <script type="text/javascript">
-    const saName = "<%= saName %>";
+    
 </script>
 
 <div class="container">
