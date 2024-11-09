@@ -157,6 +157,7 @@
         }
 
         .weather-item {
+        
             background-color: #fff;
             border: 1px solid #ccc;
             padding: 5px;
