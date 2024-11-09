@@ -56,6 +56,7 @@ $(document).ready(function () {
 		                     <td style="text-align: center;">${item.monthly_sales.toLocaleString()}원</td>
 		                 </tr>
 		             </table>
+					 <hr />
 		
            `;
            rankingContainer.append(rankingItem);
