@@ -1,0 +1,169 @@
+@charset "UTF-8";
+* {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Centering container wrapper */
+        .center-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding-top: 20px;
+        }
+
+        .container {
+            width: 900px;
+            min-height: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            background-color: #d3d3d3;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .table-container {
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+            max-height: 600px; /* 스크롤을 위한 최대 높이 설정 */
+            position: relative;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            min-width: 50px;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        /* 제목 열 너비 100% 설정 */
+        td:nth-child(2) {
+            text-align: left;
+            width: 80%;
+        }
+
+        /* 제목 링크 스타일 */
+        a.title-link {
+            color: black; /* 제목 링크의 색을 검정색으로 설정 */
+            text-decoration: none; /* 밑줄 없애기 */
+        }
+        a.title-link:hover {
+            color: #007BFF; /* 호버시 색상을 조금 다르게 설정하여 시각적 피드백 제공 */
+        }
+
+        /* 버튼 스타일을 테이블 안쪽 오른쪽 하단에 위치 */
+        .button-container {
+            bottom: 15px;
+            right: 15px;
+            text-align: right;
+        }
+
+        .button-container button {
+            background-color: #d3d3d3; /* 회색 버튼 색상 */
+            color: black;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            margin-top: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #b3b3b3;
+        }
+
+        /* 헤더 스타일 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #cae3f8;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: 60px;
+        }
+
+        .header .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* 메뉴 스타일 */
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaf4f9;
+            padding: 10px 20px;
+        }
+
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .menu a:active,
+        .menu a:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+
+        /* user-info 스타일 */
+        .menu .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .menu .user-info span {
+            margin-right: 15px;
+        }
+
+        .menu .user-info a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #d3d3d3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .menu .user-info a:hover {
+            background-color: #b3b3b3;
+        }

@@ -113,34 +113,34 @@
     <canvas id="manager-chart"></canvas>
     </div>
       <%
-      //String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");
-      //String url = "http://localhost:5000/searchService?name=" + encodedService;
-      //System.out.println("Request URL: " + url);
+      String encodedService = URLEncoder.encode(login.getSa_name() + "휴게소", "UTF-8");
+      String url = "http://localhost:5000/searchService?name=" + encodedService;
+      System.out.println("Request URL: " + url);
 
-      //URL obj = new URL(url);
-      //HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-      //con.setRequestMethod("GET");
+      URL obj = new URL(url);
+      HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+      con.setRequestMethod("GET");
 
-      //BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-      //String inputLine;
-      //StringBuffer responseData = new StringBuffer();
+      BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      String inputLine;
+      StringBuffer responseData = new StringBuffer();
 
-      //while ((inputLine = in.readLine()) != null) {
-         //responseData.append(inputLine);
-      //}
-      //in.close();
+      while ((inputLine = in.readLine()) != null) {
+         responseData.append(inputLine);
+      }
+      in.close();
 
       // JSON 파싱
-      //JSONObject jsonResponse = new JSONObject(responseData.toString());
+      JSONObject jsonResponse = new JSONObject(responseData.toString());
       double positive = 0.0; 
-	  //positive = jsonResponse.getDouble("positive");
+	  positive = jsonResponse.getDouble("positive");
       double negative = 0.0;
-      //negative = jsonResponse.getDouble("negative");
+      negative = jsonResponse.getDouble("negative");
       double neutral = 0.0;
-      //neutral = jsonResponse.getDouble("neutral");
-      //System.out.println(positive);
-      //System.out.println(negative);
-      //System.out.println(neutral);
+      neutral = jsonResponse.getDouble("neutral");
+      System.out.println(positive);
+      System.out.println(negative);
+      System.out.println(neutral);
       %>
 
       <!-- 오른쪽 상단 3개의 정보 박스 그룹 -->

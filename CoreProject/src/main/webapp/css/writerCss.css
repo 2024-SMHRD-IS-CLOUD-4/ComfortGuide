@@ -1,0 +1,148 @@
+@charset "UTF-8";
+* {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Malgun Gothic', sans-serif; /* 맑은 고딕 폰트 적용 */
+            font-style: normal;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           background-color: #cae3f8;
+           padding: 10px 20px;
+           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+           height: 60px;
+       }
+        .header .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaf4f9;
+            padding: 10px 20px;
+        }
+        .menu a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+        .menu a:active,
+        .menu a:focus {
+            background-color: #ffffff;
+            color: black;
+        }
+        .menu .user-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .menu .user-info span {
+            margin-right: 15px;
+        }
+        .menu .user-info a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #d3d3d3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .menu .user-info a:hover {
+            background-color: #b3b3b3;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+            margin: 50px auto;
+            width: 1000px;
+            min-height: 600px;
+            height:autopx;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            background-color: #d3d3d3;
+            padding: 10px;
+            border-radius : 5px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+        .form-group label {
+            width: 100px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            height: 300px;
+            resize: vertical;
+        }
+        .file-input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .file-input-container label {
+            font-weight: normal;
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #d3d3d3;
+        }
+        .buttons button:hover {
+            background-color: #b3b3b3;
+        }
+
+        .select-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
