@@ -475,7 +475,7 @@ function drawChart(filteredData, saName) {
 	createChart('sales-chart', '매출', revenueData, 'rgba(255, 159, 64, 0.7)');  // 주황색
 	createChart('traffic-chart', '통행량', trafficVolumeData, 'rgba(54, 162, 235, 0.7)');  // 파란색
 	createChart('guests-chart', '이용객', visitorsData, 'rgba(75, 192, 192, 0.7)');  // 녹색
-///
+
 }
 
 
