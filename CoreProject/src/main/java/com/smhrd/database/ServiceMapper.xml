@@ -124,5 +124,9 @@
         FROM 	sa_ranking
         WHERE sa_name = #{sa_name}
     </select>
+   
+<insert id="insertSaRanking" parameterType="com.smhrd.model.sa_ranking">
+	insert into sa_ranking values(#{base_ym}, #{os_ranking}, #{sa_sr}, #{sa_code}, #{sa_name}, #{store_code}, #{store_name}, #{monthly_sales})
+</insert>
 
 </mapper>

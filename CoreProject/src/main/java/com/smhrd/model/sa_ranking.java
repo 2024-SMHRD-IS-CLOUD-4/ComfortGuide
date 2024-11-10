@@ -9,14 +9,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public class sa_ranking {
 	
-	Timestamp base_ym;
+	String base_ym;
 	int os_ranking;
 	int sa_sr;
-	int sa_code;
+	String sa_code;
 	String sa_name;
 	int store_code;
 	String store_name;
-	int monthly_sq;
 	int monthly_sales;
 	
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import com.smhrd.model.ServiceAreaDAO;
+import com.smhrd.model.sa_ranking;
 import com.smhrd.model.tb_details;
 import com.smhrd.model.tb_service_area;
 
@@ -24,8 +26,59 @@ public class insertContoller extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		setIsFacility();
-		setServiceArea();
+
+		String filePath = "C:\\Users\\smhrd\\Desktop\\Coding\\core_project_test\\csv\\sa_ranking.csv";
+        Random random = new Random();
+
+		ServiceAreaDAO dao = new ServiceAreaDAO();
+		try (CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(filePath), "EUC-KR"))) {
+			String[] nextLine;
+			reader.skip(1);
+			int initialSales = 0;        // 초기 매출값
+	        int count = 0;               // 현재 순위 카운터
+	        String previousSaName = "";  // 이전 sa_name 저장
+			while ((nextLine = reader.readNext()) != null) {
+				String base_ym = nextLine[0];
+				int os_ranking = Integer.parseInt(nextLine[1]);
+				int sa_sr = Integer.parseInt(nextLine[2]); 
+				String sa_code = nextLine[3]; 
+				String sa_name = nextLine[4].replace("휴게소", "").trim();
+				int store_code = Integer.parseInt(nextLine[5]);
+				String store_name = nextLine[6];
+				if (!sa_name.equals(previousSaName)) {
+	                count = 1;
+	                previousSaName = sa_name;
+	                // 초기값을 1600에서 2500 사이로 랜덤하게 설정
+	                initialSales = 1600 + random.nextInt(900 + 1);
+	            } else {
+	                count++;
+	            }
+
+	            int monthly_sales;
+	            
+	            if (count == 1) {
+	                // 첫 번째 항목은 초기값을 그대로 사용
+	                monthly_sales = initialSales;
+	            } else {
+	                // 두 번째 항목부터는 100에서 400 사이의 랜덤 값을 차감
+	                int deduction = 100 + random.nextInt(300 + 1);
+	                monthly_sales = initialSales - deduction;
+
+	                // 값이 300 이하로 떨어지면 200에서 300 사이의 랜덤 값으로 설정
+	                if (monthly_sales < 300) {
+	                    monthly_sales = 200 + random.nextInt(100 + 1);
+	                }
+
+	                // 초기값을 업데이트
+	                initialSales = monthly_sales;
+	            }
+	            sa_ranking sr = new sa_ranking(base_ym, os_ranking, sa_sr, sa_code, sa_name, store_code, store_name, monthly_sales*10000);
+	            dao.insertSaRanking(sr);
+			}
+
+		} catch (IOException | CsvValidationException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void setIsFacility() {

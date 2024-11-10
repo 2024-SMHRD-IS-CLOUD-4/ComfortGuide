@@ -141,6 +141,12 @@ public class ServiceAreaDAO {
 		session.close();
 		return result;
 	}
+	public int insertSaRanking(sa_ranking s) {
+		SqlSession session = factory.openSession(true);
+		int result = session.update("ServiceMapper.insertSaRanking",s);
+		session.close();
+		return result;
+	}
 
 
 }

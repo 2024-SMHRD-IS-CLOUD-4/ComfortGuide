@@ -60,22 +60,20 @@ $(document).ready(function() {
 						console.log(patientCount + '계싼')
 
                         if (patientCount < 50) {
-                            document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=10-_0PuNhgHsv14FaehmcIVd8508zujpo" alt="관심" class="small-block-icon"><br>관심';
-                            document.getElementById('foodPoisonValue').style.cssText = 'color: green;';
+							document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1YwH1ezeI1hG3GKA94ywXhwRkV9EnsHp7" alt="관심" class="small-block-icon">';
 							document.getElementById('foodPoisonIndex').style.backgroundColor = '#DFFFD6';//연두
                         } else if (patientCount < 100) {
-                            document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1aYPt0Ma6cjQTGjHkuwdLTHi1n1rAuboU" alt="주의" class="small-block-icon"><br>주의';
-                            document.getElementById('foodPoisonValue').style.cssText = 'color: blue;';
+							document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1gNLAEWkUg80wTKf2FfMyaOAdDLWiQLG3" alt="관심" class="small-block-icon">';
 							document.getElementById('foodPoisonIndex').style.backgroundColor = '#D6F5FF';//파랑
                         } else if (patientCount < 150) {
-                            document.getElementById('foodPoisonValue').innerHTML = '<br><a style="font-size : 50px;">높음</a>';
-                            document.getElementById('foodPoisonValue').style.cssText = 'color: orange;';
+							document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1STXhOfdnB1RO1FJjpRSqKdZwK9IdajnU" alt="관심" class="small-block-icon">';
 							document.getElementById('foodPoisonIndex').style.backgroundColor = '#FFF9CC';//주황?
                         } else {
-                            document.getElementById('foodPoisonValue').innerHTML = `<br><a style="font-size : 32px;">${patientCount}</a>`;
-                            
+							document.getElementById('foodPoisonValue').innerHTML = '<img src="https://drive.google.com/thumbnail?id=1sp86yWMrXeVNKMsCJfYFZKqYVc4mJ1xz" alt="관심" class="small-block-icon">';
 							document.getElementById('foodPoisonIndex').style.backgroundColor = '#FFD6E7';//빨강
                         }
+						document.getElementById('foodPoisonValue').innerHTML += `<br><a style="font-size : 32px;">${patientCount}건</a>`;
+
                     } else {
                         console.log("해당 지역의 데이터가 없습니다.");
                         document.getElementById('foodPoisonValue').innerText = "N/A";
