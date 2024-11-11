@@ -25,7 +25,7 @@
 <div class="menu">
     <div>
         <a href="mainPage.jsp" class="active">메인 페이지</a>
-        <a href="subpage.jsp">검색 페이지</a>
+        <a href="subpage.jsp">휴게소 검색</a>
          <a href="writer.jsp">글 작성</a>
         <a href="javascript:void(0);" onclick="confirmLogin('manager.jsp')">관리자 페이지</a>
         <a href="javascript:void(0);" onclick="confirmLogin('suggestion.jsp')">고객의 소리</a>
