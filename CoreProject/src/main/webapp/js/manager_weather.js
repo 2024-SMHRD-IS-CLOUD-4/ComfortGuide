@@ -21,7 +21,23 @@ $(document).ready(function() {
       const formatDate = (date) => date.toISOString().slice(0, 10).replace(/-/g, '');
       const dates = [new Date(), new Date(today.setDate(today.getDate() + 1)), new Date(today.setDate(today.getDate() + 1))].map(formatDate);
 
-      const baseTime = '0500';
+	  let baseTime = '0500';
+
+	  const currentHour = today.getHours();
+      if (currentHour < 5) {
+          // 5시 이전이면 전날 2300 시간 데이터를 사용
+          today.setDate(today.getDate() - 1);
+          baseDate = formatDate(today);
+          baseTime = '2300';
+      } else if (currentHour < 11) {
+          baseTime = '0500';
+      } else if (currentHour < 17) {
+          baseTime = '1100';
+      } else if (currentHour < 23) {
+          baseTime = '1700';
+      } else {
+          baseTime = '2300';
+      }
       const pageNo = 1;
       const numOfRows = 100;
 
