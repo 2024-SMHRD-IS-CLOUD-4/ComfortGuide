@@ -71,19 +71,42 @@ Oracle
 </table>
 
 ## ⚙ 시스템 아키텍처
-< 데이터 분석 ver > 
-<br>
-< Flask ver >
-<br>
-< JSP Servlet ver >
+< 데이터 분석 > 
+![image](https://github.com/user-attachments/assets/2ba399ca-8675-4288-baa0-a90c4d713780)
 
+< Flask >
+![image](https://github.com/user-attachments/assets/4c99c265-99df-492b-90f7-924a102e5b94)
+
+< JSP Servlet >
+![image](https://github.com/user-attachments/assets/1b2ed7a7-0e03-43f0-856e-3beb0dfccf05)
 ## 📍 유스케이스
-
-## 📍 서비스 흐름도
+![image](https://github.com/user-attachments/assets/02158d5c-9f8f-4cbd-9b2b-a1075bea9f8f) 
+![image](https://github.com/user-attachments/assets/d2bc6ae2-7b5b-4f7c-8cad-0bb22c555f0b) 
 
 ## 📍 ER 다이어그램
+![image](https://github.com/user-attachments/assets/6e768193-05ad-4e7a-96e3-e06e58b5ccef)
 
 ## 🖥 화면 구성
+[메인 페이지]
+![image](https://github.com/user-attachments/assets/e1bcb304-0dcf-45b2-b1af-2022a1697e87)![image](https://github.com/user-attachments/assets/9ba0b47b-6a14-4adc-8b17-215174e31ded)
+
+[휴게소 검색 페이지]
+![image](https://github.com/user-attachments/assets/4d3c5168-61db-4db2-9b4d-5a5110928ba8)
+
+[글 작성 페이지]
+![image](https://github.com/user-attachments/assets/8f5820b4-5d88-4a25-a36d-1c352ae8006f)
+
+[로그인 / 회원가입 페이지]
+![image](https://github.com/user-attachments/assets/99afa285-c2ca-49a3-ae62-d292f8195e0e)
+![image](https://github.com/user-attachments/assets/5ebff2fd-39e1-4442-a2d5-a551f4fe5429)
+
+[고객의 소리]
+![image](https://github.com/user-attachments/assets/71c79b2a-1c35-4c62-88ef-ee6ee988ca84)
+
+[관리자 페이지]
+![image](https://github.com/user-attachments/assets/7f592d9b-2bde-4c91-88ab-e2ed6a196721)
+![image](https://github.com/user-attachments/assets/395d4e16-6c1f-4042-b087-1ebe0c9804c5)
+
 
 ## 🎬 시연영상
 
