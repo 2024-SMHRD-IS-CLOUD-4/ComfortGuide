@@ -43,7 +43,7 @@
   HTML, CSS, JavaScript, Java, Python
       </td>
     <tr>
-     <td>사용 라이브러리</td>
+     <td>사용 프레임워크</td>
       <td>
 Mybatis, Flask
       </td>
