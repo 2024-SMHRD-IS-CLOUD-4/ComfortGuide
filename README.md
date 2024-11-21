@@ -102,7 +102,7 @@ Oracle
 <details><summary>[이미지]
 </summary>
 
-![image](https://github.com/user-attachments/assets/6e768193-05ad-4e7a-96e3-e06e58b5ccef)
+![image](https://github.com/user-attachments/assets/b796adb2-cd66-439c-a990-12fffec16d5e)
 </details>
 
 
